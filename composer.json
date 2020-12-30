@@ -1,0 +1,43 @@
+{
+    "name": "nkl-kst/the-sports-db",
+    "type": "library",
+    "description": "PHP library to get sports data from TheSportsDB (https://www.thesportsdb.com)",
+    "keywords": ["TheSportsDB", "library", "PHP"],
+    "homepage": "https://www.github.com/nkl-kst/the-sports-db",
+    "readme": "README.md",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikolai Keist",
+            "homepage": "https://www.github.com/nkl-kst"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.2",
+        "netresearch/jsonmapper": "^3.1",
+        "symfony/dependency-injection": "^5.1"
+    },
+    "require-dev": {
+        "ext-mbstring": "*",
+        "phpunit/phpunit": "^9.0.0",
+        "friendsofphp/php-cs-fixer": "^2.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "NklKst\\TheSportsDb\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NklKst\\TheSportsDb\\": "test/unit"
+        }
+    },
+    "scripts": {
+        "check-code": "php-cs-fixer fix --dry-run",
+        "test-unit": "phpunit --testsuite=Unit",
+        "test-integration": "phpunit --testsuite=Integration"
+    }
+}

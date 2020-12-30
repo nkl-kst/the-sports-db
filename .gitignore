@@ -1,0 +1,13 @@
+# IDE
+.idea
+
+# Composer
+composer.phar
+vendor
+
+# PHPUnit
+.phpunit.cache
+.phpunit.result.cache
+
+# PHP-CS-Fixer
+.php_cs.cache
