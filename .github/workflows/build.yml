@@ -3,7 +3,7 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -43,3 +43,5 @@ jobs:
 
     - name: Check code
       run: composer run-script check-code
+      env:
+        PHP_CS_FIXER_IGNORE_ENV: 1
