@@ -12,6 +12,10 @@ An easy-to-use PHP library to get data from https://www.thesportsdb.com.
 - Choose your API version
 - Use PSR-4 autoloading
 
+This library uses [Semantic Versioning](https://semver.org). Until version 1.0.0 is released, breaking changes will be 
+covered in feature releases (second digit). This means you should be safe using something like `^0.x.x` in your 
+`composer.json`, because this will not introduce backward incompatible changes.
+
 ## Installation
 
 Install this PHP library with [Composer](https://getcomposer.org).
@@ -21,6 +25,8 @@ Install this PHP library with [Composer](https://getcomposer.org).
 ```
 
 ## Usage
+
+### Get data
 
 Get sports data from TheSportsDB.
 
@@ -38,6 +44,18 @@ echo $events[0]->strEvent;
 
 See [integration tests](https://github.com/nkl-kst/the-sports-db/tree/master/test/integration) for examples of all 
 [documented API calls](https://www.thesportsdb.com/api.php).
+
+### Use your API key
+
+Use your own Patreon API key.
+
+```php
+use NklKst\TheSportsDb\Client\ClientFactory;
+
+// Set an API key
+$client = ClientFactory::create();
+$client->configure()->setKey('YOUR_API_KEY');
+```
 
 ## Known issues
 
