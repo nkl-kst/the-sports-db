@@ -56,7 +56,7 @@ class TestUtils
     /**
      * Set an API key provided by the PATREON_KEY environment variable.
      *
-     * @param Client $client
+     * @param Client $client Used client to set API key
      */
     public static function setPatreonKey(Client $client): void
     {

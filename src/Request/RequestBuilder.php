@@ -84,11 +84,13 @@ class RequestBuilder implements RequestBuilderInterface
         try {
             return $this->checkResponse($this->http->request('GET', $this->buildUri()))->getBody();
         } catch (GuzzleException $e) {
-
             // Replace private API keys for log security
-            throw new Exception($this->key !== '1' ?
-                str_replace($this->key, 'HIDDEN_KEY', $e->getMessage()) :
-                $e->getMessage());
+            $message = $e->getMessage();
+            if ($this->key !== '1') {
+                $message = str_replace($this->key, 'HIDDEN_KEY', $message);
+            }
+
+            throw new Exception($message);
         }
     }
 }
