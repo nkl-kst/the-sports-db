@@ -3,6 +3,7 @@
 namespace NklKst\TheSportsDb\Util;
 
 use Closure;
+use NklKst\TheSportsDb\Client\Client;
 use ReflectionException;
 use ReflectionObject;
 
@@ -50,5 +51,15 @@ class TestUtils
         $meth->setAccessible(true);
 
         return $meth->getClosure($object);
+    }
+
+    /**
+     * Set an API key provided by the PATREON_KEY environment variable.
+     *
+     * @param Client $client
+     */
+    public static function setPatreonKey(Client $client): void
+    {
+        $client->configure()->setKey(getenv('PATREON_KEY'));
     }
 }

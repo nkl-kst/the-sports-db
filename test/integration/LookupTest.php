@@ -4,6 +4,7 @@ use NklKst\TheSportsDb\Client\Client;
 use NklKst\TheSportsDb\Client\ClientFactory;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Result;
+use NklKst\TheSportsDb\Entity\Event\Statistic;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
@@ -12,6 +13,7 @@ use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Table\Entry;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -77,16 +79,16 @@ class LookupTest extends TestCase
     /**
      * Event statistics by id (https://www.thesportsdb.com/api/v1/json/1/lookupeventstats.php?id=1032723).
      *
-     * TODO: This is a "patreon only" feature now.
-     *
      * @throws Exception
      */
-//    public function testStatistics(): void
-//    {
-//        $statistics = $this->client->lookup()->statistics(1032723);
-//        $this->assertContainsOnlyInstancesOf(Statistic::class, $statistics);
-//        $this->assertSame('Aston Villa vs Liverpool', $statistics[0]->strEvent);
-//    }
+    public function testStatistics(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $statistics = $this->client->lookup()->statistics(1032723);
+
+        $this->assertContainsOnlyInstancesOf(Statistic::class, $statistics);
+        $this->assertSame('Aston Villa vs Liverpool', $statistics[0]->strEvent);
+    }
 
     /**
      * Player honors by player id (https://www.thesportsdb.com/api/v1/json/1/lookuphonors.php?id=34147178).
