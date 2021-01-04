@@ -77,7 +77,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Event statistics by id (https://www.thesportsdb.com/api/v1/json/1/lookupeventstats.php?id=1032723).
+     * Event statistics by id (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookupeventstats.php?id=1032723).
      *
      * @throws Exception
      */
