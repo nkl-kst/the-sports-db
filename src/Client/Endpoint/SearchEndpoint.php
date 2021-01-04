@@ -51,9 +51,14 @@ class SearchEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function players(string $playerQuery, string $teamQuery = null): array
+    public function players(string $playerQuery = null, string $teamQuery = null): array
     {
-        $filter = (new SearchFilter())->setPlayerQuery($playerQuery);
+        $filter = new SearchFilter();
+
+        if ($playerQuery) {
+            $filter->setPlayerQuery($playerQuery);
+        }
+
         if ($teamQuery) {
             $filter->setTeamQuery($teamQuery);
         }
