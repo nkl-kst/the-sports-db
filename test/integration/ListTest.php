@@ -5,9 +5,11 @@ use NklKst\TheSportsDb\Client\ClientFactory;
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
+use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -127,6 +129,23 @@ class ListTest extends TestCase
         $teams = $this->client->list()->teams(4328);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame(4328, $teams[0]->idLeague);
+    }
+
+    /**
+     * List All players in a team by Team Id
+     * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookup_all_players.php?id=133604).
+     *
+     * @throws Exception
+     */
+    public function testListPlayers(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $players = $this->client->list()->players(133604);
+
+        $this->assertContainsOnlyInstancesOf(Player::class, $players);
+        foreach ($players as $player) {
+            $this->assertSame(133604, $player->idTeam);
+        }
     }
 
     /**
