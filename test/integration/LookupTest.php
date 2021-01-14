@@ -6,6 +6,7 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
@@ -96,7 +97,7 @@ class LookupTest extends TestCase
      *
      * @throws Exception
      */
-    public function testEventLineup(): void
+    public function testLineup(): void
     {
         TestUtils::setPatreonKey($this->client);
         $lineup = $this->client->lookup()->lineup(1032723);
@@ -104,6 +105,23 @@ class LookupTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Lineup::class, $lineup);
         foreach ($lineup as $player) {
             $this->assertSame('Aston Villa vs Liverpool', $player->strEvent);
+        }
+    }
+
+    /**
+     * List timeline for events by event ID
+     * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookuptimeline.php?id=1032718).
+     *
+     * @throws Exception
+     */
+    public function testTimeline(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $timeline = $this->client->lookup()->timeline(1032718);
+
+        $this->assertContainsOnlyInstancesOf(Timeline::class, $timeline);
+        foreach ($timeline as $event) {
+            $this->assertSame('Sheffield United vs Leeds', $event->strEvent);
         }
     }
 

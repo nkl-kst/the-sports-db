@@ -8,6 +8,7 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
@@ -369,5 +370,35 @@ class LookupEndpointTest extends TestCase
     {
         $team = $this->endpoint->team(1);
         $this->assertInstanceOf(Team::class, $team);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTimelineFilterEvent(): void
+    {
+        $this->endpoint->timeline(1);
+
+        $this->assertEquals(
+            (new LookupFilter())->setID(1),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTimelineEndpoint(): void
+    {
+        $event = $this->endpoint->timeline(1)[0];
+        $this->assertSame('lookuptimeline.php', $event->strTimeline);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTimelineInstance(): void
+    {
+        $timeline = $this->endpoint->timeline(1);
+        $this->assertContainsOnlyInstancesOf(Timeline::class, $timeline);
     }
 }

@@ -28,6 +28,7 @@ class LookupEndpoint extends AbstractEndpoint
     private const ENDPOINT_STATISTICS = 'lookupeventstats.php';
     private const ENDPOINT_TABLE = 'lookuptable.php';
     private const ENDPOINT_TEAM = 'lookupteam.php';
+    private const ENDPOINT_TIMELINE = 'lookuptimeline.php';
 
     /**
      * @return Contract[]
@@ -173,5 +174,17 @@ class LookupEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_TEAM);
 
         return $this->getSingleEntity($this->serializer->serializeTeams($this->request()));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function timeline(int $eventID): array
+    {
+        $this
+            ->setFilter((new LookupFilter())->setID($eventID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_TIMELINE);
+
+        return $this->serializer->serializeTimeline($this->request());
     }
 }
