@@ -22,6 +22,7 @@ class LookupEndpoint extends AbstractEndpoint
     private const ENDPOINT_FORMER_TEAMS = 'lookupformerteams.php';
     private const ENDPOINT_HONOR = 'lookuphonors.php';
     private const ENDPOINT_LEAGUE = 'lookupleague.php';
+    private const ENDPOINT_LINEUP = 'lookuplineup.php';
     private const ENDPOINT_PLAYER = 'lookupplayer.php';
     private const ENDPOINT_RESULT = 'eventresults.php';
     private const ENDPOINT_STATISTICS = 'lookupeventstats.php';
@@ -92,6 +93,18 @@ class LookupEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_LEAGUE);
 
         return $this->getSingleEntity($this->serializer->serializeLeagues($this->request()));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function lineup(int $eventID): array
+    {
+        $this
+            ->setFilter((new LookupFilter())->setID($eventID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_LINEUP);
+
+        return $this->serializer->serializeLineup($this->request());
     }
 
     /**

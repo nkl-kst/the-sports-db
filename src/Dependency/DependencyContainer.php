@@ -13,6 +13,7 @@ use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Request\RequestBuilderInterface;
 use NklKst\TheSportsDb\Serializer\CountrySerializer;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
 use NklKst\TheSportsDb\Serializer\LeagueSerializer;
@@ -46,6 +47,7 @@ class DependencyContainer
         FormerTeamSerializer::class,
         HonorSerializer::class,
         LeagueSerializer::class,
+        LineupSerializer::class,
         LoveSerializer::class,
         PlayerSerializer::class,
         ResultSerializer::class,

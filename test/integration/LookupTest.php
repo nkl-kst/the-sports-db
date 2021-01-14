@@ -3,6 +3,7 @@
 use NklKst\TheSportsDb\Client\Client;
 use NklKst\TheSportsDb\Client\ClientFactory;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
 use NklKst\TheSportsDb\Entity\League;
@@ -88,6 +89,22 @@ class LookupTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Statistic::class, $statistics);
         $this->assertSame('Aston Villa vs Liverpool', $statistics[0]->strEvent);
+    }
+
+    /**
+     * Event Lineup by Id (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookuplineup.php?id=1032723).
+     *
+     * @throws Exception
+     */
+    public function testEventLineup(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $lineup = $this->client->lookup()->lineup(1032723);
+
+        $this->assertContainsOnlyInstancesOf(Lineup::class, $lineup);
+        foreach ($lineup as $player) {
+            $this->assertSame('Aston Villa vs Liverpool', $player->strEvent);
+        }
     }
 
     /**

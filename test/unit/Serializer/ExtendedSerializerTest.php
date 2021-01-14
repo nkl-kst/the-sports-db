@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Serializer;
 
 use JsonMapper;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
@@ -26,6 +27,7 @@ class ExtendedSerializerTest extends TestCase
             [FormerTeamSerializer::class],
             [HonorSerializer::class],
             [LeagueSerializer::class],
+            [LineupSerializer::class],
             [LoveSerializer::class],
             [PlayerSerializer::class],
             [ResultSerializer::class],

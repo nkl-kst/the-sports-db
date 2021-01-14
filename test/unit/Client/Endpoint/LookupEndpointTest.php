@@ -5,6 +5,7 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 use Exception;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
 use NklKst\TheSportsDb\Entity\League;
@@ -176,6 +177,36 @@ class LookupEndpointTest extends TestCase
     {
         $league = $this->endpoint->league(1);
         $this->assertInstanceOf(League::class, $league);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testLineupFilterLeague(): void
+    {
+        $this->endpoint->lineup(1);
+
+        $this->assertEquals(
+            (new LookupFilter())->setID(1),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testLineupEndpoint(): void
+    {
+        $lineup = $this->endpoint->lineup(1)[0];
+        $this->assertSame('lookuplineup.php', $lineup->strPosition);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testLineupInstance(): void
+    {
+        $lineup = $this->endpoint->lineup(1);
+        $this->assertContainsOnlyInstancesOf(Lineup::class, $lineup);
     }
 
     /**

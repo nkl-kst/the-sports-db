@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Serializer;
 
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
@@ -21,6 +22,7 @@ class Serializer implements SerializerInterface
     private FormerTeamSerializer $formerTeamSerializer;
     private HonorSerializer $honorSerializer;
     private LeagueSerializer $leagueSerializer;
+    private LineupSerializer $lineupSerializer;
     private LoveSerializer $loveSerializer;
     private PlayerSerializer $playerSerializer;
     private ResultSerializer $resultSerializer;
@@ -37,6 +39,7 @@ class Serializer implements SerializerInterface
         FormerTeamSerializer $formerTeamSerializer,
         HonorSerializer $honorSerializer,
         LeagueSerializer $leagueSerializer,
+        LineupSerializer $lineupSerializer,
         LoveSerializer $loveSerializer,
         PlayerSerializer $playerSerializer,
         ResultSerializer $resultSerializer,
@@ -52,6 +55,7 @@ class Serializer implements SerializerInterface
         $this->formerTeamSerializer = $formerTeamSerializer;
         $this->honorSerializer = $honorSerializer;
         $this->leagueSerializer = $leagueSerializer;
+        $this->lineupSerializer = $lineupSerializer;
         $this->loveSerializer = $loveSerializer;
         $this->playerSerializer = $playerSerializer;
         $this->resultSerializer = $resultSerializer;
@@ -107,6 +111,14 @@ class Serializer implements SerializerInterface
     public function serializeLeagues(string $content): array
     {
         return $this->leagueSerializer->serialize($content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeLineup(string $content): array
+    {
+        return $this->lineupSerializer->serialize($content);
     }
 
     /**
