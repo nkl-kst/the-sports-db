@@ -29,7 +29,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListSports(): void
+    public function testSports(): void
     {
         $sports = $this->client->list()->sports();
         $this->assertContainsOnlyInstancesOf(Sport::class, $sports);
@@ -40,7 +40,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListCountries(): void
+    public function testCountries(): void
     {
         $countries = $this->client->list()->countries();
         $this->assertContainsOnlyInstancesOf(Country::class, $countries);
@@ -51,7 +51,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListLeagues(): void
+    public function testLeagues(): void
     {
         $leagues = $this->client->list()->leagues();
         $this->assertContainsOnlyInstancesOf(League::class, $leagues);
@@ -62,7 +62,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListLeaguesInCountry(): void
+    public function testLeaguesInCountry(): void
     {
         $league = $this->client->list()->leagues('England')[0];
         $this->assertSame('England', $league->strCountry);
@@ -74,7 +74,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListLeaguesInCountryBySport(): void
+    public function testLeaguesInCountryBySport(): void
     {
         $league = $this->client->list()->leagues('England', 'Soccer')[0];
         $this->assertSame('England', $league->strCountry);
@@ -86,7 +86,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListSeasonsInLeague(): void
+    public function testSeasonsInLeague(): void
     {
         $seasons = $this->client->list()->seasons(4328);
         $this->assertContainsOnlyInstancesOf(Season::class, $seasons);
@@ -98,7 +98,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListTeamsInLeague(): void
+    public function testTeamsInLeague(): void
     {
         $teams = $this->client->list()->teamsSearch('English Premier League');
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -111,7 +111,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListTeamsInCountryBySport(): void
+    public function testTeamsInCountryBySport(): void
     {
         $teams = $this->client->list()->teamsSearch(null, 'Soccer', 'Spain');
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -124,7 +124,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListTeamsInLeagueByID(): void
+    public function testTeamsInLeagueByID(): void
     {
         $teams = $this->client->list()->teams(4328);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -137,7 +137,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListPlayers(): void
+    public function testPlayers(): void
     {
         TestUtils::setPatreonKey($this->client);
         $players = $this->client->list()->players(133604);
@@ -153,7 +153,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListLoves(): void
+    public function testLoves(): void
     {
         $loves = $this->client->list()->loves('zag');
         $this->assertContainsOnlyInstancesOf(Love::class, $loves);
