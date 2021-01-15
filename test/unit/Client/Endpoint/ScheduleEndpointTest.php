@@ -2,6 +2,7 @@
 
 namespace NklKst\TheSportsDb\Client\Endpoint;
 
+use DateTime;
 use Exception;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Event;
@@ -17,6 +18,60 @@ class ScheduleEndpointTest extends TestCase
     {
         $this->endpoint = new ScheduleEndpoint(new RequestBuilderMock(), new SerializerMock());
         $this->endpoint->setConfig(new Config());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayEndpoint(): void
+    {
+        $event = $this->endpoint->day(new DateTime())[0];
+        $this->assertSame('eventsday.php', $event->strEvent);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayFilterDay(): void
+    {
+        $this->endpoint->day(new DateTime('2014-10-10'));
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime('2014-10-10')),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayFilterSportQuery(): void
+    {
+        $this->endpoint->day(new DateTime(), 'testSportQuery');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime())->setSportQuery('testSportQuery'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayFilterLeagueQuery(): void
+    {
+        $this->endpoint->day(new DateTime(), null, 'testLeagueQuery');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime())->setLeagueQuery('testLeagueQuery'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayInstances(): void
+    {
+        $events = $this->endpoint->day(new DateTime());
+        $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
     /**
