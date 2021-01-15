@@ -14,6 +14,12 @@ class ScheduleFilterTest extends TestCase
         $this->filter = new ScheduleFilter();
     }
 
+    public function testSetCountryQuery(): void
+    {
+        $this->assertSame(
+            'a=testCountryQuery&', $this->filter->setCountryQuery('testCountryQuery')->getQuery());
+    }
+
     public function testSetDay(): void
     {
         $this->assertSame(

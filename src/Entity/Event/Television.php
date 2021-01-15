@@ -2,6 +2,8 @@
 
 namespace NklKst\TheSportsDb\Entity\Event;
 
+use DateTime;
+
 class Television
 {
     public int $id;
@@ -14,6 +16,6 @@ class Television
     public string $strChannel;
     public string $strSeason;
     public string $strTime;
-    public string $dateEvent;
+    public DateTime $dateEvent;
     public ?string $strTimeStamp;
 }

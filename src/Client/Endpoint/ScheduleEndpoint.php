@@ -5,6 +5,7 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 use DateTime;
 use Exception;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Filter\ScheduleFilter;
 
 class ScheduleEndpoint extends AbstractEndpoint
@@ -16,6 +17,7 @@ class ScheduleEndpoint extends AbstractEndpoint
     private const ENDPOINT_SEASON = 'eventsseason.php';
     private const ENDPOINT_TEAM_NEXT = 'eventsnext.php';
     private const ENDPOINT_TEAM_LAST = 'eventslast.php';
+    private const ENDPOINT_TELEVISION = 'eventstv.php';
 
     /**
      * @return Event[]
@@ -131,5 +133,27 @@ class ScheduleEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_TEAM_LAST);
 
         return $this->serializer->serializeEvents($this->request());
+    }
+
+    /**
+     * @return Television[]
+     *
+     * @throws Exception
+     */
+    public function television(DateTime $day, string $sportQuery = null, string $countryQuery = null): array
+    {
+        $filter = (new ScheduleFilter())->setDay($day);
+        if ($sportQuery) {
+            $filter->setSportQuery($sportQuery);
+        }
+        if ($countryQuery) {
+            $filter->setCountryQuery($countryQuery);
+        }
+
+        $this
+            ->setFilter($filter)
+            ->requestBuilder->setEndpoint(self::ENDPOINT_TELEVISION);
+
+        return $this->serializer->serializeTelevision($this->request());
     }
 }

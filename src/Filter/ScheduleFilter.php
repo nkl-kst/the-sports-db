@@ -6,6 +6,11 @@ use DateTime;
 
 class ScheduleFilter extends AbstractFilter
 {
+    public function setCountryQuery(string $countryQuery): self
+    {
+        return $this->addFilter('a', $countryQuery);
+    }
+
     public function setDay(DateTime $day): self
     {
         return $this->addFilter('d', $day->format('Y-m-d'));

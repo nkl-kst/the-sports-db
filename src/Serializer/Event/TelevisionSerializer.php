@@ -14,6 +14,6 @@ class TelevisionSerializer extends AbstractSerializer
 
     protected function getValidJsonRootNames(): array
     {
-        return ['tvevent'];
+        return ['tvevent', 'tvevents'];
     }
 }

@@ -6,6 +6,7 @@ use DateTime;
 use Exception;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Filter\ScheduleFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
@@ -276,5 +277,59 @@ class ScheduleEndpointTest extends TestCase
     {
         $events = $this->endpoint->teamLast(1);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionEndpoint(): void
+    {
+        $event = $this->endpoint->television(new DateTime())[0];
+        $this->assertSame('eventstv.php', $event->strChannel);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionFilterDay(): void
+    {
+        $this->endpoint->television(new DateTime('2018-07-07'));
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime('2018-07-07')),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionFilterSportQuery(): void
+    {
+        $this->endpoint->television(new DateTime('2018-07-07'), 'testSportQuery');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime('2018-07-07'))->setSportQuery('testSportQuery'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionFilterCountryQuery(): void
+    {
+        $this->endpoint->television(new DateTime('2018-07-07'), null, 'testCountryQuery');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime('2018-07-07'))->setCountryQuery('testCountryQuery'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionInstances(): void
+    {
+        $events = $this->endpoint->television(new DateTime());
+        $this->assertContainsOnlyInstancesOf(Television::class, $events);
     }
 }

@@ -3,6 +3,7 @@
 use NklKst\TheSportsDb\Client\Client;
 use NklKst\TheSportsDb\Client\ClientFactory;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
@@ -137,6 +138,55 @@ class ScheduleTest extends TestCase
         foreach ($events as $event) {
             $this->assertEquals(new DateTime('2014-10-10'), $event->dateEvent);
             $this->assertSame('Australian A-League', $event->strLeague);
+        }
+    }
+
+    /**
+     * TV Events on a day by Sport/TV Station Country
+     * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventstv.php?d=2018-07-07).
+     */
+    public function testTelevision(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $events = $this->client->schedule()->television(new DateTime('2018-07-07'));
+
+        $this->assertContainsOnlyInstancesOf(Television::class, $events);
+        foreach ($events as $event) {
+            $this->assertEquals(new DateTime('2018-07-07'), $event->dateEvent);
+        }
+    }
+
+    /**
+     * TV Events on a day by Sport/TV Station Country
+     * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventstv.php?d=2018-07-07&s=Fighting).
+     */
+    public function testTelevisionSport(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $events = $this->client->schedule()->television(new DateTime('2018-07-07'), 'Fighting');
+
+        $this->assertContainsOnlyInstancesOf(Television::class, $events);
+        foreach ($events as $event) {
+            $this->assertEquals(new DateTime('2018-07-07'), $event->dateEvent);
+            $this->assertSame('Fighting', $event->strSport);
+        }
+    }
+
+    /**
+     * TV Events on a day by Sport/TV Station Country
+     * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventstv.php?d=2019-09-28&a=United%20Kingdom&s=Cycling).
+     */
+    public function testTelevisionCountry(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $events = $this->client->schedule()
+            ->television(new DateTime('2019-09-28'), 'Cycling', 'United Kingdom');
+
+        $this->assertContainsOnlyInstancesOf(Television::class, $events);
+        foreach ($events as $event) {
+            $this->assertEquals(new DateTime('2019-09-28'), $event->dateEvent);
+            //$this->assertSame('Cycling', $event->strSport);
+            $this->assertSame('United Kingdom', $event->strCountry);
         }
     }
 
