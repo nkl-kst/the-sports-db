@@ -9,6 +9,7 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
@@ -24,6 +25,7 @@ use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
+use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
 use NklKst\TheSportsDb\Serializer\Event\TimelineSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
 use NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer;
@@ -55,6 +57,7 @@ class SerializerTest extends TestCase
             new SportSerializer($mapper),
             new StatisticSerializer($mapper),
             new TeamSerializer($mapper),
+            new TelevisionSerializer($mapper),
             new TimelineSerializer($mapper),
         );
     }
@@ -192,6 +195,15 @@ class SerializerTest extends TestCase
     {
         $teams = $this->serializer->serializeTeams('{ "teams": [] }');
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeTelevision(): void
+    {
+        $television = $this->serializer->serializeTelevision('{ "tvevent": [] }');
+        $this->assertContainsOnlyInstancesOf(Television::class, $television);
     }
 
     /**

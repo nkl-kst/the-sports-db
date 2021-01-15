@@ -8,6 +8,7 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
@@ -370,6 +371,36 @@ class LookupEndpointTest extends TestCase
     {
         $team = $this->endpoint->team(1);
         $this->assertInstanceOf(Team::class, $team);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionFilterEvent(): void
+    {
+        $this->endpoint->television(1);
+
+        $this->assertEquals(
+            (new LookupFilter())->setID(1),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionEndpoint(): void
+    {
+        $event = $this->endpoint->television(1)[0];
+        $this->assertSame('lookuptv.php', $event->strChannel);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionInstance(): void
+    {
+        $television = $this->endpoint->television(1);
+        $this->assertContainsOnlyInstancesOf(Television::class, $television);
     }
 
     /**

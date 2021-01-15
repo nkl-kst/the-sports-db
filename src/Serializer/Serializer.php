@@ -7,6 +7,7 @@ use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
+use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
 use NklKst\TheSportsDb\Serializer\Event\TimelineSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
 use NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer;
@@ -31,6 +32,7 @@ class Serializer implements SerializerInterface
     private SportSerializer $sportSerializer;
     private StatisticSerializer $statisticSerializer;
     private TeamSerializer $teamSerializer;
+    private TelevisionSerializer $televisionSerializer;
     private TimelineSerializer $timelineSerializer;
 
     public function __construct(
@@ -49,6 +51,7 @@ class Serializer implements SerializerInterface
         SportSerializer $sportSerializer,
         StatisticSerializer $statisticSerializer,
         TeamSerializer $teamSerializer,
+        TelevisionSerializer $televisionSerializer,
         TimelineSerializer $timelineSerializer)
     {
         $this->contractSerializer = $contractSerializer;
@@ -66,6 +69,7 @@ class Serializer implements SerializerInterface
         $this->sportSerializer = $sportSerializer;
         $this->statisticSerializer = $statisticSerializer;
         $this->teamSerializer = $teamSerializer;
+        $this->televisionSerializer = $televisionSerializer;
         $this->timelineSerializer = $timelineSerializer;
     }
 
@@ -190,6 +194,14 @@ class Serializer implements SerializerInterface
     public function serializeTeams(string $content): array
     {
         return $this->teamSerializer->serialize($content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeTelevision(string $content): array
+    {
+        return $this->televisionSerializer->serialize($content);
     }
 
     /**

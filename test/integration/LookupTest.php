@@ -6,6 +6,7 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
@@ -171,6 +172,22 @@ class LookupTest extends TestCase
         $results = $this->client->lookup()->results(652890);
         $this->assertContainsOnlyInstancesOf(Result::class, $results);
         $this->assertSame('Anaheim 1', $results[0]->strEvent);
+    }
+
+    /**
+     * Event TV by Event Id (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookuptv.php?id=584911).
+     *
+     * @throws Exception
+     */
+    public function testTelevision(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $television = $this->client->lookup()->television(584911);
+
+        $this->assertContainsOnlyInstancesOf(Television::class, $television);
+        foreach ($television as $event) {
+            $this->assertSame('Marrakesh E-Prix', $event->strEvent);
+        }
     }
 
     /**

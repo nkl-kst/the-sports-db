@@ -8,6 +8,7 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
@@ -156,6 +157,15 @@ interface SerializerInterface
      * @throws Exception
      */
     public function serializeTeams(string $content): array;
+
+    /**
+     * @param string $content Content to serialize
+     *
+     * @return Television[]
+     *
+     * @throws Exception
+     */
+    public function serializeTelevision(string $content): array;
 
     /**
      * @param string $content Content to serialize

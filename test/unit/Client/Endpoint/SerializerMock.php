@@ -7,6 +7,7 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
@@ -154,6 +155,14 @@ class SerializerMock implements SerializerInterface
     public function serializeTeams(string $content): array
     {
         return $this->createMockedEntityArray(Team::class, 'strTeam', $content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeTelevision(string $content): array
+    {
+        return $this->createMockedEntityArray(Television::class, 'strChannel', $content);
     }
 
     /**
