@@ -59,7 +59,11 @@ $client->configure()->setKey('YOUR_API_KEY');
 
 ## Known issues
 
-- "Patreon only" API endpoints are not implemented yet
+- These "Patreon only" features are not implemented yet:
+  - Video Highlights
+  - Livescores V1
+  - Livescores V2 (Alpha)
+
 
 ## Feedback
 
