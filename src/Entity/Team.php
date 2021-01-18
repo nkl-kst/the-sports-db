@@ -40,7 +40,7 @@ class Team
     public string $strFacebook;
     public string $strTwitter;
     public string $strInstagram;
-    public string $strDescriptionEN;
+    public ?string $strDescriptionEN;
     public ?string $strDescriptionDE;
     public ?string $strDescriptionFR;
     public ?string $strDescriptionCN;

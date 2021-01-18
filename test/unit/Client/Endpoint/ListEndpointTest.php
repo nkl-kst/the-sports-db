@@ -7,6 +7,7 @@ use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
+use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Team;
@@ -120,6 +121,36 @@ class ListEndpointTest extends TestCase
 
         $this->assertEquals(
             (new ListFilter())->setUser('testUser'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testPlayersInstances(): void
+    {
+        $players = $this->endpoint->players(1);
+        $this->assertContainsOnlyInstancesOf(Player::class, $players);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testPlayersEndpoint(): void
+    {
+        $player = $this->endpoint->players(1)[0];
+        $this->assertSame('lookup_all_players.php', $player->strPlayer);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testPlayersFilterTeam(): void
+    {
+        $this->endpoint->players(1)[0];
+
+        $this->assertEquals(
+            (new ListFilter())->setID(1),
             TestUtils::getHiddenProperty($this->endpoint, 'filter'));
     }
 

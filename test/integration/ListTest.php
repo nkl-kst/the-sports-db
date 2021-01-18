@@ -5,9 +5,11 @@ use NklKst\TheSportsDb\Client\ClientFactory;
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
+use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,7 +29,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListSports(): void
+    public function testSports(): void
     {
         $sports = $this->client->list()->sports();
         $this->assertContainsOnlyInstancesOf(Sport::class, $sports);
@@ -38,7 +40,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListCountries(): void
+    public function testCountries(): void
     {
         $countries = $this->client->list()->countries();
         $this->assertContainsOnlyInstancesOf(Country::class, $countries);
@@ -49,7 +51,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListLeagues(): void
+    public function testLeagues(): void
     {
         $leagues = $this->client->list()->leagues();
         $this->assertContainsOnlyInstancesOf(League::class, $leagues);
@@ -60,7 +62,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListLeaguesInCountry(): void
+    public function testLeaguesInCountry(): void
     {
         $league = $this->client->list()->leagues('England')[0];
         $this->assertSame('England', $league->strCountry);
@@ -72,7 +74,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListLeaguesInCountryBySport(): void
+    public function testLeaguesInCountryBySport(): void
     {
         $league = $this->client->list()->leagues('England', 'Soccer')[0];
         $this->assertSame('England', $league->strCountry);
@@ -84,7 +86,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListSeasonsInLeague(): void
+    public function testSeasonsInLeague(): void
     {
         $seasons = $this->client->list()->seasons(4328);
         $this->assertContainsOnlyInstancesOf(Season::class, $seasons);
@@ -96,7 +98,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListTeamsInLeague(): void
+    public function testTeamsInLeague(): void
     {
         $teams = $this->client->list()->teamsSearch('English Premier League');
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -109,7 +111,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListTeamsInCountryBySport(): void
+    public function testTeamsInCountryBySport(): void
     {
         $teams = $this->client->list()->teamsSearch(null, 'Soccer', 'Spain');
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -122,7 +124,7 @@ class ListTest extends TestCase
      *
      * @throws Exception
      */
-    public function testListTeamsInLeagueByID(): void
+    public function testTeamsInLeagueByID(): void
     {
         $teams = $this->client->list()->teams(4328);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -130,11 +132,28 @@ class ListTest extends TestCase
     }
 
     /**
+     * List All players in a team by Team Id
+     * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookup_all_players.php?id=133604).
+     *
+     * @throws Exception
+     */
+    public function testPlayers(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $players = $this->client->list()->players(133604);
+
+        $this->assertContainsOnlyInstancesOf(Player::class, $players);
+        foreach ($players as $player) {
+            $this->assertSame(133604, $player->idTeam);
+        }
+    }
+
+    /**
      * List all users loved teams and players (https://www.thesportsdb.com/api/v1/json/1/searchloves.php?u=zag).
      *
      * @throws Exception
      */
-    public function testListLoves(): void
+    public function testLoves(): void
     {
         $loves = $this->client->list()->loves('zag');
         $this->assertContainsOnlyInstancesOf(Love::class, $loves);

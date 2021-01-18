@@ -94,6 +94,19 @@ class RequestBuilderTest extends TestCase
     /**
      * @throws Exception
      */
+    public function testRequestExceptionPrivateKey(): void
+    {
+        $this->builder->setEndpoint('dummy')->setKey('privateKey');
+        $this->handlerMock->append(new Response(404));
+
+        $this->expectExceptionObject(
+            new Exception('Client error: `GET https://www.thesportsdb.com/api/v1/json/HIDDEN_KEY/dummy` resulted in a `404 Not Found` response'));
+        $this->builder->request();
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testRequestSameBody(): void
     {
         $this->builder->setEndpoint('dummy');

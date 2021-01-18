@@ -4,8 +4,11 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 
 use Exception;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
+use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
@@ -22,11 +25,14 @@ class LookupEndpoint extends AbstractEndpoint
     private const ENDPOINT_FORMER_TEAMS = 'lookupformerteams.php';
     private const ENDPOINT_HONOR = 'lookuphonors.php';
     private const ENDPOINT_LEAGUE = 'lookupleague.php';
+    private const ENDPOINT_LINEUP = 'lookuplineup.php';
     private const ENDPOINT_PLAYER = 'lookupplayer.php';
     private const ENDPOINT_RESULT = 'eventresults.php';
     private const ENDPOINT_STATISTICS = 'lookupeventstats.php';
     private const ENDPOINT_TABLE = 'lookuptable.php';
     private const ENDPOINT_TEAM = 'lookupteam.php';
+    private const ENDPOINT_TELEVISION = 'lookuptv.php';
+    private const ENDPOINT_TIMELINE = 'lookuptimeline.php';
 
     /**
      * @return Contract[]
@@ -95,6 +101,20 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * @return Lineup[]
+     *
+     * @throws Exception
+     */
+    public function lineup(int $eventID): array
+    {
+        $this
+            ->setFilter((new LookupFilter())->setID($eventID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_LINEUP);
+
+        return $this->serializer->serializeLineup($this->request());
+    }
+
+    /**
      * @throws Exception
      */
     public function player(int $playerID): Player
@@ -160,5 +180,33 @@ class LookupEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_TEAM);
 
         return $this->getSingleEntity($this->serializer->serializeTeams($this->request()));
+    }
+
+    /**
+     * @return Television[]
+     *
+     * @throws Exception
+     */
+    public function television(int $eventID): array
+    {
+        $this
+            ->setFilter((new LookupFilter())->setID($eventID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_TELEVISION);
+
+        return $this->serializer->serializeTelevision($this->request());
+    }
+
+    /**
+     * @return Timeline[]
+     *
+     * @throws Exception
+     */
+    public function timeline(int $eventID): array
+    {
+        $this
+            ->setFilter((new LookupFilter())->setID($eventID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_TIMELINE);
+
+        return $this->serializer->serializeTimeline($this->request());
     }
 }

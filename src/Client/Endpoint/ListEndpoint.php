@@ -6,6 +6,7 @@ use Exception;
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
+use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Team;
@@ -17,6 +18,7 @@ class ListEndpoint extends AbstractEndpoint
     private const ENDPOINT_LOVES = 'searchloves.php';
     private const ENDPOINT_LEAGUES = 'all_leagues.php';
     private const ENDPOINT_SEARCH_LEAGUES = 'search_all_leagues.php';
+    private const ENDPOINT_LOOKUP_PLAYERS = 'lookup_all_players.php';
     private const ENDPOINT_SEARCH_SEASONS = 'search_all_seasons.php';
     private const ENDPOINT_SPORTS = 'all_sports.php';
     private const ENDPOINT_SEARCH_TEAMS = 'search_all_teams.php';
@@ -70,6 +72,20 @@ class ListEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_LOVES);
 
         return $this->serializer->serializeLoves($this->request());
+    }
+
+    /**
+     * @return Player[]
+     *
+     * @throws Exception
+     */
+    public function players(int $teamID): array
+    {
+        $this
+            ->setFilter((new ListFilter())->setID($teamID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_LOOKUP_PLAYERS);
+
+        return $this->serializer->serializePlayers($this->request());
     }
 
     /**

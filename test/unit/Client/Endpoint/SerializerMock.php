@@ -4,8 +4,11 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
+use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
 use NklKst\TheSportsDb\Entity\Player\Contract;
@@ -80,6 +83,14 @@ class SerializerMock implements SerializerInterface
     /**
      * {@inheritDoc}
      */
+    public function serializeLineup(string $content): array
+    {
+        return $this->createMockedEntityArray(Lineup::class, 'strPosition', $content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function serializeLoves(string $content): array
     {
         return $this->createMockedEntityArray(Love::class, 'strUsername', $content);
@@ -144,5 +155,21 @@ class SerializerMock implements SerializerInterface
     public function serializeTeams(string $content): array
     {
         return $this->createMockedEntityArray(Team::class, 'strTeam', $content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeTelevision(string $content): array
+    {
+        return $this->createMockedEntityArray(Television::class, 'strChannel', $content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeTimeline(string $content): array
+    {
+        return $this->createMockedEntityArray(Timeline::class, 'strTimeline', $content);
     }
 }

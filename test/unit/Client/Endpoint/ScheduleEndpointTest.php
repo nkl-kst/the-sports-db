@@ -2,9 +2,11 @@
 
 namespace NklKst\TheSportsDb\Client\Endpoint;
 
+use DateTime;
 use Exception;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Filter\ScheduleFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
@@ -17,6 +19,60 @@ class ScheduleEndpointTest extends TestCase
     {
         $this->endpoint = new ScheduleEndpoint(new RequestBuilderMock(), new SerializerMock());
         $this->endpoint->setConfig(new Config());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayEndpoint(): void
+    {
+        $event = $this->endpoint->day(new DateTime())[0];
+        $this->assertSame('eventsday.php', $event->strEvent);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayFilterDay(): void
+    {
+        $this->endpoint->day(new DateTime('2014-10-10'));
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime('2014-10-10')),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayFilterSportQuery(): void
+    {
+        $this->endpoint->day(new DateTime(), 'testSportQuery');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime())->setSportQuery('testSportQuery'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayFilterLeagueQuery(): void
+    {
+        $this->endpoint->day(new DateTime(), null, 'testLeagueQuery');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime())->setLeagueQuery('testLeagueQuery'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDayInstances(): void
+    {
+        $events = $this->endpoint->day(new DateTime());
+        $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
     /**
@@ -221,5 +277,89 @@ class ScheduleEndpointTest extends TestCase
     {
         $events = $this->endpoint->teamLast(1);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionEndpoint(): void
+    {
+        $event = $this->endpoint->television(new DateTime())[0];
+        $this->assertSame('eventstv.php', $event->strChannel);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionFilterDay(): void
+    {
+        $this->endpoint->television(new DateTime('2018-07-07'));
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime('2018-07-07')),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionFilterSportQuery(): void
+    {
+        $this->endpoint->television(new DateTime('2018-07-07'), 'testSportQuery');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime('2018-07-07'))->setSportQuery('testSportQuery'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionFilterCountryQuery(): void
+    {
+        $this->endpoint->television(new DateTime('2018-07-07'), null, 'testCountryQuery');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setDay(new DateTime('2018-07-07'))->setCountryQuery('testCountryQuery'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionInstances(): void
+    {
+        $events = $this->endpoint->television(new DateTime());
+        $this->assertContainsOnlyInstancesOf(Television::class, $events);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionChannelEndpoint(): void
+    {
+        $event = $this->endpoint->televisionChannel('dummy')[0];
+        $this->assertSame('eventstv.php', $event->strChannel);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionChannelFilterChannel(): void
+    {
+        $this->endpoint->televisionChannel('testChannel');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setChannel('testChannel'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionChannelInstances(): void
+    {
+        $events = $this->endpoint->televisionChannel('dummy');
+        $this->assertContainsOnlyInstancesOf(Television::class, $events);
     }
 }

@@ -13,8 +13,11 @@ use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Request\RequestBuilderInterface;
 use NklKst\TheSportsDb\Serializer\CountrySerializer;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
+use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
+use NklKst\TheSportsDb\Serializer\Event\TimelineSerializer;
 use NklKst\TheSportsDb\Serializer\LeagueSerializer;
 use NklKst\TheSportsDb\Serializer\LoveSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
@@ -46,6 +49,7 @@ class DependencyContainer
         FormerTeamSerializer::class,
         HonorSerializer::class,
         LeagueSerializer::class,
+        LineupSerializer::class,
         LoveSerializer::class,
         PlayerSerializer::class,
         ResultSerializer::class,
@@ -53,6 +57,8 @@ class DependencyContainer
         SportSerializer::class,
         StatisticSerializer::class,
         TeamSerializer::class,
+        TelevisionSerializer::class,
+        TimelineSerializer::class,
     ];
 
     private static ContainerBuilder $builder;

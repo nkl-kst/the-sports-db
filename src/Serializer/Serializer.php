@@ -4,8 +4,11 @@ namespace NklKst\TheSportsDb\Serializer;
 
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
+use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
+use NklKst\TheSportsDb\Serializer\Event\TimelineSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
 use NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer;
 use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
@@ -21,6 +24,7 @@ class Serializer implements SerializerInterface
     private FormerTeamSerializer $formerTeamSerializer;
     private HonorSerializer $honorSerializer;
     private LeagueSerializer $leagueSerializer;
+    private LineupSerializer $lineupSerializer;
     private LoveSerializer $loveSerializer;
     private PlayerSerializer $playerSerializer;
     private ResultSerializer $resultSerializer;
@@ -28,6 +32,8 @@ class Serializer implements SerializerInterface
     private SportSerializer $sportSerializer;
     private StatisticSerializer $statisticSerializer;
     private TeamSerializer $teamSerializer;
+    private TelevisionSerializer $televisionSerializer;
+    private TimelineSerializer $timelineSerializer;
 
     public function __construct(
         ContractSerializer $contractSerializer,
@@ -37,13 +43,16 @@ class Serializer implements SerializerInterface
         FormerTeamSerializer $formerTeamSerializer,
         HonorSerializer $honorSerializer,
         LeagueSerializer $leagueSerializer,
+        LineupSerializer $lineupSerializer,
         LoveSerializer $loveSerializer,
         PlayerSerializer $playerSerializer,
         ResultSerializer $resultSerializer,
         SeasonSerializer $seasonSerializer,
         SportSerializer $sportSerializer,
         StatisticSerializer $statisticSerializer,
-        TeamSerializer $teamSerializer)
+        TeamSerializer $teamSerializer,
+        TelevisionSerializer $televisionSerializer,
+        TimelineSerializer $timelineSerializer)
     {
         $this->contractSerializer = $contractSerializer;
         $this->countrySerializer = $countrySerializer;
@@ -52,6 +61,7 @@ class Serializer implements SerializerInterface
         $this->formerTeamSerializer = $formerTeamSerializer;
         $this->honorSerializer = $honorSerializer;
         $this->leagueSerializer = $leagueSerializer;
+        $this->lineupSerializer = $lineupSerializer;
         $this->loveSerializer = $loveSerializer;
         $this->playerSerializer = $playerSerializer;
         $this->resultSerializer = $resultSerializer;
@@ -59,6 +69,8 @@ class Serializer implements SerializerInterface
         $this->sportSerializer = $sportSerializer;
         $this->statisticSerializer = $statisticSerializer;
         $this->teamSerializer = $teamSerializer;
+        $this->televisionSerializer = $televisionSerializer;
+        $this->timelineSerializer = $timelineSerializer;
     }
 
     /**
@@ -107,6 +119,14 @@ class Serializer implements SerializerInterface
     public function serializeLeagues(string $content): array
     {
         return $this->leagueSerializer->serialize($content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeLineup(string $content): array
+    {
+        return $this->lineupSerializer->serialize($content);
     }
 
     /**
@@ -174,5 +194,21 @@ class Serializer implements SerializerInterface
     public function serializeTeams(string $content): array
     {
         return $this->teamSerializer->serialize($content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeTelevision(string $content): array
+    {
+        return $this->televisionSerializer->serialize($content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeTimeline(string $content): array
+    {
+        return $this->timelineSerializer->serialize($content);
     }
 }

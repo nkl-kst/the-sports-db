@@ -6,8 +6,11 @@ use Exception;
 use JsonMapper;
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
+use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Love;
 use NklKst\TheSportsDb\Entity\Player\Contract;
@@ -19,8 +22,11 @@ use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
+use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
+use NklKst\TheSportsDb\Serializer\Event\TimelineSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
 use NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer;
 use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
@@ -43,13 +49,16 @@ class SerializerTest extends TestCase
             new FormerTeamSerializer($mapper),
             new HonorSerializer($mapper),
             new LeagueSerializer($mapper),
+            new LineupSerializer($mapper),
             new LoveSerializer($mapper),
             new PlayerSerializer($mapper),
             new ResultSerializer($mapper),
             new SeasonSerializer($mapper),
             new SportSerializer($mapper),
             new StatisticSerializer($mapper),
-            new TeamSerializer($mapper)
+            new TeamSerializer($mapper),
+            new TelevisionSerializer($mapper),
+            new TimelineSerializer($mapper),
         );
     }
 
@@ -105,6 +114,15 @@ class SerializerTest extends TestCase
     {
         $leagues = $this->serializer->serializeLeagues('{ "leagues": [] }');
         $this->assertContainsOnlyInstancesOf(League::class, $leagues);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeLineup(): void
+    {
+        $lineup = $this->serializer->serializeLineup('{ "lineup": [] }');
+        $this->assertContainsOnlyInstancesOf(Lineup::class, $lineup);
     }
 
     /**
@@ -177,5 +195,23 @@ class SerializerTest extends TestCase
     {
         $teams = $this->serializer->serializeTeams('{ "teams": [] }');
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeTelevision(): void
+    {
+        $television = $this->serializer->serializeTelevision('{ "tvevent": [] }');
+        $this->assertContainsOnlyInstancesOf(Television::class, $television);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeTimeline(): void
+    {
+        $timeline = $this->serializer->serializeTimeline('{ "timeline": [] }');
+        $this->assertContainsOnlyInstancesOf(Timeline::class, $timeline);
     }
 }

@@ -5,6 +5,7 @@ use NklKst\TheSportsDb\Client\ClientFactory;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,6 +42,25 @@ class SearchTest extends TestCase
         $teams = $this->client->search()->teams('Ars', true);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame('Ars', $teams[0]->strTeamShort);
+    }
+
+    /**
+     * Search for all players from team
+     * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/searchplayers.php?t=Arsenal).
+     *
+     * @throws Exception
+     */
+    public function testPlayersOnlyTeam(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+
+        $players = $this->client->search()->players(null, 'Arsenal');
+        $this->assertContainsOnlyInstancesOf(Player::class, $players);
+
+        $this->assertGreaterThan(1, sizeof($players));
+        foreach ($players as $player) {
+            $this->assertSame('Arsenal', $player->strTeam);
+        }
     }
 
     /**
