@@ -1,6 +1,8 @@
 # TheSportsDB PHP library
 
 ![Build](https://github.com/nkl-kst/the-sports-db/workflows/Build/badge.svg)
+![Packagist Version](https://img.shields.io/packagist/v/nkl-kst/the-sports-db)
+![GitHub](https://img.shields.io/github/license/nkl-kst/the-sports-db)
 
 An easy-to-use PHP library to get data from https://www.thesportsdb.com.
 
