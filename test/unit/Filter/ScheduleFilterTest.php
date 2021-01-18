@@ -14,6 +14,12 @@ class ScheduleFilterTest extends TestCase
         $this->filter = new ScheduleFilter();
     }
 
+    public function testSetChannel(): void
+    {
+        $this->assertSame(
+            'c=testChannel&', $this->filter->setChannel('testChannel')->getQuery());
+    }
+
     public function testSetCountryQuery(): void
     {
         $this->assertSame(

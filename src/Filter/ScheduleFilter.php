@@ -6,6 +6,11 @@ use DateTime;
 
 class ScheduleFilter extends AbstractFilter
 {
+    public function setChannel(string $channel): self
+    {
+        return $this->addFilter('c', $channel);
+    }
+
     public function setCountryQuery(string $countryQuery): self
     {
         return $this->addFilter('a', $countryQuery);

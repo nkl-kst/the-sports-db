@@ -191,6 +191,20 @@ class ScheduleTest extends TestCase
     }
 
     /**
+     * Latest TV Events on a channel (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventstv.php?c=TSN_1).
+     */
+    public function testTelevisionChannel(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $events = $this->client->schedule()->televisionChannel('TSN_1');
+
+        $this->assertContainsOnlyInstancesOf(Television::class, $events);
+        foreach ($events as $event) {
+            $this->assertSame('TSN 1', $event->strChannel);
+        }
+    }
+
+    /**
      * All events in specific league by season
      * (https://www.thesportsdb.com/api/v1/json/1/eventsseason.php?id=4328&s=2014-2015).
      *

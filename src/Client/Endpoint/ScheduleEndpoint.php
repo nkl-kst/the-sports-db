@@ -156,4 +156,18 @@ class ScheduleEndpoint extends AbstractEndpoint
 
         return $this->serializer->serializeTelevision($this->request());
     }
+
+    /**
+     * @return Television[]
+     *
+     * @throws Exception
+     */
+    public function televisionChannel(string $channel): array
+    {
+        $this
+            ->setFilter((new ScheduleFilter())->setChannel($channel))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_TELEVISION);
+
+        return $this->serializer->serializeTelevision($this->request());
+    }
 }

@@ -332,4 +332,34 @@ class ScheduleEndpointTest extends TestCase
         $events = $this->endpoint->television(new DateTime());
         $this->assertContainsOnlyInstancesOf(Television::class, $events);
     }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionChannelEndpoint(): void
+    {
+        $event = $this->endpoint->televisionChannel('dummy')[0];
+        $this->assertSame('eventstv.php', $event->strChannel);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionChannelFilterChannel(): void
+    {
+        $this->endpoint->televisionChannel('testChannel');
+
+        $this->assertEquals(
+            (new ScheduleFilter())->setChannel('testChannel'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testTelevisionChannelInstances(): void
+    {
+        $events = $this->endpoint->televisionChannel('dummy');
+        $this->assertContainsOnlyInstancesOf(Television::class, $events);
+    }
 }
