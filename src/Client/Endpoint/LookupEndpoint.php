@@ -4,8 +4,11 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 
 use Exception;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
+use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
@@ -98,6 +101,8 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * @return Lineup[]
+     *
      * @throws Exception
      */
     public function lineup(int $eventID): array
@@ -178,6 +183,8 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * @return Television[]
+     *
      * @throws Exception
      */
     public function television(int $eventID): array
@@ -190,6 +197,8 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * @return Timeline[]
+     *
      * @throws Exception
      */
     public function timeline(int $eventID): array
