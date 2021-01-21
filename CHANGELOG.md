@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.1 - To be released
+## 0.1.1 - 2021/01/18
 
 - Added most "Patreon only" features (#2)
 - Bumped libs
