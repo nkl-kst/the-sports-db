@@ -47,6 +47,11 @@ class ClientTest extends TestCase
         $this->assertInstanceOf(ListEndpoint::class, $this->client->list());
     }
 
+    public function testLivescore(): void
+    {
+        $this->assertInstanceOf(LivescoreEndpoint::class, $this->client->livescore());
+    }
+
     public function testLookup(): void
     {
         $this->assertInstanceOf(LookupEndpoint::class, $this->client->lookup());
