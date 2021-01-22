@@ -6,6 +6,7 @@ use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LivescoreSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
 use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
@@ -27,6 +28,7 @@ class Serializer implements SerializerInterface
     private HonorSerializer $honorSerializer;
     private LeagueSerializer $leagueSerializer;
     private LineupSerializer $lineupSerializer;
+    private LivescoreSerializer $livescoreSerializer;
     private LoveSerializer $loveSerializer;
     private PlayerSerializer $playerSerializer;
     private ResultSerializer $resultSerializer;
@@ -47,6 +49,7 @@ class Serializer implements SerializerInterface
         HonorSerializer $honorSerializer,
         LeagueSerializer $leagueSerializer,
         LineupSerializer $lineupSerializer,
+        LivescoreSerializer $livescoreSerializer,
         LoveSerializer $loveSerializer,
         PlayerSerializer $playerSerializer,
         ResultSerializer $resultSerializer,
@@ -66,6 +69,7 @@ class Serializer implements SerializerInterface
         $this->highlightSerializer = $highlightSerializer;
         $this->leagueSerializer = $leagueSerializer;
         $this->lineupSerializer = $lineupSerializer;
+        $this->livescoreSerializer = $livescoreSerializer;
         $this->loveSerializer = $loveSerializer;
         $this->playerSerializer = $playerSerializer;
         $this->resultSerializer = $resultSerializer;
@@ -139,6 +143,14 @@ class Serializer implements SerializerInterface
     public function serializeLineup(string $content): array
     {
         return $this->lineupSerializer->serialize($content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeLivescores(string $content): array
+    {
+        return $this->livescoreSerializer->serialize($content);
     }
 
     /**

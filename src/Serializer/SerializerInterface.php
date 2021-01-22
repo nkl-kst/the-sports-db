@@ -7,6 +7,7 @@ use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
+use NklKst\TheSportsDb\Entity\Event\Livescore;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
 use NklKst\TheSportsDb\Entity\Event\Television;
@@ -95,6 +96,15 @@ interface SerializerInterface
      * @throws Exception
      */
     public function serializeLineup(string $content): array;
+
+    /**
+     * @param string $content Content to serialize
+     *
+     * @return Livescore[]
+     *
+     * @throws Exception
+     */
+    public function serializeLivescores(string $content): array;
 
     /**
      * @param string $content Content to serialize

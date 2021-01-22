@@ -5,6 +5,7 @@ namespace NklKst\TheSportsDb\Serializer;
 use Exception;
 use JsonMapper;
 use NklKst\TheSportsDb\Entity\Country;
+use NklKst\TheSportsDb\Serializer\Event\LivescoreSerializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -63,6 +64,18 @@ class AbstractSerializerTest extends TestCase
     {
         $this->expectExceptionObject(new Exception('Could not parse content.'));
         $this->serializer->serialize('');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeNull(): void
+    {
+        $livescoreSerializer = new LivescoreSerializer(new JsonMapper());
+        $livescores = $livescoreSerializer->serialize('{ "events": null }');
+
+        $this->assertNotNull($livescores);
+        $this->assertEmpty($livescores);
     }
 
     /**

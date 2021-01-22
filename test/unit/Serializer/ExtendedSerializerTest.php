@@ -6,6 +6,7 @@ use JsonMapper;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LivescoreSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
 use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
@@ -23,24 +24,25 @@ class ExtendedSerializerTest extends TestCase
     public function serializerProvider(): array
     {
         return [
-            [ContractSerializer::class],
-            [CountrySerializer::class],
-            [EntrySerializer::class],
-            [EventSerializer::class],
-            [FormerTeamSerializer::class],
-            [HighlightSerializer::class],
-            [HonorSerializer::class],
-            [LeagueSerializer::class],
-            [LineupSerializer::class],
-            [LoveSerializer::class],
-            [PlayerSerializer::class],
-            [ResultSerializer::class],
-            [SeasonSerializer::class],
-            [SportSerializer::class],
-            [StatisticSerializer::class],
-            [TeamSerializer::class],
-            [TelevisionSerializer::class],
-            [TimelineSerializer::class],
+            [ContractSerializer::class, false],
+            [CountrySerializer::class, false],
+            [EntrySerializer::class, false],
+            [EventSerializer::class, false],
+            [FormerTeamSerializer::class, false],
+            [HighlightSerializer::class, false],
+            [HonorSerializer::class, false],
+            [LeagueSerializer::class, false],
+            [LineupSerializer::class, false],
+            [LivescoreSerializer::class, true],
+            [LoveSerializer::class, false],
+            [PlayerSerializer::class, false],
+            [ResultSerializer::class, false],
+            [SeasonSerializer::class, false],
+            [SportSerializer::class, false],
+            [StatisticSerializer::class, false],
+            [TeamSerializer::class, false],
+            [TelevisionSerializer::class, false],
+            [TimelineSerializer::class, false],
         ];
     }
 
@@ -51,8 +53,8 @@ class ExtendedSerializerTest extends TestCase
      */
     public function testGetEntityClass(string $class): void
     {
-        $method = TestUtils::getHiddenMethod(new $class(new JsonMapper()), 'getEntityClass');
-        $this->assertNotNull($method());
+        $getEntityClass = TestUtils::getHiddenMethod(new $class(new JsonMapper()), 'getEntityClass');
+        $this->assertNotNull($getEntityClass());
     }
 
     /**
@@ -62,10 +64,24 @@ class ExtendedSerializerTest extends TestCase
      */
     public function testGetValidJsonRootNames(string $class): void
     {
-        $method = TestUtils::getHiddenMethod(new $class(new JsonMapper()), 'getValidJsonRootNames');
-        $rootNames = $method();
+        $getValidJsonRootNames =
+            TestUtils::getHiddenMethod(new $class(new JsonMapper()), 'getValidJsonRootNames');
+        $rootNames = $getValidJsonRootNames();
 
         $this->assertNotEmpty($rootNames);
         $this->assertContainsOnly('string', $rootNames);
+    }
+
+    /**
+     * @dataProvider serializerProvider
+     *
+     * @param string $class       Class to test
+     * @param bool   $returnsNull Endpoint returns null or not
+     */
+    public function testEndpointReturnsNull(string $class, bool $returnsNull): void
+    {
+        $endpointReturnsNull =
+            TestUtils::getHiddenMethod(new $class(new JsonMapper()), 'endpointReturnsNull');
+        $this->assertSame($returnsNull, $endpointReturnsNull());
     }
 }

@@ -8,7 +8,7 @@ An easy-to-use PHP library to get data from https://www.thesportsdb.com.
 
 ## Features
 
-- Get data for video highlights, lists, lookups, schedules or searches
+- Get data for lists, livescores, lookups, schedules, searches or video highlights
 - Get results in serialized classes
 - Use your own API key
 - Choose your API version
@@ -38,8 +38,18 @@ require_once 'vendor/autoload.php';
 
 use NklKst\TheSportsDb\Client\ClientFactory;
 
-// Get next events for Liverpool FC
+// Create a client
 $client = ClientFactory::create();
+
+// Get soccer livescores
+$livescores = $client->livescore()->now('Soccer');
+echo $livescores[0]->strProgress;
+
+// Get video highlights
+$highlights = $client->highlight()->latest();
+echo $highlights[0]->strVideo;
+
+// Get next events for Liverpool FC
 $events = $client->schedule()->teamNext(133602);
 echo $events[0]->strEvent;
 ```
@@ -61,10 +71,7 @@ $client->configure()->setKey('YOUR_API_KEY');
 
 ## Known issues
 
-- These "Patreon only" features are not implemented yet:
-  - Livescores V1
-  - Livescores V2 (Alpha)
-
+- Livescores for v1 are not supported.
 
 ## Feedback
 
@@ -82,7 +89,7 @@ Run tests.
 # Integration tests (API calls)
 > composer run-script test-integration
 
-# Ceck code
+# Check code
 > composer run-script check-code
 ```
 
