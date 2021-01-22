@@ -7,7 +7,7 @@ use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Lists at https://www.thesportsdb.com/api.php.
+ * Highlights at https://www.thesportsdb.com/api.php.
  */
 class HighlightTest extends TestCase
 {
