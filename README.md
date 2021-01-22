@@ -82,7 +82,7 @@ Run tests.
 # Integration tests (API calls)
 > composer run-script test-integration
 
-# Ceck code
+# Check code
 > composer run-script check-code
 ```
 
