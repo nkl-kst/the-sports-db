@@ -2,8 +2,10 @@
 
 namespace NklKst\TheSportsDb\Client\Endpoint;
 
+use DateTime;
 use Exception;
 use NklKst\TheSportsDb\Entity\Event\Highlight;
+use NklKst\TheSportsDb\Filter\HighlightFilter;
 
 class HighlightEndpoint extends AbstractEndpoint
 {
@@ -14,9 +16,22 @@ class HighlightEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function latest(): array
+    public function latest(DateTime $day = null, string $league = null, string $sportQuery = null): array
     {
-        $this->requestBuilder->setEndpoint(self::ENDPOINT_HIGHLIGHTS);
+        $filter = new HighlightFilter();
+        if ($day) {
+            $filter->setDay($day);
+        }
+        if ($league) {
+            $filter->setLeague($league);
+        }
+        if ($sportQuery) {
+            $filter->setSportQuery($sportQuery);
+        }
+
+        $this
+            ->setFilter($filter)
+            ->requestBuilder->setEndpoint(self::ENDPOINT_HIGHLIGHTS);
 
         return $this->serializer->serializeHighlights($this->request());
     }
