@@ -19,14 +19,14 @@ class HighlightTest extends TestCase
     }
 
     /**
-     * List all sports (https://www.thesportsdb.com/api/v1/json/1/all_sports.php).
+     * Latest Event Youtube Highlights (https://www.thesportsdb.com/api/v1/json/{PATERON_KEY}/eventshighlights.php).
      *
      * @throws Exception
      */
-    public function testCurrent(): void
+    public function testLatest(): void
     {
         TestUtils::setPatreonKey($this->client);
-        $highlights = $this->client->highlight()->current();
+        $highlights = $this->client->highlight()->latest();
 
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
     }

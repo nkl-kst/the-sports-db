@@ -20,18 +20,18 @@ class HighlightEndpointTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCurrentInstances(): void
+    public function testLatestInstances(): void
     {
-        $highlights = $this->endpoint->current();
+        $highlights = $this->endpoint->latest();
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
     }
 
     /**
      * @throws Exception
      */
-    public function testCurrentEndpoint(): void
+    public function testLatestEndpoint(): void
     {
-        $highlight = $this->endpoint->current()[0];
+        $highlight = $this->endpoint->latest()[0];
         $this->assertSame('eventshighlights.php', $highlight->strVideo);
     }
 }

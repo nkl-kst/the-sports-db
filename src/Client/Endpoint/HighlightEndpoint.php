@@ -14,7 +14,7 @@ class HighlightEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function current(): array
+    public function latest(): array
     {
         $this->requestBuilder->setEndpoint(self::ENDPOINT_HIGHLIGHTS);
 
