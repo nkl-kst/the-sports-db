@@ -20,9 +20,6 @@ abstract class AbstractSerializer
 
     /**
      * Get the JSON root property containing data.
-     *
-     * @param object|null $json
-     * @return string|null
      */
     private function getJsonRootName(?object $json): ?string
     {
@@ -37,8 +34,6 @@ abstract class AbstractSerializer
 
     /**
      * Overwrite this in concrete serializers if the API returns null instead of an empty array.
-     *
-     * @return bool
      */
     protected function endpointReturnsNull(): bool
     {
