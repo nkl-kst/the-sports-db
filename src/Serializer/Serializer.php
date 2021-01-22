@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Serializer;
 
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
@@ -22,6 +23,7 @@ class Serializer implements SerializerInterface
     private EntrySerializer $entrySerializer;
     private EventSerializer $eventSerializer;
     private FormerTeamSerializer $formerTeamSerializer;
+    private HighlightSerializer $highlightSerializer;
     private HonorSerializer $honorSerializer;
     private LeagueSerializer $leagueSerializer;
     private LineupSerializer $lineupSerializer;
@@ -41,6 +43,7 @@ class Serializer implements SerializerInterface
         EntrySerializer $entrySerializer,
         EventSerializer $eventSerializer,
         FormerTeamSerializer $formerTeamSerializer,
+        HighlightSerializer $highlightSerializer,
         HonorSerializer $honorSerializer,
         LeagueSerializer $leagueSerializer,
         LineupSerializer $lineupSerializer,
@@ -60,6 +63,7 @@ class Serializer implements SerializerInterface
         $this->eventSerializer = $eventSerializer;
         $this->formerTeamSerializer = $formerTeamSerializer;
         $this->honorSerializer = $honorSerializer;
+        $this->highlightSerializer = $highlightSerializer;
         $this->leagueSerializer = $leagueSerializer;
         $this->lineupSerializer = $lineupSerializer;
         $this->loveSerializer = $loveSerializer;
@@ -103,6 +107,14 @@ class Serializer implements SerializerInterface
     public function serializeFormerTeams(string $content): array
     {
         return $this->formerTeamSerializer->serialize($content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeHighlights(string $content): array
+    {
+        return $this->highlightSerializer->serialize($content);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace NklKst\TheSportsDb\Client;
 
+use NklKst\TheSportsDb\Client\Endpoint\HighlightEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ListEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\RequestBuilderMock;
@@ -20,17 +21,23 @@ class ClientTest extends TestCase
         $requestBuilder = new RequestBuilderMock();
         $serializer = new SerializerMock();
 
+        $highlight = new HighlightEndpoint($requestBuilder, $serializer);
         $list = new ListEndpoint($requestBuilder, $serializer);
         $lookup = new LookupEndpoint($requestBuilder, $serializer);
         $schedule = new ScheduleEndpoint($requestBuilder, $serializer);
         $search = new SearchEndpoint($requestBuilder, $serializer);
 
-        $this->client = new Client($list, $lookup, $schedule, $search);
+        $this->client = new Client($highlight, $list, $lookup, $schedule, $search);
     }
 
     public function testConfigure(): void
     {
         $this->assertInstanceOf(Config::class, $this->client->configure());
+    }
+
+    public function testHighlight(): void
+    {
+        $this->assertInstanceOf(HighlightEndpoint::class, $this->client->highlight());
     }
 
     public function testList(): void

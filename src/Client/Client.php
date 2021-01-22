@@ -2,6 +2,7 @@
 
 namespace NklKst\TheSportsDb\Client;
 
+use NklKst\TheSportsDb\Client\Endpoint\HighlightEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ListEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
@@ -10,6 +11,7 @@ use NklKst\TheSportsDb\Config\Config;
 
 class Client
 {
+    private HighlightEndpoint $highlightEndpoint;
     private ListEndpoint $listEndpoint;
     private LookupEndpoint $lookupEndpoint;
     private ScheduleEndpoint $scheduleEndpoint;
@@ -18,11 +20,13 @@ class Client
     private Config $config;
 
     public function __construct(
+        HighlightEndpoint $highlightEndpoint,
         ListEndpoint $listEndpoint,
         LookupEndpoint $lookupEndpoint,
         ScheduleEndpoint $scheduleEndpoint,
         SearchEndpoint $searchEndpoint)
     {
+        $this->highlightEndpoint = $highlightEndpoint;
         $this->listEndpoint = $listEndpoint;
         $this->lookupEndpoint = $lookupEndpoint;
         $this->scheduleEndpoint = $scheduleEndpoint;
@@ -34,6 +38,11 @@ class Client
     public function configure(): Config
     {
         return $this->config;
+    }
+
+    public function highlight(): HighlightEndpoint
+    {
+        return $this->highlightEndpoint->setConfig($this->config);
     }
 
     public function list(): ListEndpoint

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 - To be released
+
+- Added highlight videos support (#4)
+
 ## 0.1.1 - 2021/01/18
 
 - Added most "Patreon only" features (#2)

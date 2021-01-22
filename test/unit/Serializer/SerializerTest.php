@@ -6,6 +6,7 @@ use Exception;
 use JsonMapper;
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
@@ -22,6 +23,7 @@ use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
@@ -47,6 +49,7 @@ class SerializerTest extends TestCase
             new EntrySerializer($mapper),
             new EventSerializer($mapper),
             new FormerTeamSerializer($mapper),
+            new HighlightSerializer($mapper),
             new HonorSerializer($mapper),
             new LeagueSerializer($mapper),
             new LineupSerializer($mapper),
@@ -96,6 +99,15 @@ class SerializerTest extends TestCase
     {
         $formerTeams = $this->serializer->serializeFormerTeams('{ "formerteams": [] }');
         $this->assertContainsOnlyInstancesOf(FormerTeam::class, $formerTeams);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeHighlights(): void
+    {
+        $highlights = $this->serializer->serializeHighlights('{ "tvhighlights": [] }');
+        $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
     }
 
     /**

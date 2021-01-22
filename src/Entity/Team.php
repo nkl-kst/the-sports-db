@@ -30,7 +30,7 @@ class Team
     public ?string $strDivision;
     public string $strManager;
     public string $strStadium;
-    public string $strKeywords;
+    public ?string $strKeywords;
     public string $strRSS;
     public ?string $strStadiumThumb;
     public ?string $strStadiumDescription;
