@@ -2,7 +2,7 @@
 
 ## 0.1.2 - To be released
 
-- TODO
+- Added highlight videos support (#4)
 
 ## 0.1.1 - 2021/01/18
 
