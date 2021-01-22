@@ -19,11 +19,17 @@ class Config
         return $this;
     }
 
+    /**
+     * @deprecated
+     */
     public function getVersion(): ?string
     {
         return $this->version;
     }
 
+    /**
+     * @deprecated
+     */
     public function setVersion(string $version): self
     {
         $this->version = $version;
