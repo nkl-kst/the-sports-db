@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.2 - To be released
+## 0.1.2 - 2021/01/23
 
 - Added highlight videos support (#4)
 - Added livescore v2 support (#5)
