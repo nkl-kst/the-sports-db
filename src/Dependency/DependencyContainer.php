@@ -5,6 +5,7 @@ namespace NklKst\TheSportsDb\Dependency;
 use Exception;
 use JsonMapper;
 use NklKst\TheSportsDb\Client\Client;
+use NklKst\TheSportsDb\Client\Endpoint\HighlightEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ListEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
@@ -13,6 +14,7 @@ use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Request\RequestBuilderInterface;
 use NklKst\TheSportsDb\Serializer\CountrySerializer;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
+use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
@@ -35,6 +37,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class DependencyContainer
 {
     private const CLIENTS = [
+        HighlightEndpoint::class,
         ListEndpoint::class,
         LookupEndpoint::class,
         ScheduleEndpoint::class,
@@ -47,6 +50,7 @@ class DependencyContainer
         EntrySerializer::class,
         EventSerializer::class,
         FormerTeamSerializer::class,
+        HighlightSerializer::class,
         HonorSerializer::class,
         LeagueSerializer::class,
         LineupSerializer::class,

@@ -5,6 +5,7 @@ namespace NklKst\TheSportsDb\Serializer;
 use Exception;
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
@@ -58,6 +59,15 @@ interface SerializerInterface
      * @throws Exception
      */
     public function serializeFormerTeams(string $content): array;
+
+    /**
+     * @param string $content Content to serialize
+     *
+     * @return Highlight[]
+     *
+     * @throws Exception
+     */
+    public function serializeHighlights(string $content): array;
 
     /**
      * @param string $content Content to serialize

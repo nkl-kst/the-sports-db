@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 
 use NklKst\TheSportsDb\Entity\Country;
 use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
@@ -62,6 +63,14 @@ class SerializerMock implements SerializerInterface
     public function serializeFormerTeams(string $content): array
     {
         return $this->createMockedEntityArray(FormerTeam::class, 'strFormerTeam', $content);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serializeHighlights(string $content): array
+    {
+        return $this->createMockedEntityArray(Highlight::class, 'strVideo', $content);
     }
 
     /**
