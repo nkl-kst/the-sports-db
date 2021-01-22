@@ -62,7 +62,6 @@ $client->configure()->setKey('YOUR_API_KEY');
 ## Known issues
 
 - These "Patreon only" features are not implemented yet:
-  - Video Highlights
   - Livescores V1
   - Livescores V2 (Alpha)
 
