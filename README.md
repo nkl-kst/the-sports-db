@@ -8,7 +8,7 @@ An easy-to-use PHP library to get data from https://www.thesportsdb.com.
 
 ## Features
 
-- Get data for lists, lookups, schedules or searches
+- Get data for video highlights, lists, lookups, schedules or searches
 - Get results in serialized classes
 - Use your own API key
 - Choose your API version
