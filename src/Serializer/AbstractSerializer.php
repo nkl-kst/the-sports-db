@@ -18,15 +18,31 @@ abstract class AbstractSerializer
 
     abstract protected function getValidJsonRootNames(): array;
 
+    /**
+     * Get the JSON root property containing data.
+     *
+     * @param object|null $json
+     * @return string|null
+     */
     private function getJsonRootName(?object $json): ?string
     {
         foreach ($this->getValidJsonRootNames() as $rootName) {
-            if (isset($json->$rootName)) {
+            if (property_exists($json, $rootName)) {
                 return $rootName;
             }
         }
 
         return null;
+    }
+
+    /**
+     * Overwrite this in concrete serializers if the API returns null instead of an empty array.
+     *
+     * @return bool
+     */
+    protected function endpointReturnsNull(): bool
+    {
+        return false;
     }
 
     private function validate(?object $json): ?string
@@ -36,7 +52,7 @@ abstract class AbstractSerializer
         }
 
         // Check if root exists and contains data
-        if (null === $this->getJsonRootName($json)) {
+        if (null === $this->getJsonRootName($json) && !$this->endpointReturnsNull()) {
             return 'Wrong or empty root in JSON, expected one of ['
                 .implode(', ', $this->getValidJsonRootNames()).'] to contain data.';
         }
@@ -56,6 +72,11 @@ abstract class AbstractSerializer
         }
 
         $innerJson = $json->{$this->getJsonRootName($json)};
+
+        // Don't serialize if the API endpoint returned null instead of an empty array
+        if (null === $innerJson && $this->endpointReturnsNull()) {
+            return [];
+        }
 
         return $this->mapper->mapArray($innerJson, [], $this->getEntityClass());
     }

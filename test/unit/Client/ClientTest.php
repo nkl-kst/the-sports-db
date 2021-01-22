@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Client;
 
 use NklKst\TheSportsDb\Client\Endpoint\HighlightEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ListEndpoint;
+use NklKst\TheSportsDb\Client\Endpoint\LivescoreEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\RequestBuilderMock;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
@@ -23,11 +24,12 @@ class ClientTest extends TestCase
 
         $highlight = new HighlightEndpoint($requestBuilder, $serializer);
         $list = new ListEndpoint($requestBuilder, $serializer);
+        $livescore = new LivescoreEndpoint($requestBuilder, $serializer);
         $lookup = new LookupEndpoint($requestBuilder, $serializer);
         $schedule = new ScheduleEndpoint($requestBuilder, $serializer);
         $search = new SearchEndpoint($requestBuilder, $serializer);
 
-        $this->client = new Client($highlight, $list, $lookup, $schedule, $search);
+        $this->client = new Client($highlight, $list, $livescore, $lookup, $schedule, $search);
     }
 
     public function testConfigure(): void

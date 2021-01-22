@@ -6,6 +6,7 @@ use JsonMapper;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LivescoreSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
 use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
@@ -32,6 +33,7 @@ class ExtendedSerializerTest extends TestCase
             [HonorSerializer::class],
             [LeagueSerializer::class],
             [LineupSerializer::class],
+            [LivescoreSerializer::class],
             [LoveSerializer::class],
             [PlayerSerializer::class],
             [ResultSerializer::class],

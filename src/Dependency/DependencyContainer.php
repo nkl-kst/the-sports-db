@@ -7,6 +7,7 @@ use JsonMapper;
 use NklKst\TheSportsDb\Client\Client;
 use NklKst\TheSportsDb\Client\Endpoint\HighlightEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ListEndpoint;
+use NklKst\TheSportsDb\Client\Endpoint\LivescoreEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\SearchEndpoint;
@@ -16,6 +17,7 @@ use NklKst\TheSportsDb\Serializer\CountrySerializer;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
+use NklKst\TheSportsDb\Serializer\Event\LivescoreSerializer;
 use NklKst\TheSportsDb\Serializer\Event\ResultSerializer;
 use NklKst\TheSportsDb\Serializer\Event\StatisticSerializer;
 use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
@@ -39,6 +41,7 @@ class DependencyContainer
     private const CLIENTS = [
         HighlightEndpoint::class,
         ListEndpoint::class,
+        LivescoreEndpoint::class,
         LookupEndpoint::class,
         ScheduleEndpoint::class,
         SearchEndpoint::class,
@@ -54,6 +57,7 @@ class DependencyContainer
         HonorSerializer::class,
         LeagueSerializer::class,
         LineupSerializer::class,
+        LivescoreSerializer::class,
         LoveSerializer::class,
         PlayerSerializer::class,
         ResultSerializer::class,
