@@ -38,7 +38,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class DependencyContainer
 {
-    private const CLIENTS = [
+    private const ENDPOINTS = [
         HighlightEndpoint::class,
         ListEndpoint::class,
         LivescoreEndpoint::class,
@@ -112,9 +112,10 @@ class DependencyContainer
             ->setPublic(true)
             ->setShared(false);
 
-        foreach (self::CLIENTS as $client) {
+        // Endpoints
+        foreach (self::ENDPOINTS as $endpoint) {
             self::$builder
-                ->autowire($client)
+                ->autowire($endpoint)
                 ->setShared(false);
         }
     }
