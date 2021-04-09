@@ -37,6 +37,7 @@
     },
     "scripts": {
         "check-code": "php-cs-fixer fix --dry-run --verbose",
+        "fix-code": "php-cs-fixer fix --verbose",
         "test-unit": "phpunit --testsuite=Unit",
         "test-integration": "phpunit --testsuite=Integration"
     }
