@@ -33,15 +33,15 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Search for team short code (https://www.thesportsdb.com/api/v1/json/1/searchteams.php?sname=Ars).
+     * Search for team short code (https://www.thesportsdb.com/api/v1/json/1/searchteams.php?sname=ARS).
      *
      * @throws Exception
      */
     public function testTeamsShort(): void
     {
-        $teams = $this->client->search()->teams('Ars', true);
+        $teams = $this->client->search()->teams('ARS', true);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
-        $this->assertSame('Ars', $teams[0]->strTeamShort);
+        $this->assertSame('ARS', $teams[0]->strTeamShort);
     }
 
     /**
