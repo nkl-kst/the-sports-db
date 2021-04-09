@@ -144,6 +144,8 @@ class ScheduleTest extends TestCase
     /**
      * TV Events on a day by Sport/TV Station Country
      * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventstv.php?d=2018-07-07).
+     *
+     * @throws Exception
      */
     public function testTelevision(): void
     {
@@ -159,6 +161,8 @@ class ScheduleTest extends TestCase
     /**
      * TV Events on a day by Sport/TV Station Country
      * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventstv.php?d=2018-07-07&s=Fighting).
+     *
+     * @throws Exception
      */
     public function testTelevisionSport(): void
     {
@@ -175,6 +179,8 @@ class ScheduleTest extends TestCase
     /**
      * TV Events on a day by Sport/TV Station Country
      * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventstv.php?d=2019-09-28&a=United%20Kingdom&s=Cycling).
+     *
+     * @throws Exception
      */
     public function testTelevisionCountry(): void
     {
@@ -192,6 +198,8 @@ class ScheduleTest extends TestCase
 
     /**
      * Latest TV Events on a channel (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventstv.php?c=TSN_1).
+     *
+     * @throws Exception
      */
     public function testTelevisionChannel(): void
     {
