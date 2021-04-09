@@ -26,6 +26,8 @@ class ScheduleTest extends TestCase
      */
     public function testTeamNext(): void
     {
+        TestUtils::setPatreonKey($this->client);
+
         $events = $this->client->schedule()->teamNext(133602);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
 
@@ -40,7 +42,9 @@ class ScheduleTest extends TestCase
      */
     public function testLeagueNext(): void
     {
+        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->leagueNext(4328);
+
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
         $this->assertSame('English Premier League', $events[0]->strLeague);
     }

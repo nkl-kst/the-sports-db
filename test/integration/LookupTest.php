@@ -198,6 +198,8 @@ class LookupTest extends TestCase
      */
     public function testTable(): void
     {
+        TestUtils::setPatreonKey($this->client);
+
         $table = $this->client->lookup()->table(4328, '2018-2019');
         $this->assertInstanceOf(Table::class, $table);
 
