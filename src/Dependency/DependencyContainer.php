@@ -109,10 +109,13 @@ class DependencyContainer
         // Clients
         self::$builder
             ->autowire(Client::class)
-            ->setPublic(true);
+            ->setPublic(true)
+            ->setShared(false);
 
         foreach (self::CLIENTS as $client) {
-            self::$builder->autowire($client);
+            self::$builder
+                ->autowire($client)
+                ->setShared(false);
         }
     }
 
