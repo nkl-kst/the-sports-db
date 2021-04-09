@@ -106,18 +106,18 @@ class DependencyContainer
             self::$builder->autowire($serializer);
         }
 
-        // Clients
-        self::$builder
-            ->autowire(Client::class)
-            ->setPublic(true)
-            ->setShared(false);
-
         // Endpoints
         foreach (self::ENDPOINTS as $endpoint) {
             self::$builder
                 ->autowire($endpoint)
                 ->setShared(false);
         }
+
+        // Client
+        self::$builder
+            ->autowire(Client::class)
+            ->setPublic(true)
+            ->setShared(false);
     }
 
     private static function compile(): void
