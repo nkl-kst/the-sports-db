@@ -3,6 +3,7 @@
 namespace NklKst\TheSportsDb\Dependency;
 
 use Exception;
+use GuzzleHttp\ClientInterface;
 use JsonMapper;
 use NklKst\TheSportsDb\Client\Client;
 use NklKst\TheSportsDb\Client\Endpoint\HighlightEndpoint;
@@ -89,8 +90,7 @@ class DependencyContainer
     private static function autowire(): void
     {
         // Guzzle
-        // TODO: Use interface?
-        self::$builder->autowire(\GuzzleHttp\Client::class);
+        self::$builder->autowire(ClientInterface::class, \GuzzleHttp\Client::class);
 
         // Request builder
         self::$builder

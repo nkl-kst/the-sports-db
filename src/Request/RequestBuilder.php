@@ -3,13 +3,13 @@
 namespace NklKst\TheSportsDb\Request;
 
 use Exception;
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 class RequestBuilder implements RequestBuilderInterface
 {
-    private Client $http;
+    private ClientInterface $http;
 
     private string $baseUrl = 'https://www.thesportsdb.com/api';
     private string $version = 'v1';
@@ -18,7 +18,7 @@ class RequestBuilder implements RequestBuilderInterface
     private string $endpoint;
     private string $query = '';
 
-    public function __construct(Client $http)
+    public function __construct(ClientInterface $http)
     {
         $this->http = $http;
     }
