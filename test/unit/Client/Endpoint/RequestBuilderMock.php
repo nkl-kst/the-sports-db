@@ -6,7 +6,9 @@ use NklKst\TheSportsDb\Request\RequestBuilderInterface;
 
 class RequestBuilderMock implements RequestBuilderInterface
 {
-    private string $endpoint;
+    public string $key = 'dummyKey';
+    public string $query = 'dummyQuery';
+    public string $endpoint = 'dummyEndpoint';
 
     public function setVersion(string $version): RequestBuilderInterface
     {
@@ -15,6 +17,8 @@ class RequestBuilderMock implements RequestBuilderInterface
 
     public function setKey(string $key): RequestBuilderInterface
     {
+        $this->key = $key;
+
         return $this;
     }
 
@@ -27,6 +31,8 @@ class RequestBuilderMock implements RequestBuilderInterface
 
     public function setQuery(string $query): RequestBuilderInterface
     {
+        $this->query = $query;
+
         return $this;
     }
 
