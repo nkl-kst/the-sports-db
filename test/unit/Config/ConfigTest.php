@@ -24,16 +24,4 @@ class ConfigTest extends TestCase
         $returnedConfig = $this->config->setKey('dummy');
         $this->assertSame($this->config, $returnedConfig);
     }
-
-    public function testGetVersion(): void
-    {
-        $this->config->setVersion('testVersion');
-        $this->assertSame('testVersion', $this->config->getVersion());
-    }
-
-    public function testSetVersion(): void
-    {
-        $returnedConfig = $this->config->setVersion('dummy');
-        $this->assertSame($this->config, $returnedConfig);
-    }
 }

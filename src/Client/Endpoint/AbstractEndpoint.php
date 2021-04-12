@@ -45,9 +45,6 @@ abstract class AbstractEndpoint
         if ($key = $this->config->getKey()) {
             $this->requestBuilder->setKey($key);
         }
-        if ($version = $this->config->getVersion()) {
-            $this->requestBuilder->setVersion($version);
-        }
 
         // Filter query
         if (isset($this->filter)) {

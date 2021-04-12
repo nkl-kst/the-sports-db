@@ -11,7 +11,6 @@ An easy-to-use PHP library to get data from https://www.thesportsdb.com.
 - Get data for lists, livescores, lookups, schedules, searches or video highlights
 - Get results in serialized classes
 - Use your own API key
-- Choose your API version
 - Use PSR-4 autoloading
 
 This library uses [Semantic Versioning](https://semver.org). Until version 1.0.0 is released, breaking changes will be 
