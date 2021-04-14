@@ -7,6 +7,9 @@ use NklKst\TheSportsDb\Filter\ListFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Client\Endpoint\AbstractEndpoint
+ */
 class AbstractEndpointTest extends TestCase
 {
     private ListEndpoint $endpoint;

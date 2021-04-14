@@ -4,6 +4,9 @@ namespace NklKst\TheSportsDb\Filter;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Filter\LookupFilter
+ */
 class LookupFilterTest extends TestCase
 {
     private LookupFilter $filter;

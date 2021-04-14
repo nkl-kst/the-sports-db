@@ -11,6 +11,9 @@ use NklKst\TheSportsDb\Filter\SearchFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Client\Endpoint\SearchEndpoint
+ */
 class SearchEndpointTest extends TestCase
 {
     private SearchEndpoint $endpoint;

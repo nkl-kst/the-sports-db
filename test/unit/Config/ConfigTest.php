@@ -4,6 +4,9 @@ namespace NklKst\TheSportsDb\Config;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Config\Config
+ */
 class ConfigTest extends TestCase
 {
     private Config $config;

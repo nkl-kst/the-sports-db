@@ -4,6 +4,9 @@ namespace NklKst\TheSportsDb\Filter;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Filter\ListFilter
+ */
 class ListFilterTest extends TestCase
 {
     private ListFilter $filter;

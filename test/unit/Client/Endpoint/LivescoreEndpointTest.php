@@ -9,6 +9,9 @@ use NklKst\TheSportsDb\Filter\LivescoreFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Client\Endpoint\LivescoreEndpoint
+ */
 class LivescoreEndpointTest extends TestCase
 {
     private LivescoreEndpoint $endpoint;

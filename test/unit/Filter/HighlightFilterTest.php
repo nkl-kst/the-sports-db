@@ -5,6 +5,9 @@ namespace NklKst\TheSportsDb\Filter;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Filter\HighlightFilter
+ */
 class HighlightFilterTest extends TestCase
 {
     private HighlightFilter $filter;

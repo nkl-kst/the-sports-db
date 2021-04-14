@@ -10,6 +10,9 @@ use GuzzleHttp\Psr7\Response;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Request\RequestBuilder
+ */
 class RequestBuilderTest extends TestCase
 {
     private RequestBuilder $builder;

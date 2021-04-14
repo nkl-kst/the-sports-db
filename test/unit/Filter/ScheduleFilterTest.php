@@ -5,6 +5,9 @@ namespace NklKst\TheSportsDb\Filter;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Filter\ScheduleFilter
+ */
 class ScheduleFilterTest extends TestCase
 {
     private ScheduleFilter $filter;

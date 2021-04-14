@@ -21,6 +21,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Lookups at https://www.thesportsdb.com/api.php.
+ *
+ * @coversNothing
  */
 class LookupTest extends TestCase
 {

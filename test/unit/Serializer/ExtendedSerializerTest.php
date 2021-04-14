@@ -19,6 +19,27 @@ use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Serializer\CountrySerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Event\EventSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Event\HighlightSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Event\LineupSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Event\LivescoreSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Event\ResultSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Event\StatisticSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Event\TimelineSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\LeagueSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\LoveSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Player\ContractSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Player\HonorSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Player\PlayerSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\SeasonSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\SportSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Table\EntrySerializer
+ * @covers \NklKst\TheSportsDb\Serializer\TeamSerializer
+ */
 class ExtendedSerializerTest extends TestCase
 {
     public function serializerProvider(): array

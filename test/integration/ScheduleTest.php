@@ -9,6 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Schedules at https://www.thesportsdb.com/api.php.
+ *
+ * @coversNothing
  */
 class ScheduleTest extends TestCase
 {

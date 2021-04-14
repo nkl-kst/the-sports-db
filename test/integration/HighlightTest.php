@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Video highlights at https://www.thesportsdb.com/api.php.
+ *
+ * @coversNothing
  */
 class HighlightTest extends TestCase
 {

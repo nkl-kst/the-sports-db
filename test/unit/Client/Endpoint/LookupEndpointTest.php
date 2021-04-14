@@ -21,6 +21,9 @@ use NklKst\TheSportsDb\Filter\LookupFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint
+ */
 class LookupEndpointTest extends TestCase
 {
     private LookupEndpoint $endpoint;

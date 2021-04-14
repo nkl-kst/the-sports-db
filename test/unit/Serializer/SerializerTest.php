@@ -38,6 +38,9 @@ use NklKst\TheSportsDb\Serializer\Player\PlayerSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Serializer\Serializer
+ */
 class SerializerTest extends TestCase
 {
     private Serializer $serializer;

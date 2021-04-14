@@ -10,6 +10,9 @@ use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
+/**
+ * @covers \NklKst\TheSportsDb\Serializer\AbstractSerializer
+ */
 class AbstractSerializerTest extends TestCase
 {
     private CountrySerializer $serializer;

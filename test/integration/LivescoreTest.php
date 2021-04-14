@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Livescore V2 at https://www.thesportsdb.com/api.php.
+ *
+ * @coversNothing
  */
 class LivescoreTest extends TestCase
 {

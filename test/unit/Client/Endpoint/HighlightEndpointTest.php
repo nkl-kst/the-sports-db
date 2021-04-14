@@ -10,6 +10,9 @@ use NklKst\TheSportsDb\Filter\HighlightFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Client\Endpoint\HighlightEndpoint
+ */
 class HighlightEndpointTest extends TestCase
 {
     private HighlightEndpoint $endpoint;

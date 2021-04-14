@@ -10,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Search at https://www.thesportsdb.com/api.php.
+ *
+ * @coversNothing
  */
 class SearchTest extends TestCase
 {

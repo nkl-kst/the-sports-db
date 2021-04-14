@@ -14,6 +14,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Lists at https://www.thesportsdb.com/api.php.
+ *
+ * @coversNothing
  */
 class ListTest extends TestCase
 {

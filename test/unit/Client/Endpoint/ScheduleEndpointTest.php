@@ -11,6 +11,9 @@ use NklKst\TheSportsDb\Filter\ScheduleFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint
+ */
 class ScheduleEndpointTest extends TestCase
 {
     private ScheduleEndpoint $endpoint;

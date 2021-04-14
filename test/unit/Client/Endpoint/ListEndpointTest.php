@@ -15,6 +15,9 @@ use NklKst\TheSportsDb\Filter\ListFilter;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Client\Endpoint\ListEndpoint
+ */
 class ListEndpointTest extends TestCase
 {
     private ListEndpoint $endpoint;

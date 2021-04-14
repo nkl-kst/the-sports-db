@@ -4,6 +4,9 @@ namespace NklKst\TheSportsDb\Filter;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Filter\LivescoreFilter
+ */
 class LivescoreFilterTest extends TestCase
 {
     private LivescoreFilter $filter;

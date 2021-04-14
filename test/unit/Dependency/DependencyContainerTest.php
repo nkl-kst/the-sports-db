@@ -6,6 +6,9 @@ use NklKst\TheSportsDb\Client\Client;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Dependency\DependencyContainer
+ */
 class DependencyContainerTest extends TestCase
 {
     public function testGetDependencyNull(): void

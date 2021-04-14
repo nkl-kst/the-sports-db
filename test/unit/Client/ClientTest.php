@@ -13,6 +13,9 @@ use NklKst\TheSportsDb\Client\Endpoint\SerializerMock;
 use NklKst\TheSportsDb\Config\Config;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \NklKst\TheSportsDb\Client\Client
+ */
 class ClientTest extends TestCase
 {
     private Client $client;
