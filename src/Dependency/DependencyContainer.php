@@ -70,7 +70,7 @@ class DependencyContainer
         TimelineSerializer::class,
     ];
 
-    private static ContainerBuilder $builder;
+    private static ?ContainerBuilder $builder = null;
 
     private static function load(): void
     {

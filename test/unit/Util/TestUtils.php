@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Util;
 
 use Closure;
 use NklKst\TheSportsDb\Client\Client;
+use ReflectionClass;
 use ReflectionException;
 use ReflectionObject;
 
@@ -32,6 +33,37 @@ class TestUtils
     }
 
     /**
+     * @param string $class    Class to get static property from
+     * @param string $property Property to get
+     *
+     * @return mixed|null
+     */
+    public static function getHiddenStaticProperty(string $class, string $property)
+    {
+        try {
+            $ref = new ReflectionClass($class);
+            return $ref->getStaticPropertyValue($property);
+        } catch (ReflectionException $e) {
+            return null;
+        }
+    }
+
+    /**
+     * @param string $class    Class to set static property
+     * @param string $property Property to change
+     * @param mixed  $value    Value to set
+     */
+    public static function setHiddenStaticProperty(string $class, string $property, $value): void
+    {
+        try {
+            $ref = new ReflectionClass($class);
+            $ref->setStaticPropertyValue($property, $value);
+        } catch (ReflectionException $e) {
+            // Shit happens
+        }
+    }
+
+    /**
      * @param object $object Object to get method from
      * @param string $method Method to get
      *
@@ -51,6 +83,25 @@ class TestUtils
         $meth->setAccessible(true);
 
         return $meth->getClosure($object);
+    }
+
+    /**
+     * @param string $class  Class to get static method from
+     * @param string $method Method to get
+     *
+     * @return Closure|null
+     */
+    public static function getHiddenStaticMethod(string $class, string $method): ?Closure
+    {
+        try {
+            $ref = new ReflectionClass($class);
+            $meth = $ref->getMethod($method);
+        } catch (ReflectionException $e) {
+            return null;
+        }
+        $meth->setAccessible(true);
+
+        return $meth->getClosure();
     }
 
     /**
