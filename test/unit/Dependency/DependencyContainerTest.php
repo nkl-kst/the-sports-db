@@ -11,12 +11,6 @@ use PHPUnit\Framework\TestCase;
  */
 class DependencyContainerTest extends TestCase
 {
-    public function testGetDependencyNull(): void
-    {
-        $method = TestUtils::getHiddenMethod(new DependencyContainer(), 'getDependency');
-        $this->assertNull($method('wrong id'));
-    }
-
     public function testGetClient(): void
     {
         $this->assertInstanceOf(Client::class, DependencyContainer::getClient());

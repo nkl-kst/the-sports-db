@@ -2,7 +2,6 @@
 
 namespace NklKst\TheSportsDb\Dependency;
 
-use Exception;
 use GuzzleHttp\ClientInterface;
 use JsonMapper;
 use NklKst\TheSportsDb\Client\Client;
@@ -36,6 +35,7 @@ use NklKst\TheSportsDb\Serializer\SportSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 use NklKst\TheSportsDb\Serializer\TeamSerializer;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class DependencyContainer
 {
@@ -125,26 +125,18 @@ class DependencyContainer
         self::$builder->compile();
     }
 
-    private static function getDependency(string $id): ?object
-    {
-        // Load
-        self::load();
-
-        // Get instance
-        try {
-            return self::$builder->get($id);
-        } catch (Exception $e) {
-            return null;
-        }
-    }
-
     public static function getClient(): ?Client
     {
-        $client = self::getDependency(Client::class);
+        // Load dependency container
+        self::load();
+
+        // Get client from dependency container
+        $client = self::$builder->get(Client::class, ContainerInterface::NULL_ON_INVALID_REFERENCE);
         if ($client instanceof Client) {
             return $client;
         }
 
+        // Something went wrong...
         return null;
     }
 }
