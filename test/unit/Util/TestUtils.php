@@ -41,8 +41,7 @@ class TestUtils
     public static function getHiddenStaticProperty(string $class, string $property)
     {
         try {
-            $ref = new ReflectionClass($class);
-            return $ref->getStaticPropertyValue($property);
+            return (new ReflectionClass($class))->getStaticPropertyValue($property);
         } catch (ReflectionException $e) {
             return null;
         }
@@ -56,8 +55,7 @@ class TestUtils
     public static function setHiddenStaticProperty(string $class, string $property, $value): void
     {
         try {
-            $ref = new ReflectionClass($class);
-            $ref->setStaticPropertyValue($property, $value);
+            (new ReflectionClass($class))->setStaticPropertyValue($property, $value);
         } catch (ReflectionException $e) {
             // Shit happens
         }
@@ -88,14 +86,11 @@ class TestUtils
     /**
      * @param string $class  Class to get static method from
      * @param string $method Method to get
-     *
-     * @return Closure|null
      */
     public static function getHiddenStaticMethod(string $class, string $method): ?Closure
     {
         try {
-            $ref = new ReflectionClass($class);
-            $meth = $ref->getMethod($method);
+            $meth = (new ReflectionClass($class))->getMethod($method);
         } catch (ReflectionException $e) {
             return null;
         }
