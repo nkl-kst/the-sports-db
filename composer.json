@@ -23,7 +23,8 @@
     "require-dev": {
         "ext-mbstring": "*",
         "phpunit/phpunit": "^9.0.0",
-        "friendsofphp/php-cs-fixer": "^2.17"
+        "friendsofphp/php-cs-fixer": "^2.17",
+        "php-coveralls/php-coveralls": "^2.4"
     },
     "autoload": {
         "psr-4": {
@@ -38,7 +39,8 @@
     "scripts": {
         "check-code": "php-cs-fixer fix --dry-run --verbose",
         "fix-code": "php-cs-fixer fix --verbose",
-        "test-unit": "phpunit --testsuite=Unit",
-        "test-integration": "phpunit --testsuite=Integration"
+        "test-unit": "phpunit --testsuite=Unit --coverage-clover build/logs/clover.xml",
+        "test-integration": "phpunit --testsuite=Integration",
+        "upload-coverage": "php-coveralls --coverage_clover=build/logs/clover.xml -v"
     }
 }

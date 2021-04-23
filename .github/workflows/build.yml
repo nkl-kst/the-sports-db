@@ -1,49 +1,73 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  - push
+  - pull_request
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        php-version: [7.4, 8.0]
+        php-version:
+          - 7.4
+          - 8.0
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup PHP ${{ matrix.php-version }}
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-version }}
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: pcov
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      - name: Validate configs
+        run: composer validate
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-${{ matrix.php-version }}-
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.php-version }}-
+            ${{ runner.os }}-
 
-    - name: Install dependencies
-      if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress
 
-    - name: Run unit tests
-      run: composer run-script test-unit
+      - name: Unit tests
+        run: composer run-script test-unit
 
-    - name: Run integration tests
-      run: composer run-script test-integration
-      env:
-        PATREON_KEY: ${{ secrets.PATREON_KEY }}
+      - name: Integration tests
+        run: composer run-script test-integration
+        env:
+          PATREON_KEY: ${{ secrets.patreon_key }}
 
-    - name: Check code
-      run: composer run-script check-code
-      env:
-        PHP_CS_FIXER_IGNORE_ENV: 1
+      - name: Check code
+        run: composer run-script check-code
+        env:
+          PHP_CS_FIXER_IGNORE_ENV: 1
+
+      - name: Upload coverage report
+        run: composer run-script upload-coverage
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.github_token }}
+          COVERALLS_PARALLEL: true
+          COVERALLS_FLAG_NAME: PHP ${{ matrix.php-version }}
+
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Coveralls finished
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true
