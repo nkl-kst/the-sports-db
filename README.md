@@ -1,6 +1,7 @@
 # TheSportsDB PHP library
 
 [![Build](https://github.com/nkl-kst/the-sports-db/workflows/Build/badge.svg)](https://github.com/nkl-kst/the-sports-db/actions)
+[![Coverage Status](https://coveralls.io/repos/github/nkl-kst/the-sports-db/badge.svg?branch=master)](https://coveralls.io/github/nkl-kst/the-sports-db?branch=master)
 [![Packagist Version](https://img.shields.io/packagist/v/nkl-kst/the-sports-db)](https://packagist.org/packages/nkl-kst/the-sports-db)
 [![GitHub](https://img.shields.io/github/license/nkl-kst/the-sports-db)](https://github.com/nkl-kst/the-sports-db/blob/master/LICENSE.md)
 
