@@ -23,7 +23,8 @@
     "require-dev": {
         "ext-mbstring": "*",
         "phpunit/phpunit": "^9.0.0",
-        "friendsofphp/php-cs-fixer": "^2.17"
+        "friendsofphp/php-cs-fixer": "^2.17",
+        "php-coveralls/php-coveralls": "^2.4"
     },
     "autoload": {
         "psr-4": {
