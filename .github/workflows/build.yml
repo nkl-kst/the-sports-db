@@ -4,7 +4,6 @@ on: [push, pull_request]
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -48,3 +47,21 @@ jobs:
       run: composer run-script check-code
       env:
         PHP_CS_FIXER_IGNORE_ENV: 1
+
+    - name: Upload coverage report
+      run: composer run-script upload-coverage
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.github_token }}
+        COVERALLS_PARALLEL: true
+        COVERALLS_FLAG_NAME: ${{ matrix.php-version }}
+
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Coveralls finished
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true
