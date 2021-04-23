@@ -39,8 +39,8 @@
     "scripts": {
         "check-code": "php-cs-fixer fix --dry-run --verbose",
         "fix-code": "php-cs-fixer fix --verbose",
-        "test-unit": "phpunit --testsuite=Unit --coverage-clover build/coverage/clover.xml",
+        "test-unit": "phpunit --testsuite=Unit --coverage-clover build/logs/clover.xml",
         "test-integration": "phpunit --testsuite=Integration",
-        "upload-coverage": "php-coveralls --coverage_clover=build/coverage/clover.xml -v"
+        "upload-coverage": "php-coveralls --coverage_clover=build/logs/clover.xml -v"
     }
 }
