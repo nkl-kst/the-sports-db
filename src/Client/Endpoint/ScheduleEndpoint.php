@@ -8,6 +8,11 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Filter\ScheduleFilter;
 
+/**
+ * Schedule endpoints.
+ *
+ * @author Nikolai Keist (github.com/nkl-kst)
+ */
 class ScheduleEndpoint extends AbstractEndpoint
 {
     private const ENDPOINT_DAY = 'eventsday.php';
@@ -20,7 +25,13 @@ class ScheduleEndpoint extends AbstractEndpoint
     private const ENDPOINT_TELEVISION = 'eventstv.php';
 
     /**
-     * @return Event[]
+     * Get events by date, optionally filtered by sport and/or league query.
+     *
+     * @param DateTime $day         Event date
+     * @param ?string  $sportQuery  Event sport query
+     * @param ?string  $leagueQuery Event league query
+     *
+     * @return Event[] Found events
      *
      * @throws Exception
      */
@@ -42,7 +53,11 @@ class ScheduleEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Event[]
+     * Get next 15 league events.
+     *
+     * @param int $leagueID League filter
+     *
+     * @return Event[] Next league events
      *
      * @throws Exception
      */
@@ -56,7 +71,11 @@ class ScheduleEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Event[]
+     * Get last 15 league events.
+     *
+     * @param int $leagueID League filter
+     *
+     * @return Event[] Last league events
      *
      * @throws Exception
      */
@@ -70,7 +89,13 @@ class ScheduleEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Event[]
+     * Get events by league round, optionally filtered by season.
+     *
+     * @param int     $leagueID League filter
+     * @param int     $round    Round filter
+     * @param ?string $season   Season filter
+     *
+     * @return Event[] Found events
      *
      * @throws Exception
      */
@@ -89,7 +114,12 @@ class ScheduleEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Event[]
+     * Get all events by league, optionally filtered by season.
+     *
+     * @param int     $leagueID League filter
+     * @param ?string $season   Season filter
+     *
+     * @return Event[] Found events
      *
      * @throws Exception
      */
@@ -108,7 +138,11 @@ class ScheduleEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Event[]
+     * Get next 5 team events.
+     *
+     * @param int $teamID Team filter
+     *
+     * @return Event[] Next team events
      *
      * @throws Exception
      */
@@ -122,7 +156,11 @@ class ScheduleEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Event[]
+     * Get last 5 team events.
+     *
+     * @param int $teamID Team filter
+     *
+     * @return Event[] Last team events
      *
      * @throws Exception
      */
@@ -136,7 +174,13 @@ class ScheduleEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Television[]
+     * Get TV show by date, optionally filtered by sport and/or country query.
+     *
+     * @param DateTime $day          Show date
+     * @param ?string  $sportQuery   Show sport query
+     * @param ?string  $countryQuery Show country query
+     *
+     * @return Television[] Found TV shows
      *
      * @throws Exception
      */
@@ -158,7 +202,11 @@ class ScheduleEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Television[]
+     * Get TV shows by channel.
+     *
+     * @param string $channel Channel filter
+     *
+     * @return Television[] Found TV shows
      *
      * @throws Exception
      */

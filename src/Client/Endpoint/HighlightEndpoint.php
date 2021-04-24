@@ -7,12 +7,23 @@ use Exception;
 use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Filter\HighlightFilter;
 
+/**
+ * Highlight endpoints.
+ *
+ * @author Nikolai Keist (github.com/nkl-kst)
+ */
 class HighlightEndpoint extends AbstractEndpoint
 {
     private const ENDPOINT_HIGHLIGHTS = 'eventshighlights.php';
 
     /**
-     * @return Highlight[]
+     * Get latest highlights for a day, league or sport query.
+     *
+     * @param ?DateTime $day        Highlights date
+     * @param ?string   $league     Highlights league
+     * @param ?string   $sportQuery Highlights sport query
+     *
+     * @return Highlight[] Found highlights
      *
      * @throws Exception
      */

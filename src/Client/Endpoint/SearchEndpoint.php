@@ -8,6 +8,11 @@ use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\SearchFilter;
 
+/**
+ * Search endpoints.
+ *
+ * @author Nikolai Keist (github.com/nkl-kst)
+ */
 class SearchEndpoint extends AbstractEndpoint
 {
     private const ENDPOINT_EVENTS = 'searchevents.php';
@@ -16,7 +21,12 @@ class SearchEndpoint extends AbstractEndpoint
     private const ENDPOINT_TEAMS = 'searchteams.php';
 
     /**
-     * @return Event[]
+     * Find events by query, optionally filtered by season.
+     *
+     * @param string  $eventQuery Event query
+     * @param ?string $season     Season filter
+     *
+     * @return Event[] Found events
      *
      * @throws Exception
      */
@@ -35,6 +45,12 @@ class SearchEndpoint extends AbstractEndpoint
     }
 
     /**
+     * Find event by file name.
+     *
+     * @param string $file File name
+     *
+     * @return Event Event
+     *
      * @throws Exception
      */
     public function eventFile(string $file): Event
@@ -47,7 +63,12 @@ class SearchEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Player[]
+     * Find players, optionally filtered by player or team query.
+     *
+     * @param ?string $playerQuery Player query
+     * @param ?string $teamQuery   Team query
+     *
+     * @return Player[] Found players
      *
      * @throws Exception
      */
@@ -71,7 +92,12 @@ class SearchEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Team[]
+     * Find teams by name or shortname query.
+     *
+     * @param string $teamQuery    Name or shortname query
+     * @param bool   $isShortQuery Query by shortname
+     *
+     * @return Team[] Found teams
      *
      * @throws Exception
      */

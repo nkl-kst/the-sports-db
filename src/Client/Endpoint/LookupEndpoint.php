@@ -18,6 +18,11 @@ use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\LookupFilter;
 
+/**
+ * Lookup endpoints.
+ *
+ * @author Nikolai Keist (github.com/nkl-kst)
+ */
 class LookupEndpoint extends AbstractEndpoint
 {
     private const ENDPOINT_CONTRACTS = 'lookupcontracts.php';
@@ -35,7 +40,11 @@ class LookupEndpoint extends AbstractEndpoint
     private const ENDPOINT_TIMELINE = 'lookuptimeline.php';
 
     /**
-     * @return Contract[]
+     * Get player contracts.
+     *
+     * @param int $playerID Player filter
+     *
+     * @return Contract[] Player contracts
      *
      * @throws Exception
      */
@@ -49,6 +58,12 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * Get event by ID.
+     *
+     * @param int $eventID Event ID
+     *
+     * @return Event Event
+     *
      * @throws Exception
      */
     public function event(int $eventID): Event
@@ -61,7 +76,11 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return FormerTeam[]
+     * Get former teams by player.
+     *
+     * @param int $playerID Player filter
+     *
+     * @return FormerTeam[] Former teams
      *
      * @throws Exception
      */
@@ -75,7 +94,11 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Honor[]
+     * Get player honors.
+     *
+     * @param int $playerID Player filter
+     *
+     * @return Honor[] Player honors
      *
      * @throws Exception
      */
@@ -89,6 +112,12 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * Get league by ID.
+     *
+     * @param int $leagueID League ID
+     *
+     * @return League League
+     *
      * @throws Exception
      */
     public function league(int $leagueID): League
@@ -101,7 +130,11 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Lineup[]
+     * Get event lineup.
+     *
+     * @param int $eventID Event filter
+     *
+     * @return Lineup[] Lineup (eg. Players, Drivers, etc.)
      *
      * @throws Exception
      */
@@ -115,6 +148,12 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * Get player by ID.
+     *
+     * @param int $playerID Player ID
+     *
+     * @return Player Player
+     *
      * @throws Exception
      */
     public function player(int $playerID): Player
@@ -127,7 +166,11 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Result[]
+     * Get event results.
+     *
+     * @param int $eventID Event filter
+     *
+     * @return Result[] Event results
      *
      * @throws Exception
      */
@@ -141,7 +184,11 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Statistic[]
+     * Get event statistics.
+     *
+     * @param int $eventID Event filter
+     *
+     * @return Statistic[] Event statistics
      *
      * @throws Exception
      */
@@ -155,6 +202,13 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * Get league table, optionally by season.
+     *
+     * @param int     $leagueID League filter
+     * @param ?string $season   Season filter
+     *
+     * @return Table League table
+     *
      * @throws Exception
      */
     public function table(int $leagueID, string $season = null): Table
@@ -171,6 +225,12 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
+     * Get team by ID.
+     *
+     * @param int $teamID Team ID
+     *
+     * @return Team Team
+     *
      * @throws Exception
      */
     public function team(int $teamID): Team
@@ -183,7 +243,11 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Television[]
+     * Get TV show by event.
+     *
+     * @param int $eventID Event filter
+     *
+     * @return Television[] Event TV show
      *
      * @throws Exception
      */
@@ -197,7 +261,11 @@ class LookupEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Timeline[]
+     * Get event timeline.
+     *
+     * @param int $eventID Event filter
+     *
+     * @return Timeline[] Event timeline
      *
      * @throws Exception
      */

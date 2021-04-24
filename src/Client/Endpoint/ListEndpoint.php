@@ -12,6 +12,11 @@ use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\ListFilter;
 
+/**
+ * List endpoints.
+ *
+ * @author Nikolai Keist (github.com/nkl-kst)
+ */
 class ListEndpoint extends AbstractEndpoint
 {
     private const ENDPOINT_COUNTRIES = 'all_countries.php';
@@ -25,7 +30,9 @@ class ListEndpoint extends AbstractEndpoint
     private const ENDPOINT_LOOKUP_TEAMS = 'lookup_all_teams.php';
 
     /**
-     * @return Country[]
+     * Get all countries.
+     *
+     * @return Country[] All countries
      *
      * @throws Exception
      */
@@ -37,7 +44,12 @@ class ListEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return League[]
+     * Get all leagues by country or sport query.
+     *
+     * @param ?string $countryQuery League country query
+     * @param ?string $sportQuery   League sport query
+     *
+     * @return League[] Found leagues
      *
      * @throws Exception
      */
@@ -61,7 +73,11 @@ class ListEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Love[]
+     * Get all loved entities by user.
+     *
+     * @param string $user User filter
+     *
+     * @return Love[] Found entities
      *
      * @throws Exception
      */
@@ -75,7 +91,11 @@ class ListEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Player[]
+     * Get all players by team.
+     *
+     * @param int $teamID Team filter
+     *
+     * @return Player[] Found players
      *
      * @throws Exception
      */
@@ -89,7 +109,11 @@ class ListEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Season[]
+     * Get all seasons by league.
+     *
+     * @param int $leagueID League filter
+     *
+     * @return Season[] Found seasons
      *
      * @throws Exception
      */
@@ -103,7 +127,9 @@ class ListEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Sport[]
+     * Get all sport categories.
+     *
+     * @return Sport[] Found sport categories
      *
      * @throws Exception
      */
@@ -115,7 +141,11 @@ class ListEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Team[]
+     * Get all teams by league.
+     *
+     * @param int $leagueID League filter
+     *
+     * @return Team[] Found teams
      *
      * @throws Exception
      */
@@ -129,7 +159,13 @@ class ListEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Team[]
+     * Get all teams by league, sport or country query.
+     *
+     * @param ?string $leagueQuery  League query
+     * @param ?string $sportQuery   Sport query
+     * @param ?string $countryQuery Country query
+     *
+     * @return Team[] Found teams
      *
      * @throws Exception
      */

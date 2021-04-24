@@ -6,13 +6,23 @@ use Exception;
 use NklKst\TheSportsDb\Entity\Event\Livescore;
 use NklKst\TheSportsDb\Filter\LivescoreFilter;
 
+/**
+ * Livescore endpoints (v2).
+ *
+ * @author Nikolai Keist (github.com/nkl-kst)
+ */
 class LivescoreEndpoint extends AbstractEndpoint
 {
     private const ENDPOINT_LIVESCORE = 'livescore.php';
     private const VERSION_LIVESCORE = 'v2';
 
     /**
-     * @return Livescore[]
+     * Get all current livescores by sport or league.
+     *
+     * @param ?string $sport    Sport filter
+     * @param ?int    $leagueID League filter
+     *
+     * @return Livescore[] Current livescores
      *
      * @throws Exception
      */
