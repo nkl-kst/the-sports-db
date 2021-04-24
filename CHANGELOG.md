@@ -1,15 +1,45 @@
 # Changelog
 
-## 0.1.2 - 2021/01/23
+All notable changes to this project will be documented in this file.
 
-- Added highlight videos support (#4)
-- Added livescore v2 support (#5)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.1.1 - 2021/01/18
+## [1.0.0] - Unreleased
 
-- Added most "Patreon only" features (#2)
+### Added
+- Dev dependency php-coveralls/php-coveralls
+- Coverage report badge
+- Public API method documentation
+
+### Changed
+- Use Guzzle ClientInterface in DependencyContainer
+- Changelog format to https://keepachangelog.com/en/1.0.0/
+- Updated guzzlehttp/guzzle to 7.3.0
+- Updated netresearch/jsonmapper to v4.0.0
+- Updated symfony/dependency-injection to v5.2.6
+- Updated friendsofphp/php-cs-fixer to v2.18.5
+- Updated phpunit/phpunit to 9.5.4
+
+### Fixed
+- Don't reuse clients and endpoints in DependencyContainer
+
+### Removed
+- API version configuration support
+
+## [0.1.2] - 2021-01-23
+
+### Added
+- Highlight videos support
+- Livescore v2 support
+
+## [0.1.1] - 2021-01-18
+
+### Added
+- Most "Patreon only" features
+  
+### Changed
 - Bumped libs
 
-## 0.1.0 - 2020/12/30
-
+## [0.1.0] - 2020-12-30
 - Initial release
