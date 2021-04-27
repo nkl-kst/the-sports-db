@@ -49,6 +49,9 @@ jobs:
         env:
           PATREON_KEY: ${{ secrets.patreon_key }}
 
+      - name: Analyze code
+        run: composer run-script analyze-code
+
       - name: Check code
         run: composer run-script check-code
         env:

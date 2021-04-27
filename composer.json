@@ -38,6 +38,7 @@
         }
     },
     "scripts": {
+        "analyze-code": "phpstan analyze",
         "check-code": "php-cs-fixer fix --dry-run --verbose",
         "fix-code": "php-cs-fixer fix --verbose",
         "test-unit": "phpunit --testsuite=Unit --coverage-clover build/logs/clover.xml",
