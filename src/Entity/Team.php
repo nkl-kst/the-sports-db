@@ -6,7 +6,7 @@ class Team
 {
     public int $idTeam;
     public ?int $idSoccerXML;
-    public int $idAPIfootball;
+    public ?int $idAPIfootball;
     public ?int $intLoved;
     public string $strTeam;
     public ?string $strTeamShort;
