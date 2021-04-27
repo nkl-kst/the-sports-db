@@ -24,7 +24,8 @@
         "ext-mbstring": "*",
         "phpunit/phpunit": "^9.0.0",
         "friendsofphp/php-cs-fixer": "^2.17",
-        "php-coveralls/php-coveralls": "^2.4"
+        "php-coveralls/php-coveralls": "^2.4",
+        "phpstan/phpstan": "^0.12.85"
     },
     "autoload": {
         "psr-4": {
@@ -37,6 +38,7 @@
         }
     },
     "scripts": {
+        "analyze-code": "phpstan analyze --error-format=github",
         "check-code": "php-cs-fixer fix --dry-run --verbose",
         "fix-code": "php-cs-fixer fix --verbose",
         "test-unit": "phpunit --testsuite=Unit --coverage-clover build/logs/clover.xml",
