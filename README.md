@@ -80,16 +80,20 @@ library so please let me know if you miss something or alternatively open a pull
 
 ## Developer notes
 
-Run tests.
+Run tests and code checks.
 
 ```shell
 # Unit tests
 > composer run-script test-unit
 
-# Integration tests (API calls)
-> composer run-script test-integration
+# Integration tests (API calls, Patreon key required)
+> PATREON_KEY=<YOUR_PATREON_KEY> composer run-script test-integration
+# On Windows use 'set PATREON_KEY=<YOUR_PATERON_KEY>' before running the tests
 
-# Check code
+# Analyze code (static analysis)
+> composer run-script analyze-code
+
+# Check code (coding standards)
 > composer run-script check-code
 ```
 
