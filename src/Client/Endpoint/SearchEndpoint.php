@@ -49,11 +49,9 @@ class SearchEndpoint extends AbstractEndpoint
      *
      * @param string $file File name
      *
-     * @return Event Event
-     *
      * @throws Exception
      */
-    public function eventFile(string $file): Event
+    public function eventFile(string $file): ?Event
     {
         $this
             ->setFilter((new SearchFilter())->setEventQuery($file))

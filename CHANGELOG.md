@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Don't reuse clients and endpoints in DependencyContainer
 - `idAPIfootball` in class `NklKst\TheSportsDb\Entity\Team` is now nullable
 - Fixed teams search returning `null` on unmatched query
+- Lookup and search results for single entities can be null
 
 ### Removed
 - API version configuration support
