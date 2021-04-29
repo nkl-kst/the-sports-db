@@ -12,7 +12,6 @@ use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\SearchEndpoint;
 use NklKst\TheSportsDb\Request\RequestBuilder;
-use NklKst\TheSportsDb\Request\RequestBuilderInterface;
 use NklKst\TheSportsDb\Serializer\CountrySerializer;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
@@ -94,7 +93,7 @@ class DependencyContainer
 
         // Request builder
         self::$builder
-            ->autowire(RequestBuilderInterface::class, RequestBuilder::class)
+            ->autowire(RequestBuilder::class, RequestBuilder::class)
             ->setShared(false);
 
         // Json mapper

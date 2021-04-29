@@ -5,18 +5,18 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 use Exception;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Filter\AbstractFilter;
-use NklKst\TheSportsDb\Request\RequestBuilderInterface;
+use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Serializer\SerializerInterface;
 
 abstract class AbstractEndpoint
 {
-    protected RequestBuilderInterface $requestBuilder;
+    protected RequestBuilder $requestBuilder;
     protected SerializerInterface $serializer;
 
     private Config $config;
     protected AbstractFilter $filter;
 
-    public function __construct(RequestBuilderInterface $requestBuilder, SerializerInterface $serializer)
+    public function __construct(RequestBuilder $requestBuilder, SerializerInterface $serializer)
     {
         $this->requestBuilder = $requestBuilder;
         $this->serializer = $serializer;
