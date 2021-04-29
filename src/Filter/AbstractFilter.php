@@ -6,14 +6,20 @@ abstract class AbstractFilter
 {
     private array $filters = [];
 
-    protected function addFilter(string $key, string $value): self
+    /**
+     * @return $this
+     */
+    protected function addFilter(string $key, string $value)
     {
         $this->filters[$key] = $value;
 
         return $this;
     }
 
-    public function setID(int $id): self
+    /**
+     * @return $this
+     */
+    public function setID(int $id)
     {
         return $this->addFilter('id', $id);
     }

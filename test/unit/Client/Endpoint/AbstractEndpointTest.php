@@ -52,7 +52,8 @@ class AbstractEndpointTest extends TestCase
         $request();
 
         $requestBuilder = TestUtils::getHiddenProperty($this->endpoint, 'requestBuilder');
-        $this->assertEquals('testKey', $requestBuilder->key);
+        $key = TestUtils::getHiddenProperty($requestBuilder, 'key');
+        $this->assertEquals('testKey', $key);
     }
 
     public function testRequestFilter(): void
@@ -64,7 +65,8 @@ class AbstractEndpointTest extends TestCase
         $request();
 
         $requestBuilder = TestUtils::getHiddenProperty($this->endpoint, 'requestBuilder');
-        $this->assertEquals('c=testQuery&', $requestBuilder->query);
+        $query = TestUtils::getHiddenProperty($requestBuilder, 'query');
+        $this->assertEquals('c=testQuery&', $query);
     }
 
     public function testGetSingleEntity(): void
