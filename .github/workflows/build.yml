@@ -9,10 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         php-version:
           - 7.4
           - 8.0
+        include:
+          - php-version: 8.0
+            check-code: true
 
     steps:
       - name: Checkout code
@@ -50,9 +54,11 @@ jobs:
           PATREON_KEY: ${{ secrets.patreon_key }}
 
       - name: Analyze code
+        if: ${{ matrix.check-code }}
         run: composer run-script analyze-code
 
       - name: Check code
+        if: ${{ matrix.check-code }}
         run: composer run-script check-code
         env:
           PHP_CS_FIXER_IGNORE_ENV: 1
