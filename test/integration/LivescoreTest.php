@@ -65,4 +65,18 @@ class LivescoreTest extends TestCase
             $this->assertSame('Soccer', $livescore->strSport);
         }
     }
+
+    /**
+     * Endpoint for current livescores returns null instead of an empty array, test if this is handled correctly.
+     *
+     * @throws Exception
+     */
+    public function testNowNoMatch(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $livescores = $this->client->livescore()->now('This query will never match');
+
+        $this->assertIsArray($livescores);
+        $this->assertEmpty($livescores);
+    }
 }

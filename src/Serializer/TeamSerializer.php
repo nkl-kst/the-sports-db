@@ -15,4 +15,9 @@ class TeamSerializer extends AbstractSerializer
     {
         return ['teams'];
     }
+
+    protected function endpointReturnsNull(): bool
+    {
+        return true;
+    }
 }

@@ -61,7 +61,7 @@ class ExtendedSerializerTest extends TestCase
             [SeasonSerializer::class, false],
             [SportSerializer::class, false],
             [StatisticSerializer::class, false],
-            [TeamSerializer::class, false],
+            [TeamSerializer::class, true],
             [TelevisionSerializer::class, false],
             [TimelineSerializer::class, false],
         ];

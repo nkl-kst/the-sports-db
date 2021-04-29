@@ -35,6 +35,19 @@ class SearchTest extends TestCase
     }
 
     /**
+     * Endpoint for search teams returns null instead of an empty array, test if this is handled correctly.
+     *
+     * @throws Exception
+     */
+    public function testTeamsNoMatch(): void
+    {
+        $teams = $this->client->search()->teams('This query will never match');
+
+        $this->assertIsArray($teams);
+        $this->assertEmpty($teams);
+    }
+
+    /**
      * Search for team short code (https://www.thesportsdb.com/api/v1/json/1/searchteams.php?sname=ARS).
      *
      * @throws Exception
