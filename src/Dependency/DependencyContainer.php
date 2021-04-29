@@ -29,7 +29,6 @@ use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
 use NklKst\TheSportsDb\Serializer\Player\PlayerSerializer;
 use NklKst\TheSportsDb\Serializer\SeasonSerializer;
 use NklKst\TheSportsDb\Serializer\Serializer;
-use NklKst\TheSportsDb\Serializer\SerializerInterface;
 use NklKst\TheSportsDb\Serializer\SportSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 use NklKst\TheSportsDb\Serializer\TeamSerializer;
@@ -100,7 +99,7 @@ class DependencyContainer
         self::$builder->autowire(JsonMapper::class, JsonMapper::class);
 
         // Serializers
-        self::$builder->autowire(SerializerInterface::class, Serializer::class);
+        self::$builder->autowire(Serializer::class, Serializer::class);
         foreach (self::SERIALIZERS as $serializer) {
             self::$builder->autowire($serializer);
         }

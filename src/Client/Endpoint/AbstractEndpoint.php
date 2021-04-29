@@ -6,17 +6,17 @@ use Exception;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Filter\AbstractFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
-use NklKst\TheSportsDb\Serializer\SerializerInterface;
+use NklKst\TheSportsDb\Serializer\Serializer;
 
 abstract class AbstractEndpoint
 {
     protected RequestBuilder $requestBuilder;
-    protected SerializerInterface $serializer;
+    protected Serializer $serializer;
 
     private Config $config;
     protected AbstractFilter $filter;
 
-    public function __construct(RequestBuilder $requestBuilder, SerializerInterface $serializer)
+    public function __construct(RequestBuilder $requestBuilder, Serializer $serializer)
     {
         $this->requestBuilder = $requestBuilder;
         $this->serializer = $serializer;
