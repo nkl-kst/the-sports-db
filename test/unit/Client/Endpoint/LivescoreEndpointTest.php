@@ -6,7 +6,9 @@ use Exception;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Livescore;
 use NklKst\TheSportsDb\Filter\LivescoreFilter;
+use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Util\TestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,9 +18,13 @@ class LivescoreEndpointTest extends TestCase
 {
     private LivescoreEndpoint $endpoint;
 
+    private MockObject $requestBuilderMock;
+
     protected function setUp(): void
     {
-        $this->endpoint = new LivescoreEndpoint(new RequestBuilderMock(), new SerializerMock());
+        $this->endpoint = new LivescoreEndpoint(
+            $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
+            new SerializerMock());
         $this->endpoint->setConfig(new Config());
     }
 
@@ -60,7 +66,7 @@ class LivescoreEndpointTest extends TestCase
      */
     public function testNowEndpoint(): void
     {
-        $livescore = $this->endpoint->now()[0];
-        $this->assertSame('livescore.php', $livescore->strProgress);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'livescore.php');
+        $this->endpoint->now();
     }
 }

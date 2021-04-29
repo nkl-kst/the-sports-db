@@ -8,7 +8,9 @@ use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Filter\ScheduleFilter;
+use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Util\TestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,9 +20,13 @@ class ScheduleEndpointTest extends TestCase
 {
     private ScheduleEndpoint $endpoint;
 
+    private MockObject $requestBuilderMock;
+
     protected function setUp(): void
     {
-        $this->endpoint = new ScheduleEndpoint(new RequestBuilderMock(), new SerializerMock());
+        $this->endpoint = new ScheduleEndpoint(
+            $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
+            new SerializerMock());
         $this->endpoint->setConfig(new Config());
     }
 
@@ -29,8 +35,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testDayEndpoint(): void
     {
-        $event = $this->endpoint->day(new DateTime())[0];
-        $this->assertSame('eventsday.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventsday.php');
+        $this->endpoint->day(new DateTime());
     }
 
     /**
@@ -83,8 +89,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testLeagueNextEndpoint(): void
     {
-        $event = $this->endpoint->leagueNext(1)[0];
-        $this->assertSame('eventsnextleague.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventsnextleague.php');
+        $this->endpoint->leagueNext(1);
     }
 
     /**
@@ -113,8 +119,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testLeagueLastEndpoint(): void
     {
-        $event = $this->endpoint->leagueLast(1)[0];
-        $this->assertSame('eventspastleague.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventspastleague.php');
+        $this->endpoint->leagueLast(1);
     }
 
     /**
@@ -143,8 +149,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testRoundEndpoint(): void
     {
-        $event = $this->endpoint->round(1, 2)[0];
-        $this->assertSame('eventsround.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventsround.php');
+        $this->endpoint->round(1, 2);
     }
 
     /**
@@ -185,8 +191,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testSeasonEndpoint(): void
     {
-        $event = $this->endpoint->season(1)[0];
-        $this->assertSame('eventsseason.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventsseason.php');
+        $this->endpoint->season(1);
     }
 
     /**
@@ -227,8 +233,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testTeamNextEndpoint(): void
     {
-        $event = $this->endpoint->teamNext(1)[0];
-        $this->assertSame('eventsnext.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventsnext.php');
+        $this->endpoint->teamNext(1);
     }
 
     /**
@@ -257,8 +263,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testTeamLastEndpoint(): void
     {
-        $event = $this->endpoint->teamLast(1)[0];
-        $this->assertSame('eventslast.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventslast.php');
+        $this->endpoint->teamLast(1);
     }
 
     /**
@@ -287,8 +293,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testTelevisionEndpoint(): void
     {
-        $event = $this->endpoint->television(new DateTime())[0];
-        $this->assertSame('eventstv.php', $event->strChannel);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventstv.php');
+        $this->endpoint->television(new DateTime());
     }
 
     /**
@@ -341,8 +347,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testTelevisionChannelEndpoint(): void
     {
-        $event = $this->endpoint->televisionChannel('dummy')[0];
-        $this->assertSame('eventstv.php', $event->strChannel);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventstv.php');
+        $this->endpoint->televisionChannel('dummy');
     }
 
     /**

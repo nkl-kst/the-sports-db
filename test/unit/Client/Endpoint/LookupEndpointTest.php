@@ -18,7 +18,9 @@ use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\LookupFilter;
+use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Util\TestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,9 +30,13 @@ class LookupEndpointTest extends TestCase
 {
     private LookupEndpoint $endpoint;
 
+    private MockObject $requestBuilderMock;
+
     protected function setUp(): void
     {
-        $this->endpoint = new LookupEndpoint(new RequestBuilderMock(), new SerializerMock());
+        $this->endpoint = new LookupEndpoint(
+            $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
+            new SerializerMock());
         $this->endpoint->setConfig(new Config());
     }
 
@@ -51,8 +57,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testContractsEndpoint(): void
     {
-        $contract = $this->endpoint->contracts(1)[0];
-        $this->assertSame('lookupcontracts.php', $contract->strSport);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupcontracts.php');
+        $this->endpoint->contracts(1);
     }
 
     /**
@@ -81,8 +87,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testEventEndpoint(): void
     {
-        $event = $this->endpoint->event(1);
-        $this->assertSame('lookupevent.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupevent.php');
+        $this->endpoint->event(1);
     }
 
     /**
@@ -111,8 +117,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testFormerTeamsEndpoint(): void
     {
-        $formerTeam = $this->endpoint->formerTeams(1)[0];
-        $this->assertSame('lookupformerteams.php', $formerTeam->strFormerTeam);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupformerteams.php');
+        $this->endpoint->formerTeams(1);
     }
 
     /**
@@ -141,8 +147,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testHonorsEndpoint(): void
     {
-        $honor = $this->endpoint->honors(1)[0];
-        $this->assertSame('lookuphonors.php', $honor->strHonour);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookuphonors.php');
+        $this->endpoint->honors(1);
     }
 
     /**
@@ -171,8 +177,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testLeagueEndpoint(): void
     {
-        $league = $this->endpoint->league(1);
-        $this->assertSame('lookupleague.php', $league->strLeague);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupleague.php');
+        $this->endpoint->league(1);
     }
 
     /**
@@ -201,8 +207,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testLineupEndpoint(): void
     {
-        $lineup = $this->endpoint->lineup(1)[0];
-        $this->assertSame('lookuplineup.php', $lineup->strPosition);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookuplineup.php');
+        $this->endpoint->lineup(1);
     }
 
     /**
@@ -231,8 +237,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testPlayerEndpoint(): void
     {
-        $player = $this->endpoint->player(1);
-        $this->assertSame('lookupplayer.php', $player->strPlayer);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupplayer.php');
+        $this->endpoint->player(1);
     }
 
     /**
@@ -261,8 +267,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testResultsEndpoint(): void
     {
-        $result = $this->endpoint->results(1)[0];
-        $this->assertSame('eventresults.php', $result->strResult);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventresults.php');
+        $this->endpoint->results(1);
     }
 
     /**
@@ -291,8 +297,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testStatisticsEndpoint(): void
     {
-        $statistic = $this->endpoint->statistics(1)[0];
-        $this->assertSame('lookupeventstats.php', $statistic->strStat);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupeventstats.php');
+        $this->endpoint->statistics(1);
     }
 
     /**
@@ -333,8 +339,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testTableEndpoint(): void
     {
-        $table = $this->endpoint->table(1);
-        $this->assertSame('lookuptable.php', $table->entries[0]->name);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookuptable.php');
+        $this->endpoint->table(1);
     }
 
     /**
@@ -363,8 +369,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testTeamEndpoint(): void
     {
-        $team = $this->endpoint->team(1);
-        $this->assertSame('lookupteam.php', $team->strTeam);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupteam.php');
+        $this->endpoint->team(1);
     }
 
     /**
@@ -393,8 +399,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testTelevisionEndpoint(): void
     {
-        $event = $this->endpoint->television(1)[0];
-        $this->assertSame('lookuptv.php', $event->strChannel);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookuptv.php');
+        $this->endpoint->television(1);
     }
 
     /**
@@ -423,8 +429,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testTimelineEndpoint(): void
     {
-        $event = $this->endpoint->timeline(1)[0];
-        $this->assertSame('lookuptimeline.php', $event->strTimeline);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookuptimeline.php');
+        $this->endpoint->timeline(1);
     }
 
     /**

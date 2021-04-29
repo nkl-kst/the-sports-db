@@ -7,7 +7,9 @@ use Exception;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Filter\HighlightFilter;
+use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Util\TestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -17,9 +19,13 @@ class HighlightEndpointTest extends TestCase
 {
     private HighlightEndpoint $endpoint;
 
+    private MockObject $requestBuilderMock;
+
     protected function setUp(): void
     {
-        $this->endpoint = new HighlightEndpoint(new RequestBuilderMock(), new SerializerMock());
+        $this->endpoint = new HighlightEndpoint(
+            $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
+            new SerializerMock());
         $this->endpoint->setConfig(new Config());
     }
 
@@ -73,7 +79,7 @@ class HighlightEndpointTest extends TestCase
      */
     public function testLatestEndpoint(): void
     {
-        $highlight = $this->endpoint->latest()[0];
-        $this->assertSame('eventshighlights.php', $highlight->strVideo);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'eventshighlights.php');
+        $this->endpoint->latest();
     }
 }
