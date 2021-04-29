@@ -6,11 +6,11 @@ use NklKst\TheSportsDb\Client\Endpoint\HighlightEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ListEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LivescoreEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
-use NklKst\TheSportsDb\Client\Endpoint\RequestBuilderMock;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\SearchEndpoint;
-use NklKst\TheSportsDb\Client\Endpoint\SerializerMock;
 use NklKst\TheSportsDb\Config\Config;
+use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,8 +22,8 @@ class ClientTest extends TestCase
 
     protected function setUp(): void
     {
-        $requestBuilder = new RequestBuilderMock();
-        $serializer = new SerializerMock();
+        $requestBuilder = $this->createStub(RequestBuilder::class);
+        $serializer = $this->createStub(Serializer::class);
 
         $highlight = new HighlightEndpoint($requestBuilder, $serializer);
         $list = new ListEndpoint($requestBuilder, $serializer);
