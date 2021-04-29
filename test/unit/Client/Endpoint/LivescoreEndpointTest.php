@@ -7,8 +7,10 @@ use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Livescore;
 use NklKst\TheSportsDb\Filter\LivescoreFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,12 +21,13 @@ class LivescoreEndpointTest extends TestCase
     private LivescoreEndpoint $endpoint;
 
     private MockObject $requestBuilderMock;
+    private Stub $serializerStub;
 
     protected function setUp(): void
     {
         $this->endpoint = new LivescoreEndpoint(
             $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
-            new SerializerMock());
+            $this->serializerStub = $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 
@@ -33,6 +36,8 @@ class LivescoreEndpointTest extends TestCase
      */
     public function testNowInstances(): void
     {
+        $this->serializerStub->method('serializeLivescores')->willReturn([new Livescore()]);
+
         $livescores = $this->endpoint->now();
 
         $this->assertNotEmpty($livescores);

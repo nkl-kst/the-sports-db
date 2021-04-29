@@ -9,8 +9,10 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Television;
 use NklKst\TheSportsDb\Filter\ScheduleFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,13 +23,16 @@ class ScheduleEndpointTest extends TestCase
     private ScheduleEndpoint $endpoint;
 
     private MockObject $requestBuilderMock;
+    private Stub $serializerStub;
 
     protected function setUp(): void
     {
         $this->endpoint = new ScheduleEndpoint(
             $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
-            new SerializerMock());
+            $this->serializerStub = $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
+
+        $this->serializerStub->method('serializeEvents')->willReturn([new Event()]);
     }
 
     /**
@@ -352,6 +357,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testTelevisionInstances(): void
     {
+        $this->serializerStub->method('serializeTelevision')->willReturn([new Television()]);
+
         $events = $this->endpoint->television(new DateTime());
 
         $this->assertNotEmpty($events);
@@ -384,6 +391,8 @@ class ScheduleEndpointTest extends TestCase
      */
     public function testTelevisionChannelInstances(): void
     {
+        $this->serializerStub->method('serializeTelevision')->willReturn([new Television()]);
+
         $events = $this->endpoint->televisionChannel('dummy');
 
         $this->assertNotEmpty($events);

@@ -9,8 +9,10 @@ use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\SearchFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,12 +23,13 @@ class SearchEndpointTest extends TestCase
     private SearchEndpoint $endpoint;
 
     private MockObject $requestBuilderMock;
+    private Stub $serializerStub;
 
     protected function setUp(): void
     {
         $this->endpoint = new SearchEndpoint(
             $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
-            new SerializerMock());
+            $this->serializerStub = $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 
@@ -68,6 +71,8 @@ class SearchEndpointTest extends TestCase
      */
     public function testEventsInstances(): void
     {
+        $this->serializerStub->method('serializeEvents')->willReturn([new Event()]);
+
         $events = $this->endpoint->events('testEvent');
 
         $this->assertNotEmpty($events);
@@ -133,6 +138,8 @@ class SearchEndpointTest extends TestCase
      */
     public function testPlayersInstances(): void
     {
+        $this->serializerStub->method('serializePlayers')->willReturn([new Player()]);
+
         $players = $this->endpoint->players('testPlayer');
 
         $this->assertNotEmpty($players);
@@ -177,6 +184,8 @@ class SearchEndpointTest extends TestCase
      */
     public function testTeamInstances(): void
     {
+        $this->serializerStub->method('serializeTeams')->willReturn([new Team()]);
+
         $teams = $this->endpoint->teams('testTeam');
 
         $this->assertNotEmpty($teams);

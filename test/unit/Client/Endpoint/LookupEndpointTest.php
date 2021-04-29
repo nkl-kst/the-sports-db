@@ -19,8 +19,10 @@ use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\LookupFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,12 +33,13 @@ class LookupEndpointTest extends TestCase
     private LookupEndpoint $endpoint;
 
     private MockObject $requestBuilderMock;
+    private Stub $serializerStub;
 
     protected function setUp(): void
     {
         $this->endpoint = new LookupEndpoint(
             $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
-            new SerializerMock());
+            $this->serializerStub = $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 
@@ -66,6 +69,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testContractsInstances(): void
     {
+        $this->serializerStub->method('serializeContracts')->willReturn([new Contract()]);
+
         $contracts = $this->endpoint->contracts(1);
 
         $this->assertNotEmpty($contracts);
@@ -98,7 +103,10 @@ class LookupEndpointTest extends TestCase
      */
     public function testEventInstance(): void
     {
+        $this->serializerStub->method('serializeEvents')->willReturn([new Event()]);
+
         $event = $this->endpoint->event(1);
+
         $this->assertInstanceOf(Event::class, $event);
     }
 
@@ -128,6 +136,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testFormerTeamInstances(): void
     {
+        $this->serializerStub->method('serializeFormerTeams')->willReturn([new FormerTeam()]);
+
         $formerTeams = $this->endpoint->formerTeams(1);
 
         $this->assertNotEmpty($formerTeams);
@@ -160,6 +170,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testHonorsInstances(): void
     {
+        $this->serializerStub->method('serializeHonors')->willReturn([new Honor()]);
+
         $honors = $this->endpoint->honors(1);
 
         $this->assertNotEmpty($honors);
@@ -192,7 +204,10 @@ class LookupEndpointTest extends TestCase
      */
     public function testLeagueInstance(): void
     {
+        $this->serializerStub->method('serializeLeagues')->willReturn([new League()]);
+
         $league = $this->endpoint->league(1);
+
         $this->assertInstanceOf(League::class, $league);
     }
 
@@ -222,6 +237,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testLineupInstances(): void
     {
+        $this->serializerStub->method('serializeLineup')->willReturn([new Lineup()]);
+
         $lineup = $this->endpoint->lineup(1);
 
         $this->assertNotEmpty($lineup);
@@ -254,7 +271,10 @@ class LookupEndpointTest extends TestCase
      */
     public function testPlayerInstance(): void
     {
+        $this->serializerStub->method('serializePlayers')->willReturn([new Player()]);
+
         $player = $this->endpoint->player(1);
+
         $this->assertInstanceOf(Player::class, $player);
     }
 
@@ -284,6 +304,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testResultInstances(): void
     {
+        $this->serializerStub->method('serializeResults')->willReturn([new Result()]);
+
         $results = $this->endpoint->results(1);
 
         $this->assertNotEmpty($results);
@@ -316,6 +338,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testStatisticsInstances(): void
     {
+        $this->serializerStub->method('serializeStatistics')->willReturn([new Statistic()]);
+
         $statistics = $this->endpoint->statistics(1);
 
         $this->assertNotEmpty($statistics);
@@ -390,7 +414,10 @@ class LookupEndpointTest extends TestCase
      */
     public function testTeamInstance(): void
     {
+        $this->serializerStub->method('serializeTeams')->willReturn([new Team()]);
+
         $team = $this->endpoint->team(1);
+
         $this->assertInstanceOf(Team::class, $team);
     }
 
@@ -420,6 +447,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testTelevisionInstances(): void
     {
+        $this->serializerStub->method('serializeTelevision')->willReturn([new Television()]);
+
         $television = $this->endpoint->television(1);
 
         $this->assertNotEmpty($television);
@@ -452,6 +481,8 @@ class LookupEndpointTest extends TestCase
      */
     public function testTimelineInstances(): void
     {
+        $this->serializerStub->method('serializeTimeline')->willReturn([new Timeline()]);
+
         $timeline = $this->endpoint->timeline(1);
 
         $this->assertNotEmpty($timeline);

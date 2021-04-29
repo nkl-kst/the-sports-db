@@ -5,6 +5,7 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Filter\ListFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +23,7 @@ class AbstractEndpointTest extends TestCase
     {
         $this->endpoint = new ListEndpoint(
             $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
-            new SerializerMock());
+            $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 

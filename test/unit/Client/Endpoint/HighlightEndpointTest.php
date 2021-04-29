@@ -8,8 +8,10 @@ use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Filter\HighlightFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,12 +22,13 @@ class HighlightEndpointTest extends TestCase
     private HighlightEndpoint $endpoint;
 
     private MockObject $requestBuilderMock;
+    private Stub $serializerStub;
 
     protected function setUp(): void
     {
         $this->endpoint = new HighlightEndpoint(
             $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
-            new SerializerMock());
+            $this->serializerStub = $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 
@@ -34,6 +37,8 @@ class HighlightEndpointTest extends TestCase
      */
     public function testLatestInstances(): void
     {
+        $this->serializerStub->method('serializeHighlights')->willReturn([new Highlight()]);
+
         $highlights = $this->endpoint->latest();
 
         $this->assertNotEmpty($highlights);

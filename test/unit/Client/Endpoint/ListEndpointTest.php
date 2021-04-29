@@ -13,8 +13,10 @@ use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\ListFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,12 +27,13 @@ class ListEndpointTest extends TestCase
     private ListEndpoint $endpoint;
 
     private MockObject $requestBuilderMock;
+    private Stub $serializerStub;
 
     protected function setUp(): void
     {
         $this->endpoint = new ListEndpoint(
             $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
-            new SerializerMock());
+            $this->serializerStub = $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 
@@ -39,6 +42,8 @@ class ListEndpointTest extends TestCase
      */
     public function testCountriesInstances(): void
     {
+        $this->serializerStub->method('serializeCountries')->willReturn([new Country()]);
+
         $countries = $this->endpoint->countries();
 
         $this->assertNotEmpty($countries);
@@ -59,6 +64,8 @@ class ListEndpointTest extends TestCase
      */
     public function testLeaguesInstances(): void
     {
+        $this->serializerStub->method('serializeLeagues')->willReturn([new League()]);
+
         $leagues = $this->endpoint->leagues();
 
         $this->assertNotEmpty($leagues);
@@ -112,6 +119,8 @@ class ListEndpointTest extends TestCase
      */
     public function testLovesInstances(): void
     {
+        $this->serializerStub->method('serializeLoves')->willReturn([new Love()]);
+
         $loves = $this->endpoint->loves('dummy');
 
         $this->assertNotEmpty($loves);
@@ -144,6 +153,8 @@ class ListEndpointTest extends TestCase
      */
     public function testPlayersInstances(): void
     {
+        $this->serializerStub->method('serializePlayers')->willReturn([new Player()]);
+
         $players = $this->endpoint->players(1);
 
         $this->assertNotEmpty($players);
@@ -176,6 +187,8 @@ class ListEndpointTest extends TestCase
      */
     public function testSeasonsInstances(): void
     {
+        $this->serializerStub->method('serializeSeasons')->willReturn([new Season()]);
+
         $seasons = $this->endpoint->seasons(1);
 
         $this->assertNotEmpty($seasons);
@@ -208,6 +221,8 @@ class ListEndpointTest extends TestCase
      */
     public function testSportsInstances(): void
     {
+        $this->serializerStub->method('serializeSports')->willReturn([new Sport()]);
+
         $sports = $this->endpoint->sports();
 
         $this->assertNotEmpty($sports);
@@ -219,6 +234,8 @@ class ListEndpointTest extends TestCase
      */
     public function testSportsEndpoint(): void
     {
+        $this->serializerStub->method('serializeSports')->willReturn([new Sport()]);
+
         TestUtils::expectEndpoint($this->requestBuilderMock, 'all_sports.php');
         $this->endpoint->sports();
     }
@@ -228,6 +245,8 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsInstances(): void
     {
+        $this->serializerStub->method('serializeTeams')->willReturn([new Team()]);
+
         $teams = $this->endpoint->teams(1);
 
         $this->assertNotEmpty($teams);
@@ -260,6 +279,8 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsSearchInstances(): void
     {
+        $this->serializerStub->method('serializeTeams')->willReturn([new Team()]);
+
         $teams = $this->endpoint->teamsSearch();
 
         $this->assertNotEmpty($teams);
