@@ -35,6 +35,8 @@ class HighlightEndpointTest extends TestCase
     public function testLatestInstances(): void
     {
         $highlights = $this->endpoint->latest();
+
+        $this->assertNotEmpty($highlights);
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
     }
 

@@ -81,6 +81,8 @@ class ScheduleEndpointTest extends TestCase
     public function testDayInstances(): void
     {
         $events = $this->endpoint->day(new DateTime());
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -111,6 +113,8 @@ class ScheduleEndpointTest extends TestCase
     public function testLeagueNextInstances(): void
     {
         $events = $this->endpoint->leagueNext(1);
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -141,6 +145,8 @@ class ScheduleEndpointTest extends TestCase
     public function testLeagueLastInstances(): void
     {
         $events = $this->endpoint->leagueLast(1);
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -183,6 +189,8 @@ class ScheduleEndpointTest extends TestCase
     public function testRoundInstances(): void
     {
         $events = $this->endpoint->round(1, 2);
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -225,6 +233,8 @@ class ScheduleEndpointTest extends TestCase
     public function testSeasonInstances(): void
     {
         $events = $this->endpoint->season(1);
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -255,6 +265,8 @@ class ScheduleEndpointTest extends TestCase
     public function testTeamNextInstances(): void
     {
         $events = $this->endpoint->teamNext(1);
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -285,6 +297,8 @@ class ScheduleEndpointTest extends TestCase
     public function testTeamLastInstances(): void
     {
         $events = $this->endpoint->teamLast(1);
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -339,6 +353,8 @@ class ScheduleEndpointTest extends TestCase
     public function testTelevisionInstances(): void
     {
         $events = $this->endpoint->television(new DateTime());
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Television::class, $events);
     }
 
@@ -369,6 +385,8 @@ class ScheduleEndpointTest extends TestCase
     public function testTelevisionChannelInstances(): void
     {
         $events = $this->endpoint->televisionChannel('dummy');
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Television::class, $events);
     }
 }

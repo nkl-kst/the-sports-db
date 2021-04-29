@@ -67,6 +67,8 @@ class LookupEndpointTest extends TestCase
     public function testContractsInstances(): void
     {
         $contracts = $this->endpoint->contracts(1);
+
+        $this->assertNotEmpty($contracts);
         $this->assertContainsOnlyInstancesOf(Contract::class, $contracts);
     }
 
@@ -127,6 +129,8 @@ class LookupEndpointTest extends TestCase
     public function testFormerTeamInstances(): void
     {
         $formerTeams = $this->endpoint->formerTeams(1);
+
+        $this->assertNotEmpty($formerTeams);
         $this->assertContainsOnlyInstancesOf(FormerTeam::class, $formerTeams);
     }
 
@@ -157,6 +161,8 @@ class LookupEndpointTest extends TestCase
     public function testHonorsInstances(): void
     {
         $honors = $this->endpoint->honors(1);
+
+        $this->assertNotEmpty($honors);
         $this->assertContainsOnlyInstancesOf(Honor::class, $honors);
     }
 
@@ -214,9 +220,11 @@ class LookupEndpointTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testLineupInstance(): void
+    public function testLineupInstances(): void
     {
         $lineup = $this->endpoint->lineup(1);
+
+        $this->assertNotEmpty($lineup);
         $this->assertContainsOnlyInstancesOf(Lineup::class, $lineup);
     }
 
@@ -277,6 +285,8 @@ class LookupEndpointTest extends TestCase
     public function testResultInstances(): void
     {
         $results = $this->endpoint->results(1);
+
+        $this->assertNotEmpty($results);
         $this->assertContainsOnlyInstancesOf(Result::class, $results);
     }
 
@@ -307,6 +317,8 @@ class LookupEndpointTest extends TestCase
     public function testStatisticsInstances(): void
     {
         $statistics = $this->endpoint->statistics(1);
+
+        $this->assertNotEmpty($statistics);
         $this->assertContainsOnlyInstancesOf(Statistic::class, $statistics);
     }
 
@@ -406,9 +418,11 @@ class LookupEndpointTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testTelevisionInstance(): void
+    public function testTelevisionInstances(): void
     {
         $television = $this->endpoint->television(1);
+
+        $this->assertNotEmpty($television);
         $this->assertContainsOnlyInstancesOf(Television::class, $television);
     }
 
@@ -436,9 +450,11 @@ class LookupEndpointTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testTimelineInstance(): void
+    public function testTimelineInstances(): void
     {
         $timeline = $this->endpoint->timeline(1);
+
+        $this->assertNotEmpty($timeline);
         $this->assertContainsOnlyInstancesOf(Timeline::class, $timeline);
     }
 }

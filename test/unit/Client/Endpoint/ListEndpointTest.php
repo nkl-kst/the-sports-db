@@ -40,6 +40,8 @@ class ListEndpointTest extends TestCase
     public function testCountriesInstances(): void
     {
         $countries = $this->endpoint->countries();
+
+        $this->assertNotEmpty($countries);
         $this->assertContainsOnlyInstancesOf(Country::class, $countries);
     }
 
@@ -58,6 +60,8 @@ class ListEndpointTest extends TestCase
     public function testLeaguesInstances(): void
     {
         $leagues = $this->endpoint->leagues();
+
+        $this->assertNotEmpty($leagues);
         $this->assertContainsOnlyInstancesOf(League::class, $leagues);
     }
 
@@ -109,6 +113,8 @@ class ListEndpointTest extends TestCase
     public function testLovesInstances(): void
     {
         $loves = $this->endpoint->loves('dummy');
+
+        $this->assertNotEmpty($loves);
         $this->assertContainsOnlyInstancesOf(Love::class, $loves);
     }
 
@@ -139,6 +145,8 @@ class ListEndpointTest extends TestCase
     public function testPlayersInstances(): void
     {
         $players = $this->endpoint->players(1);
+
+        $this->assertNotEmpty($players);
         $this->assertContainsOnlyInstancesOf(Player::class, $players);
     }
 
@@ -169,6 +177,8 @@ class ListEndpointTest extends TestCase
     public function testSeasonsInstances(): void
     {
         $seasons = $this->endpoint->seasons(1);
+
+        $this->assertNotEmpty($seasons);
         $this->assertContainsOnlyInstancesOf(Season::class, $seasons);
     }
 
@@ -199,6 +209,8 @@ class ListEndpointTest extends TestCase
     public function testSportsInstances(): void
     {
         $sports = $this->endpoint->sports();
+
+        $this->assertNotEmpty($sports);
         $this->assertContainsOnlyInstancesOf(Sport::class, $sports);
     }
 
@@ -217,6 +229,8 @@ class ListEndpointTest extends TestCase
     public function testTeamsInstances(): void
     {
         $teams = $this->endpoint->teams(1);
+
+        $this->assertNotEmpty($teams);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
     }
 
@@ -247,6 +261,8 @@ class ListEndpointTest extends TestCase
     public function testTeamsSearchInstances(): void
     {
         $teams = $this->endpoint->teamsSearch();
+
+        $this->assertNotEmpty($teams);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
     }
 

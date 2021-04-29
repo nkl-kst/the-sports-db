@@ -34,6 +34,8 @@ class LivescoreEndpointTest extends TestCase
     public function testNowInstances(): void
     {
         $livescores = $this->endpoint->now();
+
+        $this->assertNotEmpty($livescores);
         $this->assertContainsOnlyInstancesOf(Livescore::class, $livescores);
     }
 

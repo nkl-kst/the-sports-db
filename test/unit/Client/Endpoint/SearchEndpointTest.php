@@ -69,6 +69,8 @@ class SearchEndpointTest extends TestCase
     public function testEventsInstances(): void
     {
         $events = $this->endpoint->events('testEvent');
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -132,6 +134,8 @@ class SearchEndpointTest extends TestCase
     public function testPlayersInstances(): void
     {
         $players = $this->endpoint->players('testPlayer');
+
+        $this->assertNotEmpty($players);
         $this->assertContainsOnlyInstancesOf(Player::class, $players);
     }
 
@@ -174,6 +178,8 @@ class SearchEndpointTest extends TestCase
     public function testTeamInstances(): void
     {
         $teams = $this->endpoint->teams('testTeam');
+
+        $this->assertNotEmpty($teams);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
     }
 }
