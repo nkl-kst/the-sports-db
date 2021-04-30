@@ -67,7 +67,7 @@ class RequestBuilderTest extends TestCase
     public function testCheckResponseException(): void
     {
         $method = TestUtils::getHiddenMethod($this->builder, 'checkResponse');
-        $response = new Response(404, [], null, null, 'test reason');
+        $response = new Response(404, [], null, '1.1', 'test reason');
 
         $this->expectExceptionObject(new Exception('HTTP-Error: test reason', 404));
         $method($response);

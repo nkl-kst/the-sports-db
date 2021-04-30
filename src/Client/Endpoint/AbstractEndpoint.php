@@ -22,14 +22,20 @@ abstract class AbstractEndpoint
         $this->serializer = $serializer;
     }
 
-    public function setConfig(Config $config): self
+    /**
+     * @return $this
+     */
+    public function setConfig(Config $config)
     {
         $this->config = $config;
 
         return $this;
     }
 
-    protected function setFilter(AbstractFilter $filter): self
+    /**
+     * @return $this
+     */
+    protected function setFilter(AbstractFilter $filter)
     {
         $this->filter = $filter;
 

@@ -7,9 +7,12 @@ abstract class AbstractFilter
     private array $filters = [];
 
     /**
+     * @param string     $key   Filter key
+     * @param int|string $value Filter value
+     *
      * @return $this
      */
-    protected function addFilter(string $key, string $value)
+    protected function addFilter(string $key, $value)
     {
         $this->filters[$key] = $value;
 

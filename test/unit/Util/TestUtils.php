@@ -30,7 +30,7 @@ class TestUtils
      * @param object $object   Object to get property from
      * @param string $property Property to get
      *
-     * @return array|object
+     * @return array|object|null
      */
     public static function getHiddenProperty(object $object, string $property)
     {
