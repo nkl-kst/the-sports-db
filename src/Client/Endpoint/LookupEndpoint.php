@@ -60,13 +60,9 @@ class LookupEndpoint extends AbstractEndpoint
     /**
      * Get event by ID.
      *
-     * @param int $eventID Event ID
-     *
-     * @return Event Event
-     *
      * @throws Exception
      */
-    public function event(int $eventID): Event
+    public function event(int $eventID): ?Event
     {
         $this
             ->setFilter((new LookupFilter())->setID($eventID))
@@ -114,13 +110,9 @@ class LookupEndpoint extends AbstractEndpoint
     /**
      * Get league by ID.
      *
-     * @param int $leagueID League ID
-     *
-     * @return League League
-     *
      * @throws Exception
      */
-    public function league(int $leagueID): League
+    public function league(int $leagueID): ?League
     {
         $this
             ->setFilter((new LookupFilter())->setID($leagueID))
@@ -150,13 +142,9 @@ class LookupEndpoint extends AbstractEndpoint
     /**
      * Get player by ID.
      *
-     * @param int $playerID Player ID
-     *
-     * @return Player Player
-     *
      * @throws Exception
      */
-    public function player(int $playerID): Player
+    public function player(int $playerID): ?Player
     {
         $this
             ->setFilter((new LookupFilter())->setID($playerID))
@@ -207,11 +195,9 @@ class LookupEndpoint extends AbstractEndpoint
      * @param int     $leagueID League filter
      * @param ?string $season   Season filter
      *
-     * @return Table League table
-     *
      * @throws Exception
      */
-    public function table(int $leagueID, string $season = null): Table
+    public function table(int $leagueID, string $season = null): ?Table
     {
         $filter = (new LookupFilter())->setLeagueID($leagueID);
         if ($season) {
@@ -227,13 +213,9 @@ class LookupEndpoint extends AbstractEndpoint
     /**
      * Get team by ID.
      *
-     * @param int $teamID Team ID
-     *
-     * @return Team Team
-     *
      * @throws Exception
      */
-    public function team(int $teamID): Team
+    public function team(int $teamID): ?Team
     {
         $this
             ->setFilter((new LookupFilter())->setID($teamID))

@@ -12,7 +12,6 @@ use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\SearchEndpoint;
 use NklKst\TheSportsDb\Request\RequestBuilder;
-use NklKst\TheSportsDb\Request\RequestBuilderInterface;
 use NklKst\TheSportsDb\Serializer\CountrySerializer;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
@@ -30,7 +29,6 @@ use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
 use NklKst\TheSportsDb\Serializer\Player\PlayerSerializer;
 use NklKst\TheSportsDb\Serializer\SeasonSerializer;
 use NklKst\TheSportsDb\Serializer\Serializer;
-use NklKst\TheSportsDb\Serializer\SerializerInterface;
 use NklKst\TheSportsDb\Serializer\SportSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 use NklKst\TheSportsDb\Serializer\TeamSerializer;
@@ -94,14 +92,14 @@ class DependencyContainer
 
         // Request builder
         self::$builder
-            ->autowire(RequestBuilderInterface::class, RequestBuilder::class)
+            ->autowire(RequestBuilder::class, RequestBuilder::class)
             ->setShared(false);
 
         // Json mapper
         self::$builder->autowire(JsonMapper::class, JsonMapper::class);
 
         // Serializers
-        self::$builder->autowire(SerializerInterface::class, Serializer::class);
+        self::$builder->autowire(Serializer::class, Serializer::class);
         foreach (self::SERIALIZERS as $serializer) {
             self::$builder->autowire($serializer);
         }

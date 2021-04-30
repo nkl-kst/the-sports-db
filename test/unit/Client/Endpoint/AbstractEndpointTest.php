@@ -4,7 +4,10 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 
 use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Filter\ListFilter;
+use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,9 +17,13 @@ class AbstractEndpointTest extends TestCase
 {
     private ListEndpoint $endpoint;
 
+    private MockObject $requestBuilderMock;
+
     protected function setUp(): void
     {
-        $this->endpoint = new ListEndpoint(new RequestBuilderMock(), new SerializerMock());
+        $this->endpoint = new ListEndpoint(
+            $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
+            $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 
@@ -41,32 +48,37 @@ class AbstractEndpointTest extends TestCase
     public function testRequest(): void
     {
         $request = TestUtils::getHiddenMethod($this->endpoint, 'request');
-        $this->assertEquals('dummyEndpoint', $request());
+
+        $this->requestBuilderMock
+            ->expects($this->once())
+            ->method('request');
+        $request();
     }
 
     public function testRequestKey(): void
     {
+        $request = TestUtils::getHiddenMethod($this->endpoint, 'request');
+
         $this->endpoint->setConfig((new Config())->setKey('testKey'));
 
-        $request = TestUtils::getHiddenMethod($this->endpoint, 'request');
+        $this->requestBuilderMock
+            ->expects($this->once())
+            ->method('setKey')
+            ->with('testKey');
         $request();
-
-        $requestBuilder = TestUtils::getHiddenProperty($this->endpoint, 'requestBuilder');
-        $key = TestUtils::getHiddenProperty($requestBuilder, 'key');
-        $this->assertEquals('testKey', $key);
     }
 
     public function testRequestFilter(): void
     {
         $setFilter = TestUtils::getHiddenMethod($this->endpoint, 'setFilter');
-        $setFilter((new ListFilter())->setCountryQuery('testQuery'));
-
         $request = TestUtils::getHiddenMethod($this->endpoint, 'request');
-        $request();
 
-        $requestBuilder = TestUtils::getHiddenProperty($this->endpoint, 'requestBuilder');
-        $query = TestUtils::getHiddenProperty($requestBuilder, 'query');
-        $this->assertEquals('c=testQuery&', $query);
+        $setFilter(new ListFilter());
+
+        $this->requestBuilderMock
+            ->expects($this->once())
+            ->method('setQuery');
+        $request();
     }
 
     public function testGetSingleEntity(): void

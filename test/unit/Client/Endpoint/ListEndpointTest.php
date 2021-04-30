@@ -12,7 +12,11 @@ use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\ListFilter;
+use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,9 +26,14 @@ class ListEndpointTest extends TestCase
 {
     private ListEndpoint $endpoint;
 
+    private MockObject $requestBuilderMock;
+    private Stub $serializerStub;
+
     protected function setUp(): void
     {
-        $this->endpoint = new ListEndpoint(new RequestBuilderMock(), new SerializerMock());
+        $this->endpoint = new ListEndpoint(
+            $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
+            $this->serializerStub = $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 
@@ -33,7 +42,11 @@ class ListEndpointTest extends TestCase
      */
     public function testCountriesInstances(): void
     {
+        $this->serializerStub->method('serializeCountries')->willReturn([new Country()]);
+
         $countries = $this->endpoint->countries();
+
+        $this->assertNotEmpty($countries);
         $this->assertContainsOnlyInstancesOf(Country::class, $countries);
     }
 
@@ -42,8 +55,8 @@ class ListEndpointTest extends TestCase
      */
     public function testCountriesEndpoint(): void
     {
-        $country = $this->endpoint->countries()[0];
-        $this->assertSame('all_countries.php', $country->name_en);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'all_countries.php');
+        $this->endpoint->countries();
     }
 
     /**
@@ -51,7 +64,11 @@ class ListEndpointTest extends TestCase
      */
     public function testLeaguesInstances(): void
     {
+        $this->serializerStub->method('serializeLeagues')->willReturn([new League()]);
+
         $leagues = $this->endpoint->leagues();
+
+        $this->assertNotEmpty($leagues);
         $this->assertContainsOnlyInstancesOf(League::class, $leagues);
     }
 
@@ -60,7 +77,7 @@ class ListEndpointTest extends TestCase
      */
     public function testLeaguesFilterCountry(): void
     {
-        $this->endpoint->leagues('testCountry')[0];
+        $this->endpoint->leagues('testCountry');
 
         $this->assertEquals(
             (new ListFilter())->setCountryQuery('testCountry'),
@@ -72,7 +89,7 @@ class ListEndpointTest extends TestCase
      */
     public function testLeaguesFilterSport(): void
     {
-        $this->endpoint->leagues(null, 'testSport')[0];
+        $this->endpoint->leagues(null, 'testSport');
 
         $this->assertEquals(
             (new ListFilter())->setSportQuery('testSport'),
@@ -84,8 +101,8 @@ class ListEndpointTest extends TestCase
      */
     public function testLeaguesEndpoint(): void
     {
-        $league = $this->endpoint->leagues()[0];
-        $this->assertSame('all_leagues.php', $league->strLeague);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'all_leagues.php');
+        $this->endpoint->leagues();
     }
 
     /**
@@ -93,8 +110,8 @@ class ListEndpointTest extends TestCase
      */
     public function testLeaguesEndpointQuery(): void
     {
-        $league = $this->endpoint->leagues('testCountry')[0];
-        $this->assertSame('search_all_leagues.php', $league->strLeague);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'search_all_leagues.php');
+        $this->endpoint->leagues('testCountry');
     }
 
     /**
@@ -102,7 +119,11 @@ class ListEndpointTest extends TestCase
      */
     public function testLovesInstances(): void
     {
+        $this->serializerStub->method('serializeLoves')->willReturn([new Love()]);
+
         $loves = $this->endpoint->loves('dummy');
+
+        $this->assertNotEmpty($loves);
         $this->assertContainsOnlyInstancesOf(Love::class, $loves);
     }
 
@@ -111,8 +132,8 @@ class ListEndpointTest extends TestCase
      */
     public function testLovesEndpoint(): void
     {
-        $love = $this->endpoint->loves('dummy')[0];
-        $this->assertSame('searchloves.php', $love->strUsername);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'searchloves.php');
+        $this->endpoint->loves('dummy');
     }
 
     /**
@@ -120,7 +141,7 @@ class ListEndpointTest extends TestCase
      */
     public function testLovesFilterUser(): void
     {
-        $this->endpoint->loves('testUser')[0];
+        $this->endpoint->loves('testUser');
 
         $this->assertEquals(
             (new ListFilter())->setUser('testUser'),
@@ -132,7 +153,11 @@ class ListEndpointTest extends TestCase
      */
     public function testPlayersInstances(): void
     {
+        $this->serializerStub->method('serializePlayers')->willReturn([new Player()]);
+
         $players = $this->endpoint->players(1);
+
+        $this->assertNotEmpty($players);
         $this->assertContainsOnlyInstancesOf(Player::class, $players);
     }
 
@@ -141,8 +166,8 @@ class ListEndpointTest extends TestCase
      */
     public function testPlayersEndpoint(): void
     {
-        $player = $this->endpoint->players(1)[0];
-        $this->assertSame('lookup_all_players.php', $player->strPlayer);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookup_all_players.php');
+        $this->endpoint->players(1);
     }
 
     /**
@@ -150,7 +175,7 @@ class ListEndpointTest extends TestCase
      */
     public function testPlayersFilterTeam(): void
     {
-        $this->endpoint->players(1)[0];
+        $this->endpoint->players(1);
 
         $this->assertEquals(
             (new ListFilter())->setID(1),
@@ -162,7 +187,11 @@ class ListEndpointTest extends TestCase
      */
     public function testSeasonsInstances(): void
     {
+        $this->serializerStub->method('serializeSeasons')->willReturn([new Season()]);
+
         $seasons = $this->endpoint->seasons(1);
+
+        $this->assertNotEmpty($seasons);
         $this->assertContainsOnlyInstancesOf(Season::class, $seasons);
     }
 
@@ -171,8 +200,8 @@ class ListEndpointTest extends TestCase
      */
     public function testSeasonsEndpoint(): void
     {
-        $season = $this->endpoint->seasons(1)[0];
-        $this->assertSame('search_all_seasons.php', $season->strSeason);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'search_all_seasons.php');
+        $this->endpoint->seasons(1);
     }
 
     /**
@@ -180,7 +209,7 @@ class ListEndpointTest extends TestCase
      */
     public function testSeasonsFilterLeagueID(): void
     {
-        $this->endpoint->seasons(1)[0];
+        $this->endpoint->seasons(1);
 
         $this->assertEquals(
             (new ListFilter())->setID(1),
@@ -192,7 +221,11 @@ class ListEndpointTest extends TestCase
      */
     public function testSportsInstances(): void
     {
+        $this->serializerStub->method('serializeSports')->willReturn([new Sport()]);
+
         $sports = $this->endpoint->sports();
+
+        $this->assertNotEmpty($sports);
         $this->assertContainsOnlyInstancesOf(Sport::class, $sports);
     }
 
@@ -201,8 +234,10 @@ class ListEndpointTest extends TestCase
      */
     public function testSportsEndpoint(): void
     {
-        $sport = $this->endpoint->sports()[0];
-        $this->assertSame('all_sports.php', $sport->strSport);
+        $this->serializerStub->method('serializeSports')->willReturn([new Sport()]);
+
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'all_sports.php');
+        $this->endpoint->sports();
     }
 
     /**
@@ -210,7 +245,11 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsInstances(): void
     {
+        $this->serializerStub->method('serializeTeams')->willReturn([new Team()]);
+
         $teams = $this->endpoint->teams(1);
+
+        $this->assertNotEmpty($teams);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
     }
 
@@ -219,8 +258,8 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsEndpoint(): void
     {
-        $team = $this->endpoint->teams(1)[0];
-        $this->assertSame('lookup_all_teams.php', $team->strTeam);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookup_all_teams.php');
+        $this->endpoint->teams(1);
     }
 
     /**
@@ -228,7 +267,7 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsFilterLeagueID(): void
     {
-        $this->endpoint->teams(1)[0];
+        $this->endpoint->teams(1);
 
         $this->assertEquals(
             (new ListFilter())->setID(1),
@@ -240,7 +279,11 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsSearchInstances(): void
     {
+        $this->serializerStub->method('serializeTeams')->willReturn([new Team()]);
+
         $teams = $this->endpoint->teamsSearch();
+
+        $this->assertNotEmpty($teams);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
     }
 
@@ -249,7 +292,7 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsSearchFilterLeague(): void
     {
-        $this->endpoint->teamsSearch('testLeague')[0];
+        $this->endpoint->teamsSearch('testLeague');
 
         $this->assertEquals(
             (new ListFilter())->setLeagueQuery('testLeague'),
@@ -261,7 +304,7 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsSearchFilterSport(): void
     {
-        $this->endpoint->teamsSearch(null, 'testSport')[0];
+        $this->endpoint->teamsSearch(null, 'testSport');
 
         $this->assertEquals(
             (new ListFilter())->setSportQuery('testSport'),
@@ -273,7 +316,7 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsSearchFilterCountry(): void
     {
-        $this->endpoint->teamsSearch(null, null, 'testCountry')[0];
+        $this->endpoint->teamsSearch(null, null, 'testCountry');
 
         $this->assertEquals(
             (new ListFilter())->setCountryQuery('testCountry'),
@@ -285,7 +328,7 @@ class ListEndpointTest extends TestCase
      */
     public function testTeamsSearchEndpoint(): void
     {
-        $team = $this->endpoint->teamsSearch()[0];
-        $this->assertSame('search_all_teams.php', $team->strTeam);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'search_all_teams.php');
+        $this->endpoint->teamsSearch();
     }
 }

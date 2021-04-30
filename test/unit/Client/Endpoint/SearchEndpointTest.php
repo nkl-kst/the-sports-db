@@ -8,7 +8,11 @@ use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Filter\SearchFilter;
+use NklKst\TheSportsDb\Request\RequestBuilder;
+use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,9 +22,14 @@ class SearchEndpointTest extends TestCase
 {
     private SearchEndpoint $endpoint;
 
+    private MockObject $requestBuilderMock;
+    private Stub $serializerStub;
+
     protected function setUp(): void
     {
-        $this->endpoint = new SearchEndpoint(new RequestBuilderMock(), new SerializerMock());
+        $this->endpoint = new SearchEndpoint(
+            $this->requestBuilderMock = $this->createMock(RequestBuilder::class),
+            $this->serializerStub = $this->createStub(Serializer::class));
         $this->endpoint->setConfig(new Config());
     }
 
@@ -29,8 +38,8 @@ class SearchEndpointTest extends TestCase
      */
     public function testEventsEndpoint(): void
     {
-        $event = $this->endpoint->events('testEvents')[0];
-        $this->assertSame('searchevents.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'searchevents.php');
+        $this->endpoint->events('testEvents');
     }
 
     /**
@@ -62,7 +71,11 @@ class SearchEndpointTest extends TestCase
      */
     public function testEventsInstances(): void
     {
+        $this->serializerStub->method('serializeEvents')->willReturn([new Event()]);
+
         $events = $this->endpoint->events('testEvent');
+
+        $this->assertNotEmpty($events);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
     }
 
@@ -71,8 +84,8 @@ class SearchEndpointTest extends TestCase
      */
     public function testEventFileEndpoint(): void
     {
-        $event = $this->endpoint->eventFile('testFile');
-        $this->assertSame('searchfilename.php', $event->strEvent);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'searchfilename.php');
+        $this->endpoint->eventFile('testFile');
     }
 
     /**
@@ -92,8 +105,8 @@ class SearchEndpointTest extends TestCase
      */
     public function testPlayersEndpoint(): void
     {
-        $player = $this->endpoint->players('testPlayer')[0];
-        $this->assertSame('searchplayers.php', $player->strPlayer);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'searchplayers.php');
+        $this->endpoint->players('testPlayer');
     }
 
     /**
@@ -125,7 +138,11 @@ class SearchEndpointTest extends TestCase
      */
     public function testPlayersInstances(): void
     {
+        $this->serializerStub->method('serializePlayers')->willReturn([new Player()]);
+
         $players = $this->endpoint->players('testPlayer');
+
+        $this->assertNotEmpty($players);
         $this->assertContainsOnlyInstancesOf(Player::class, $players);
     }
 
@@ -134,8 +151,8 @@ class SearchEndpointTest extends TestCase
      */
     public function testTeamsEndpoint(): void
     {
-        $team = $this->endpoint->teams('testTeam')[0];
-        $this->assertSame('searchteams.php', $team->strTeam);
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'searchteams.php');
+        $this->endpoint->teams('testTeam');
     }
 
     /**
@@ -167,7 +184,11 @@ class SearchEndpointTest extends TestCase
      */
     public function testTeamInstances(): void
     {
+        $this->serializerStub->method('serializeTeams')->willReturn([new Team()]);
+
         $teams = $this->endpoint->teams('testTeam');
+
+        $this->assertNotEmpty($teams);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
     }
 }

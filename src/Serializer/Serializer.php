@@ -2,7 +2,26 @@
 
 namespace NklKst\TheSportsDb\Serializer;
 
+use Exception;
+use NklKst\TheSportsDb\Entity\Country;
+use NklKst\TheSportsDb\Entity\Event\Event;
+use NklKst\TheSportsDb\Entity\Event\Highlight;
+use NklKst\TheSportsDb\Entity\Event\Lineup;
+use NklKst\TheSportsDb\Entity\Event\Livescore;
+use NklKst\TheSportsDb\Entity\Event\Result;
+use NklKst\TheSportsDb\Entity\Event\Statistic;
+use NklKst\TheSportsDb\Entity\Event\Television;
+use NklKst\TheSportsDb\Entity\Event\Timeline;
+use NklKst\TheSportsDb\Entity\League;
+use NklKst\TheSportsDb\Entity\Love;
+use NklKst\TheSportsDb\Entity\Player\Contract;
+use NklKst\TheSportsDb\Entity\Player\FormerTeam;
+use NklKst\TheSportsDb\Entity\Player\Honor;
+use NklKst\TheSportsDb\Entity\Player\Player;
+use NklKst\TheSportsDb\Entity\Season;
+use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Table\Table;
+use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
@@ -17,7 +36,7 @@ use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
 use NklKst\TheSportsDb\Serializer\Player\PlayerSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 
-class Serializer implements SerializerInterface
+class Serializer
 {
     private ContractSerializer $contractSerializer;
     private CountrySerializer $countrySerializer;
@@ -82,7 +101,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Contract[]
+     *
+     * @throws Exception
      */
     public function serializeContracts(string $content): array
     {
@@ -90,7 +111,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Country[]
+     *
+     * @throws Exception
      */
     public function serializeCountries(string $content): array
     {
@@ -98,7 +121,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Event[]
+     *
+     * @throws Exception
      */
     public function serializeEvents(string $content): array
     {
@@ -106,7 +131,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return FormerTeam[]
+     *
+     * @throws Exception
      */
     public function serializeFormerTeams(string $content): array
     {
@@ -114,7 +141,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Highlight[]
+     *
+     * @throws Exception
      */
     public function serializeHighlights(string $content): array
     {
@@ -122,7 +151,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Honor[]
+     *
+     * @throws Exception
      */
     public function serializeHonors(string $content): array
     {
@@ -130,7 +161,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return League[]
+     *
+     * @throws Exception
      */
     public function serializeLeagues(string $content): array
     {
@@ -138,7 +171,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Lineup[]
+     *
+     * @throws Exception
      */
     public function serializeLineup(string $content): array
     {
@@ -146,7 +181,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Livescore[]
+     *
+     * @throws Exception
      */
     public function serializeLivescores(string $content): array
     {
@@ -154,7 +191,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Love[]
+     *
+     * @throws Exception
      */
     public function serializeLoves(string $content): array
     {
@@ -162,7 +201,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Player[]
+     *
+     * @throws Exception
      */
     public function serializePlayers(string $content): array
     {
@@ -170,7 +211,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Result[]
+     *
+     * @throws Exception
      */
     public function serializeResults(string $content): array
     {
@@ -178,7 +221,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Season[]
+     *
+     * @throws Exception
      */
     public function serializeSeasons(string $content): array
     {
@@ -186,7 +231,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Sport[]
+     *
+     * @throws Exception
      */
     public function serializeSports(string $content): array
     {
@@ -194,7 +241,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Statistic[]
+     *
+     * @throws Exception
      */
     public function serializeStatistics(string $content): array
     {
@@ -202,7 +251,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Table Serialized table
+     *
+     * @throws Exception
      */
     public function serializeTable(string $content): Table
     {
@@ -213,7 +264,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Team[]
+     *
+     * @throws Exception
      */
     public function serializeTeams(string $content): array
     {
@@ -221,7 +274,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Television[]
+     *
+     * @throws Exception
      */
     public function serializeTelevision(string $content): array
     {
@@ -229,7 +284,9 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @return Timeline[]
+     *
+     * @throws Exception
      */
     public function serializeTimeline(string $content): array
     {

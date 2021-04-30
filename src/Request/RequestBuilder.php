@@ -7,7 +7,7 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
-class RequestBuilder implements RequestBuilderInterface
+class RequestBuilder
 {
     private ClientInterface $http;
 
@@ -79,6 +79,9 @@ class RequestBuilder implements RequestBuilderInterface
         return $response;
     }
 
+    /**
+     * @throws Exception
+     */
     public function request(): string
     {
         try {
