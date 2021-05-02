@@ -13,10 +13,9 @@ An easy-to-use PHP library to get data from https://www.thesportsdb.com.
 - Get results in serialized classes
 - Use your own API key
 - Use PSR-4 autoloading
+- Supports PHP 7.4+
 
-This library uses [Semantic Versioning](https://semver.org). Until version 1.0.0 is released, breaking changes will be 
-covered in feature releases (second digit). This means you should be safe using something like `^0.x.x` in your 
-`composer.json`, because this will not introduce backward incompatible changes.
+This library uses [Semantic Versioning](https://semver.org).
 
 ## Installation
 
@@ -75,8 +74,7 @@ $client->configure()->setKey('YOUR_API_KEY');
 
 ## Feedback
 
-If you have any problems or questions, feel free to open an issue. There are many possible improvements for this 
-library so please let me know if you miss something or alternatively open a pull request.
+If you have any problems or questions, feel free to open an issue or a pull request.
 
 ## Developer notes
 
