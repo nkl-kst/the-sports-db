@@ -10,8 +10,8 @@ class Team
     public ?int $intLoved;
     public string $strTeam;
     public ?string $strTeamShort;
-    public string $strAlternate;
-    public int $intFormedYear;
+    public ?string $strAlternate;
+    public ?int $intFormedYear;
     public string $strSport;
     public string $strLeague;
     public int $idLeague;
@@ -28,18 +28,18 @@ class Team
     public ?string $strLeague7;
     public ?int $idLeague7;
     public ?string $strDivision;
-    public string $strManager;
-    public string $strStadium;
+    public ?string $strManager;
+    public ?string $strStadium;
     public ?string $strKeywords;
-    public string $strRSS;
+    public ?string $strRSS;
     public ?string $strStadiumThumb;
     public ?string $strStadiumDescription;
-    public string $strStadiumLocation;
-    public int $intStadiumCapacity;
-    public string $strWebsite;
-    public string $strFacebook;
-    public string $strTwitter;
-    public string $strInstagram;
+    public ?string $strStadiumLocation;
+    public ?int $intStadiumCapacity;
+    public ?string $strWebsite;
+    public ?string $strFacebook;
+    public ?string $strTwitter;
+    public ?string $strInstagram;
     public ?string $strDescriptionEN;
     public ?string $strDescriptionDE;
     public ?string $strDescriptionFR;
@@ -65,6 +65,6 @@ class Team
     public ?string $strTeamFanart3;
     public ?string $strTeamFanart4;
     public ?string $strTeamBanner;
-    public string $strYoutube;
+    public ?string $strYoutube;
     public string $strLocked;
 }

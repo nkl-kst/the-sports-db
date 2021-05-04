@@ -10,7 +10,7 @@ class Event
     public ?int $idSoccerXML;
     public ?int $idAPIfootball;
     public string $strEvent;
-    public string $strEventAlternate;
+    public ?string $strEventAlternate;
     public string $strFilename;
     public string $strSport;
     public int $idLeague;

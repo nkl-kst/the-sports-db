@@ -12,15 +12,15 @@ class Timeline
     public string $strTimelineDetail;
     public string $strHome;
     public string $strEvent;
-    public int $idAPIfootball;
+    public ?int $idAPIfootball;
     public int $idPlayer;
     public string $strPlayer;
     public ?int $idAssist;
-    public string $strAssist;
+    public ?string $strAssist;
     public int $intTime;
     public int $idTeam;
     public string $strTeam;
-    public string $strComment;
+    public ?string $strComment;
     public DateTime $dateEvent;
     public string $strSeason;
 }

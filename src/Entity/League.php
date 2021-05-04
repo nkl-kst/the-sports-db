@@ -19,11 +19,11 @@ class League
     public ?DateTime $dateFirstEvent;
     public string $strGender;
     public string $strCountry;
-    public string $strWebsite;
-    public string $strFacebook;
-    public string $strTwitter;
-    public string $strYoutube;
-    public string $strRSS;
+    public ?string $strWebsite;
+    public ?string $strFacebook;
+    public ?string $strTwitter;
+    public ?string $strYoutube;
+    public ?string $strRSS;
     public string $strDescriptionEN;
     public ?string $strDescriptionDE;
     public ?string $strDescriptionFR;
@@ -50,5 +50,5 @@ class League
     public ?string $strTrophy;
     public string $strNaming;
     public ?string $strComplete;
-    public string $strLocked; // "unlocked"
+    public string $strLocked;
 }

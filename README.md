@@ -71,6 +71,8 @@ $client->configure()->setKey('YOUR_API_KEY');
 ## Known issues
 
 - Livescores for v1 are not supported.
+- If you are getting an exception like `JSON property "foo" in class "Bar" must not be NULL`, then there is an entity 
+attribute which should be nullable. Please open a new issue in this case.
 
 ## Feedback
 
