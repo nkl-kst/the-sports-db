@@ -48,7 +48,7 @@ class ExtendedSerializerTest extends TestCase
             [ContractSerializer::class, false],
             [CountrySerializer::class, false],
             [EntrySerializer::class, false],
-            [EventSerializer::class, false],
+            [EventSerializer::class, true],
             [FormerTeamSerializer::class, false],
             [HighlightSerializer::class, false],
             [HonorSerializer::class, false],
