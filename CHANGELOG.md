@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - League serializer should handle `null` response if ID was not found
 - Event serializer should handle `null` response if ID was not found
+- Skip schedule tests at the beginning and ending of the season
 
 ## [1.0.1] - 2021-05-04
 

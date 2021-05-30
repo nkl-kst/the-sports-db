@@ -33,6 +33,11 @@ class ScheduleTest extends TestCase
         $events = $this->client->schedule()->teamNext(133602);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
 
+        // There are no events to check at the ending of a season
+        if (empty($events)) {
+            $this->markTestSkipped('No events to check');
+        }
+
         $event = $events[0];
         $this->assertTrue('Liverpool' === $event->strHomeTeam || 'Liverpool' === $event->strAwayTeam);
     }
@@ -46,6 +51,11 @@ class ScheduleTest extends TestCase
     {
         TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->leagueNext(4328);
+
+        // There are no events to check at the ending of a season
+        if (empty($events)) {
+            $this->markTestSkipped('No events to check');
+        }
 
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
         $this->assertSame('English Premier League', $events[0]->strLeague);
@@ -61,6 +71,11 @@ class ScheduleTest extends TestCase
         $events = $this->client->schedule()->teamLast(133602);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
 
+        // There are no events to check at the beginning of a season
+        if (empty($events)) {
+            $this->markTestSkipped('No events to check');
+        }
+
         $event = $events[0];
         $this->assertTrue('Liverpool' === $event->strHomeTeam || 'Liverpool' === $event->strAwayTeam);
     }
@@ -73,6 +88,12 @@ class ScheduleTest extends TestCase
     public function testLeagueLast(): void
     {
         $events = $this->client->schedule()->leagueLast(4328);
+
+        // There are no events to check at the beginning of a season
+        if (empty($events)) {
+            $this->markTestSkipped('No events to check');
+        }
+
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
         $this->assertSame('English Premier League', $events[0]->strLeague);
     }
