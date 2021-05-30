@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.2] - To be released
 
+### Added
+- Weekly cron for GitHub workflow
+
 ### Fixed
 - League serializer should handle `null` response if ID was not found
 - Event serializer should handle `null` response if ID was not found
