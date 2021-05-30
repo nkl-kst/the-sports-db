@@ -52,7 +52,7 @@ class ExtendedSerializerTest extends TestCase
             [FormerTeamSerializer::class, false],
             [HighlightSerializer::class, false],
             [HonorSerializer::class, false],
-            [LeagueSerializer::class, false],
+            [LeagueSerializer::class, true],
             [LineupSerializer::class, false],
             [LivescoreSerializer::class, true],
             [LoveSerializer::class, false],
