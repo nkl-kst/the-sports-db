@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.3] - Unreleased
 
+### Deprecated
+- Deprecated `NklKst\TheSportsDb\Entity\Table\Entry`, use `NklKst\TheSportsDb\Entity\Table\Standing` instead
+
 ### Fixed
 - Fixed table entry properties to match API fields
 
