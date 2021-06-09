@@ -258,7 +258,8 @@ class Serializer
     public function serializeTable(string $content): Table
     {
         $table = new Table();
-        $table->entries = $this->entrySerializer->serialize($content);
+        $table->standings = $this->entrySerializer->serialize($content);
+        $table->entries = $table->standings;
 
         return $table;
     }
