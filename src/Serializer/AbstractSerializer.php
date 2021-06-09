@@ -32,14 +32,6 @@ abstract class AbstractSerializer
         return null;
     }
 
-    /**
-     * Overwrite this in concrete serializers if the API returns null instead of an empty array.
-     */
-    protected function endpointReturnsNull(): bool
-    {
-        return false;
-    }
-
     private function validate(?object $json): ?string
     {
         if (null === $json) {
@@ -47,7 +39,7 @@ abstract class AbstractSerializer
         }
 
         // Check if root exists and contains data
-        if (null === $this->getJsonRootName($json) && !$this->endpointReturnsNull()) {
+        if (null === $this->getJsonRootName($json)) {
             return 'Wrong or empty root in JSON, expected one of ['
                 .implode(', ', $this->getValidJsonRootNames()).'] to contain data.';
         }
@@ -69,7 +61,7 @@ abstract class AbstractSerializer
         $innerJson = $json->{$this->getJsonRootName($json)};
 
         // Don't serialize if the API endpoint returned null instead of an empty array
-        if (null === $innerJson && $this->endpointReturnsNull()) {
+        if (null === $innerJson) {
             return [];
         }
 

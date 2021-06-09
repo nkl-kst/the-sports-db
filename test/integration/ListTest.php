@@ -151,6 +151,18 @@ class ListTest extends TestCase
     }
 
     /**
+     * @throws Exception
+     */
+    public function testPlayersNoMatch(): void
+    {
+        TestUtils::setPatreonKey($this->client);
+        $players = $this->client->list()->players(1);
+
+        $this->assertIsArray($players);
+        $this->assertEmpty($players);
+    }
+
+    /**
      * List all users loved teams and players (https://www.thesportsdb.com/api/v1/json/1/searchloves.php?u=zag).
      *
      * @throws Exception
