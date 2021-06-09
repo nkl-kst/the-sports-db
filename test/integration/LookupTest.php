@@ -207,6 +207,6 @@ class LookupTest extends TestCase
 
         $entries = $table->entries;
         $this->assertContainsOnlyInstancesOf(Entry::class, $entries);
-        $this->assertSame('Man City', $entries[0]->name);
+        $this->assertSame('Man City', $entries[0]->strTeam);
     }
 }

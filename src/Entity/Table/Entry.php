@@ -2,16 +2,27 @@
 
 namespace NklKst\TheSportsDb\Entity\Table;
 
+use DateTime;
+
 class Entry
 {
-    public string $name;
-    public int $teamid;
-    public int $played;
-    public int $goalsfor;
-    public int $goalsagainst;
-    public int $goalsdifference;
-    public int $win;
-    public int $draw;
-    public int $lost;
-    public int $total;
+    public int $idStanding;
+    public int $intRank;
+    public int $idTeam;
+    public string $strTeam;
+    public ?string $strTeamBadge;
+    public int $idLeague;
+    public string $strLeague;
+    public string $strSeason;
+    public ?string $strForm;
+    public ?string $strDescription;
+    public int $intPlayed;
+    public int $intWin;
+    public int $intLoss;
+    public int $intDraw;
+    public int $intGoalsFor;
+    public int $intGoalsAgainst;
+    public int $intGoalDifference;
+    public int $intPoints;
+    public ?DateTime $dateUpdated;
 }
