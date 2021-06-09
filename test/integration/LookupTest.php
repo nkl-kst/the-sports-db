@@ -14,6 +14,7 @@ use NklKst\TheSportsDb\Entity\Player\FormerTeam;
 use NklKst\TheSportsDb\Entity\Player\Honor;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Table\Entry;
+use NklKst\TheSportsDb\Entity\Table\Standing;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Util\TestUtils;
@@ -200,13 +201,27 @@ class LookupTest extends TestCase
      */
     public function testTable(): void
     {
-        TestUtils::setPatreonKey($this->client);
-
         $table = $this->client->lookup()->table(4328, '2018-2019');
         $this->assertInstanceOf(Table::class, $table);
 
         $entries = $table->entries;
         $this->assertContainsOnlyInstancesOf(Entry::class, $entries);
-        $this->assertSame('Man City', $entries[0]->name);
+        $this->assertSame('Man City', $entries[0]->strTeam);
+    }
+
+    /**
+     * Lookup table by league id and season (with standing entity)
+     * (https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=4328&s=2018-2019).
+     *
+     * @throws Exception
+     */
+    public function testTableStandings(): void
+    {
+        $table = $this->client->lookup()->table(4328, '2018-2019');
+        $this->assertInstanceOf(Table::class, $table);
+
+        $entries = $table->standings;
+        $this->assertContainsOnlyInstancesOf(Standing::class, $entries);
+        $this->assertSame('Man City', $entries[0]->strTeam);
     }
 }
