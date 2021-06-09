@@ -16,9 +16,4 @@ class EventSerializer extends AbstractSerializer
     {
         return ['event', 'events', 'results'];
     }
-
-    protected function endpointReturnsNull(): bool
-    {
-        return true;
-    }
 }

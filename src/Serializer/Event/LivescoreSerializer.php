@@ -16,9 +16,4 @@ class LivescoreSerializer extends AbstractSerializer
     {
         return ['events'];
     }
-
-    protected function endpointReturnsNull(): bool
-    {
-        return true;
-    }
 }

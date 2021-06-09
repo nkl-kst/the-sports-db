@@ -15,9 +15,4 @@ class LeagueSerializer extends AbstractSerializer
     {
         return ['countrys', 'leagues'];
     }
-
-    protected function endpointReturnsNull(): bool
-    {
-        return true;
-    }
 }

@@ -45,25 +45,25 @@ class ExtendedSerializerTest extends TestCase
     public function serializerProvider(): array
     {
         return [
-            [ContractSerializer::class, false],
-            [CountrySerializer::class, false],
-            [EntrySerializer::class, false],
-            [EventSerializer::class, true],
-            [FormerTeamSerializer::class, false],
-            [HighlightSerializer::class, false],
-            [HonorSerializer::class, false],
-            [LeagueSerializer::class, true],
-            [LineupSerializer::class, false],
-            [LivescoreSerializer::class, true],
-            [LoveSerializer::class, false],
-            [PlayerSerializer::class, false],
-            [ResultSerializer::class, false],
-            [SeasonSerializer::class, false],
-            [SportSerializer::class, false],
-            [StatisticSerializer::class, false],
-            [TeamSerializer::class, true],
-            [TelevisionSerializer::class, false],
-            [TimelineSerializer::class, false],
+            [ContractSerializer::class],
+            [CountrySerializer::class],
+            [EntrySerializer::class],
+            [EventSerializer::class],
+            [FormerTeamSerializer::class],
+            [HighlightSerializer::class],
+            [HonorSerializer::class],
+            [LeagueSerializer::class],
+            [LineupSerializer::class],
+            [LivescoreSerializer::class],
+            [LoveSerializer::class],
+            [PlayerSerializer::class],
+            [ResultSerializer::class],
+            [SeasonSerializer::class],
+            [SportSerializer::class],
+            [StatisticSerializer::class],
+            [TeamSerializer::class],
+            [TelevisionSerializer::class],
+            [TimelineSerializer::class],
         ];
     }
 
@@ -91,18 +91,5 @@ class ExtendedSerializerTest extends TestCase
 
         $this->assertNotEmpty($rootNames);
         $this->assertContainsOnly('string', $rootNames);
-    }
-
-    /**
-     * @dataProvider serializerProvider
-     *
-     * @param string $class       Class to test
-     * @param bool   $returnsNull Endpoint returns null or not
-     */
-    public function testEndpointReturnsNull(string $class, bool $returnsNull): void
-    {
-        $endpointReturnsNull =
-            TestUtils::getHiddenMethod(new $class(new JsonMapper()), 'endpointReturnsNull');
-        $this->assertSame($returnsNull, $endpointReturnsNull());
     }
 }

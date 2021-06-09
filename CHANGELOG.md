@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fixed table entry properties to match API fields
+- Always handle `null` as an empty result in API responses to prevent mapping errors
 
 ## [1.0.2] - 2021-05-30
 
