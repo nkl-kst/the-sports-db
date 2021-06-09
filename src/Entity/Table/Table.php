@@ -6,6 +6,7 @@ class Table
 {
     /**
      * @deprecated Use $standings instead
+     *
      * @var Entry[]
      */
     public array $entries = [];
