@@ -16,6 +16,9 @@ abstract class AbstractSerializer
 
     abstract protected function getEntityClass(): string;
 
+    /**
+     * @return string[]
+     */
     abstract protected function getValidJsonRootNames(): array;
 
     /**
@@ -48,6 +51,8 @@ abstract class AbstractSerializer
     }
 
     /**
+     * @return object[]
+     *
      * @throws Exception
      */
     public function serialize(string $content): array
