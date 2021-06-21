@@ -61,9 +61,9 @@ abstract class AbstractEndpoint
     }
 
     /**
-     * @return mixed|null
+     * @param object[] $entities
      */
-    protected function getSingleEntity(array $entities)
+    protected function getSingleEntity(array $entities): ?object
     {
         if (empty($entities)) {
             return null;

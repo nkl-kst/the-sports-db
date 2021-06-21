@@ -42,6 +42,9 @@ use PHPUnit\Framework\TestCase;
  */
 class ExtendedSerializerTest extends TestCase
 {
+    /**
+     * @return class-string[][]
+     */
     public function serializerProvider(): array
     {
         return [

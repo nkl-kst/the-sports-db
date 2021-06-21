@@ -4,6 +4,9 @@ namespace NklKst\TheSportsDb\Filter;
 
 abstract class AbstractFilter
 {
+    /**
+     * @var array<string, int|string>
+     */
     private array $filters = [];
 
     /**
