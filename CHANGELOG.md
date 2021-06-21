@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.5] - Unreleased
 
 ### Changed
-- Changed PHPStand level to 6 (fixed all parameters and return type hints)
+- Changed PHPStan level to 6 (fixed all parameters and return type hints)
 
 ## [1.0.4] - 2021-06-21
 
