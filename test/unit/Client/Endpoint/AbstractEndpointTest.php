@@ -9,6 +9,7 @@ use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @covers \NklKst\TheSportsDb\Client\Endpoint\AbstractEndpoint
@@ -84,7 +85,12 @@ class AbstractEndpointTest extends TestCase
     public function testGetSingleEntity(): void
     {
         $getSingleEntity = TestUtils::getHiddenMethod($this->endpoint, 'getSingleEntity');
-        $this->assertSame('first', $getSingleEntity(['first', 'second', 'third']));
+
+        $first = new stdClass();
+        $second = new stdClass();
+        $third = new stdClass();
+
+        $this->assertSame($first, $getSingleEntity([$first, $second, $third]));
     }
 
     public function testGetSingleEntityEmpty(): void
