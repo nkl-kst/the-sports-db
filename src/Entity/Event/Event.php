@@ -17,8 +17,8 @@ class Event
     public string $strLeague;
     public string $strSeason;
     public ?string $strDescriptionEN;
-    public string $strHomeTeam;
-    public string $strAwayTeam;
+    public ?string $strHomeTeam;
+    public ?string $strAwayTeam;
     public ?int $intHomeScore;
     public ?int $intRound;
     public ?int $intAwayScore;
@@ -51,8 +51,8 @@ class Event
     public ?string $strTime;
     public ?string $strTimeLocal;
     public ?string $strTVStation;
-    public int $idHomeTeam;
-    public int $idAwayTeam;
+    public ?int $idHomeTeam;
+    public ?int $idAwayTeam;
     public ?string $strResult;
     public ?string $strVenue;
     public ?string $strCountry;
