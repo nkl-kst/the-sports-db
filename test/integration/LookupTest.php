@@ -53,6 +53,8 @@ class LookupTest extends TestCase
      */
     public function testTeam(): void
     {
+        $this->markTestSkipped('Team lookups are currently disabled.');
+
         $team = $this->client->lookup()->team(133604);
         $this->assertInstanceOf(Team::class, $team);
         $this->assertSame('Arsenal', $team->strTeam);
@@ -77,6 +79,8 @@ class LookupTest extends TestCase
      */
     public function testEvent(): void
     {
+        $this->markTestSkipped('Event lookups are currently disabled.');
+
         $event = $this->client->lookup()->event(441613);
         $this->assertInstanceOf(Event::class, $event);
         $this->assertSame('Liverpool vs Swansea', $event->strEvent);
