@@ -14,7 +14,7 @@ class RequestBuilder
     private string $baseUrl = 'https://www.thesportsdb.com/api';
     private string $version = 'v1';
     private string $format = 'json';
-    private string $key = '1';
+    private string $key = '2';
     private string $endpoint;
     private string $query = '';
 
