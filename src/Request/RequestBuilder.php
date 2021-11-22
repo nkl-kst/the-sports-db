@@ -9,12 +9,14 @@ use Psr\Http\Message\ResponseInterface;
 
 class RequestBuilder
 {
+    private const FREE_API_KEY = '2';
+
     private ClientInterface $http;
 
     private string $baseUrl = 'https://www.thesportsdb.com/api';
     private string $version = 'v1';
     private string $format = 'json';
-    private string $key = '2';
+    private string $key = self::FREE_API_KEY;
     private string $endpoint;
     private string $query = '';
 
@@ -89,7 +91,7 @@ class RequestBuilder
         } catch (GuzzleException $e) {
             // Replace private API keys for log security
             $message = $e->getMessage();
-            if ($this->key !== '1') {
+            if ($this->key !== self::FREE_API_KEY) {
                 $message = str_replace($this->key, 'HIDDEN_KEY', $message);
             }
 
