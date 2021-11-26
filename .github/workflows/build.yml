@@ -42,7 +42,6 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.php-version }}-
-            ${{ runner.os }}-
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
