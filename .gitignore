@@ -12,4 +12,4 @@ test/.bootstrap.php
 .phpunit.result.cache
 
 # PHP-CS-Fixer
-.php_cs.cache
+.php-cs-fixer.cache
