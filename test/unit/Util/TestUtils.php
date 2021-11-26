@@ -112,7 +112,7 @@ class TestUtils
         }
         $meth->setAccessible(true);
 
-        return $meth->getClosure();
+        return $meth->getClosure(null);
     }
 
     /**
