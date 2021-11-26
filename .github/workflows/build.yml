@@ -18,7 +18,7 @@ jobs:
           - 8.0
           - 8.1
         include:
-          - php-version: 8.0
+          - php-version: 7.4
             check-code: true
 
     steps:
