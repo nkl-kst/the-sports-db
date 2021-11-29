@@ -15,7 +15,7 @@ class League
     public string $strDivision;
     public int $idCup;
     public string $strCurrentSeason;
-    public int $intFormedYear;
+    public ?int $intFormedYear;
     public ?DateTime $dateFirstEvent;
     public string $strGender;
     public string $strCountry;
@@ -24,7 +24,7 @@ class League
     public ?string $strTwitter;
     public ?string $strYoutube;
     public ?string $strRSS;
-    public string $strDescriptionEN;
+    public ?string $strDescriptionEN;
     public ?string $strDescriptionDE;
     public ?string $strDescriptionFR;
     public ?string $strDescriptionIT;
