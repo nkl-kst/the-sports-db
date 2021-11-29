@@ -27,7 +27,7 @@ class ListTest extends TestCase
     }
 
     /**
-     * List all sports (https://www.thesportsdb.com/api/v1/json/1/all_sports.php).
+     * List all sports (https://www.thesportsdb.com/api/v1/json/2/all_sports.php).
      *
      * @throws Exception
      */
@@ -38,7 +38,7 @@ class ListTest extends TestCase
     }
 
     /**
-     * List all countries (https://www.thesportsdb.com/api/v1/json/1/all_countries.php).
+     * List all countries (https://www.thesportsdb.com/api/v1/json/2/all_countries.php).
      *
      * @throws Exception
      */
@@ -49,7 +49,7 @@ class ListTest extends TestCase
     }
 
     /**
-     * List all leagues (https://www.thesportsdb.com/api/v1/json/1/all_leagues.php).
+     * List all leagues (https://www.thesportsdb.com/api/v1/json/2/all_leagues.php).
      *
      * @throws Exception
      */
@@ -60,7 +60,7 @@ class ListTest extends TestCase
     }
 
     /**
-     * List all leagues in a country (https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?c=England).
+     * List all leagues in a country (https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England).
      *
      * @throws Exception
      */
@@ -72,7 +72,7 @@ class ListTest extends TestCase
 
     /**
      * List all leagues in a country by sport
-     * (https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?c=England&s=Soccer).
+     * (https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England&s=Soccer).
      *
      * @throws Exception
      */
@@ -84,7 +84,7 @@ class ListTest extends TestCase
     }
 
     /**
-     * List all seasons in a league (https://www.thesportsdb.com/api/v1/json/1/search_all_seasons.php?id=4328).
+     * List all seasons in a league (https://www.thesportsdb.com/api/v1/json/2/search_all_seasons.php?id=4328).
      *
      * @throws Exception
      */
@@ -96,7 +96,7 @@ class ListTest extends TestCase
 
     /**
      * List all teams in a league
-     * (https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=English%20Premier%20League).
+     * (https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=English%20Premier%20League).
      *
      * @throws Exception
      */
@@ -109,7 +109,7 @@ class ListTest extends TestCase
 
     /**
      * List all teams in a country by sport
-     * (https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=Soccer&c=Spain).
+     * (https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?s=Soccer&c=Spain).
      *
      * @throws Exception
      */
@@ -165,7 +165,7 @@ class ListTest extends TestCase
     }
 
     /**
-     * List all users loved teams and players (https://www.thesportsdb.com/api/v1/json/1/searchloves.php?u=zag).
+     * List all users loved teams and players (https://www.thesportsdb.com/api/v1/json/2/searchloves.php?u=zag).
      *
      * @throws Exception
      */

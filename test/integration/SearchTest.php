@@ -84,7 +84,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Search for players by name (https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=Danny%20Welbeck).
+     * Search for players by name (https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=Danny%20Welbeck).
      *
      * @throws Exception
      */
@@ -97,7 +97,7 @@ class SearchTest extends TestCase
 
     /**
      * Search for players by name and team
-     * (https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t=Bayern&p=Müller).
+     * (https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?t=Bayern&p=Müller).
      *
      * @throws Exception
      */
@@ -112,7 +112,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Search for event by event name (https://www.thesportsdb.com/api/v1/json/1/searchevents.php?e=Arsenal_vs_Chelsea).
+     * Search for event by event name (https://www.thesportsdb.com/api/v1/json/2/searchevents.php?e=Arsenal_vs_Chelsea).
      *
      * @throws Exception
      */
@@ -125,7 +125,7 @@ class SearchTest extends TestCase
 
     /**
      * Search for event by event name and season
-     * (https://www.thesportsdb.com/api/v1/json/1/searchevents.php?e=Arsenal_vs_Chelsea&s=2016-2017).
+     * (https://www.thesportsdb.com/api/v1/json/2/searchevents.php?e=Arsenal_vs_Chelsea&s=2016-2017).
      *
      * @throws Exception
      */
@@ -141,7 +141,7 @@ class SearchTest extends TestCase
 
     /**
      * Search for event by event file name
-     * (https://www.thesportsdb.com/api/v1/json/1/searchfilename.php?e=English_Premier_League_2015-04-26_Arsenal_vs_Chelsea).
+     * (https://www.thesportsdb.com/api/v1/json/2/searchfilename.php?e=English_Premier_League_2015-04-26_Arsenal_vs_Chelsea).
      *
      * @throws Exception
      */
