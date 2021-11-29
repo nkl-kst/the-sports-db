@@ -23,13 +23,15 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Search for team by name (https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=Arsenal).
+     * Search for team by name (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/searchteams.php?t=Arsenal).
      *
      * @throws Exception
      */
     public function testTeams(): void
     {
+        TestUtils::setPatreonKey($this->client);
         $teams = $this->client->search()->teams('Arsenal');
+
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame('Arsenal', $teams[0]->strTeam);
     }
@@ -41,6 +43,7 @@ class SearchTest extends TestCase
      */
     public function testTeamsNoMatch(): void
     {
+        TestUtils::setPatreonKey($this->client);
         $teams = $this->client->search()->teams('This query will never match');
 
         $this->assertIsArray($teams);
@@ -48,13 +51,15 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Search for team short code (https://www.thesportsdb.com/api/v1/json/1/searchteams.php?sname=ARS).
+     * Search for team short code (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/searchteams.php?sname=ARS).
      *
      * @throws Exception
      */
     public function testTeamsShort(): void
     {
+        TestUtils::setPatreonKey($this->client);
         $teams = $this->client->search()->teams('ARS', true);
+
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame('ARS', $teams[0]->strTeamShort);
     }

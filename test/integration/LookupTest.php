@@ -35,29 +35,31 @@ class LookupTest extends TestCase
     }
 
     /**
-     * League details by id (https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=4346).
+     * League details by id (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookupleague.php?id=4346).
      *
      * @throws Exception
      */
     public function testLeague(): void
     {
+        TestUtils::setPatreonKey($this->client);
         $league = $this->client->lookup()->league(4346);
+
         $this->assertInstanceOf(League::class, $league);
         $this->assertSame('American Major League Soccer', $league->strLeague);
     }
 
     /**
-     * Team details by id (https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=133604).
+     * Team details by id (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookupteam.php?id=133604).
      *
      * @throws Exception
      */
     public function testTeam(): void
     {
-        $this->markTestSkipped('Team lookups are currently disabled.');
+        TestUtils::setPatreonKey($this->client);
+        $team = $this->client->lookup()->team(133604);
 
-        //$team = $this->client->lookup()->team(133604);
-        //$this->assertInstanceOf(Team::class, $team);
-        //$this->assertSame('Arsenal', $team->strTeam);
+        $this->assertInstanceOf(Team::class, $team);
+        $this->assertSame('Arsenal', $team->strTeam);
     }
 
     /**
@@ -73,17 +75,17 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Event details by id (https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=441613).
+     * Event details by id (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookupevent.php?id=441613).
      *
      * @throws Exception
      */
     public function testEvent(): void
     {
-        $this->markTestSkipped('Event lookups are currently disabled.');
+        TestUtils::setPatreonKey($this->client);
+        $event = $this->client->lookup()->event(441613);
 
-        //$event = $this->client->lookup()->event(441613);
-        //$this->assertInstanceOf(Event::class, $event);
-        //$this->assertSame('Liverpool vs Swansea', $event->strEvent);
+        $this->assertInstanceOf(Event::class, $event);
+        $this->assertSame('Liverpool vs Swansea', $event->strEvent);
     }
 
     /**

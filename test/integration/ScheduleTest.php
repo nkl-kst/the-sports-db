@@ -22,7 +22,7 @@ class ScheduleTest extends TestCase
     }
 
     /**
-     * Next 5 events by team id (https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=133602).
+     * Next 5 events by team id (https://www.thesportsdb.com/api/v1/json/{PATERON_KEY}/eventsnext.php?id=133602).
      *
      * @throws Exception
      */
@@ -43,7 +43,7 @@ class ScheduleTest extends TestCase
     }
 
     /**
-     * Next 15 events by league id (https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=4328).
+     * Next 15 events by league id (https://www.thesportsdb.com/api/v1/json/{PATERON_KEY}/eventsnextleague.php?id=4328).
      *
      * @throws Exception
      */
@@ -81,12 +81,13 @@ class ScheduleTest extends TestCase
     }
 
     /**
-     * Last 15 events by league id (https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328).
+     * Last 15 events by league id (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/eventspastleague.php?id=4328).
      *
      * @throws Exception
      */
     public function testLeagueLast(): void
     {
+        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->leagueLast(4328);
 
         // There are no events to check at the beginning of a season

@@ -122,13 +122,15 @@ class ListTest extends TestCase
     }
 
     /**
-     * List all teams in a league by id (https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4328).
+     * List all teams in a league by id (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/lookup_all_teams.php?id=4328).
      *
      * @throws Exception
      */
     public function testTeamsInLeagueByID(): void
     {
+        TestUtils::setPatreonKey($this->client);
         $teams = $this->client->list()->teams(4328);
+
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame(4328, $teams[0]->idLeague);
     }

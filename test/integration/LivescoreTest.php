@@ -51,7 +51,7 @@ class LivescoreTest extends TestCase
     }
 
     /**
-     * Current event livescores by sport (https://www.thesportsdb.com/api/v2/json/APIKEY/livescore.php?s=Soccer).
+     * Current event livescores by sport (https://www.thesportsdb.com/api/v2/json/{PATERON_KEY}/livescore.php?s=Soccer).
      *
      * @throws Exception
      */
