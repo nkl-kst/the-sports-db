@@ -79,7 +79,7 @@ class SearchTest extends TestCase
 
         $this->assertGreaterThan(1, sizeof($players));
         foreach ($players as $player) {
-            $this->assertSame('Arsenal', $player->strTeam);
+            $this->assertStringContainsString('Arsenal', $player->strTeam);
         }
     }
 
