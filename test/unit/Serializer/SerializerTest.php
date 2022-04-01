@@ -5,6 +5,7 @@ namespace NklKst\TheSportsDb\Serializer;
 use Exception;
 use JsonMapper;
 use NklKst\TheSportsDb\Entity\Country;
+use NklKst\TheSportsDb\Entity\Equipment;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
@@ -52,6 +53,7 @@ class SerializerTest extends TestCase
             new ContractSerializer($mapper),
             new CountrySerializer($mapper),
             new EntrySerializer($mapper),
+            new EquipmentSerializer($mapper),
             new EventSerializer($mapper),
             new FormerTeamSerializer($mapper),
             new HighlightSerializer($mapper),
@@ -87,6 +89,15 @@ class SerializerTest extends TestCase
     {
         $countries = $this->serializer->serializeCountries('{ "countries": [] }');
         $this->assertContainsOnlyInstancesOf(Country::class, $countries);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeEquipments(): void
+    {
+        $equipments = $this->serializer->serializeEquipments('{ "equipment": [] }');
+        $this->assertContainsOnlyInstancesOf(Equipment::class, $equipments);
     }
 
     /**

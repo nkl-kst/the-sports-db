@@ -13,6 +13,7 @@ use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\SearchEndpoint;
 use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Serializer\CountrySerializer;
+use NklKst\TheSportsDb\Serializer\EquipmentSerializer;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
@@ -50,6 +51,7 @@ class DependencyContainer
         ContractSerializer::class,
         CountrySerializer::class,
         EntrySerializer::class,
+        EquipmentSerializer::class,
         EventSerializer::class,
         FormerTeamSerializer::class,
         HighlightSerializer::class,

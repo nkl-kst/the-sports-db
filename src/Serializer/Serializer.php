@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Serializer;
 
 use Exception;
 use NklKst\TheSportsDb\Entity\Country;
+use NklKst\TheSportsDb\Entity\Equipment;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Highlight;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
@@ -41,6 +42,7 @@ class Serializer
     private ContractSerializer $contractSerializer;
     private CountrySerializer $countrySerializer;
     private EntrySerializer $entrySerializer;
+    private EquipmentSerializer $equipmentSerializer;
     private EventSerializer $eventSerializer;
     private FormerTeamSerializer $formerTeamSerializer;
     private HighlightSerializer $highlightSerializer;
@@ -62,6 +64,7 @@ class Serializer
         ContractSerializer $contractSerializer,
         CountrySerializer $countrySerializer,
         EntrySerializer $entrySerializer,
+        EquipmentSerializer $equipmentSerializer,
         EventSerializer $eventSerializer,
         FormerTeamSerializer $formerTeamSerializer,
         HighlightSerializer $highlightSerializer,
@@ -82,6 +85,7 @@ class Serializer
         $this->contractSerializer = $contractSerializer;
         $this->countrySerializer = $countrySerializer;
         $this->entrySerializer = $entrySerializer;
+        $this->equipmentSerializer = $equipmentSerializer;
         $this->eventSerializer = $eventSerializer;
         $this->formerTeamSerializer = $formerTeamSerializer;
         $this->honorSerializer = $honorSerializer;
@@ -118,6 +122,16 @@ class Serializer
     public function serializeCountries(string $content): array
     {
         return $this->countrySerializer->serialize($content);
+    }
+
+    /**
+     * @return Equipment[]
+     *
+     * @throws Exception
+     */
+    public function serializeEquipments(string $content): array
+    {
+        return $this->equipmentSerializer->serialize($content);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Client\Endpoint;
 
 use Exception;
 use NklKst\TheSportsDb\Config\Config;
+use NklKst\TheSportsDb\Entity\Equipment;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
@@ -75,6 +76,40 @@ class LookupEndpointTest extends TestCase
 
         $this->assertNotEmpty($contracts);
         $this->assertContainsOnlyInstancesOf(Contract::class, $contracts);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testEquipmentsFilterTeam(): void
+    {
+        $this->endpoint->equipments(1);
+
+        $this->assertEquals(
+            (new LookupFilter())->setID(1),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testEquipmentsEndpoint(): void
+    {
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupequipment.php');
+        $this->endpoint->equipments(1);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testEquipmentsInstances(): void
+    {
+        $this->serializerStub->method('serializeEquipments')->willReturn([new Equipment()]);
+
+        $equipments = $this->endpoint->equipments(1);
+
+        $this->assertNotEmpty($equipments);
+        $this->assertContainsOnlyInstancesOf(Equipment::class, $equipments);
     }
 
     /**
