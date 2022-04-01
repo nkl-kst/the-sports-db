@@ -2,6 +2,7 @@
 
 use NklKst\TheSportsDb\Client\Client;
 use NklKst\TheSportsDb\Client\ClientFactory;
+use NklKst\TheSportsDb\Entity\Equipment;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
@@ -229,5 +230,20 @@ class LookupTest extends TestCase
         $entries = $table->standings;
         $this->assertContainsOnlyInstancesOf(Standing::class, $entries);
         $this->assertSame('Man City', $entries[0]->strTeam);
+    }
+
+    /**
+     * Lookup Equipment by Team ID
+     * (https://www.thesportsdb.com/api/v1/json/2/lookupequipment.php?id=133597).
+     *
+     * @throws Exception
+     */
+    public function testEquipments(): void
+    {
+        $equipments = $this->client->lookup()->equipments(133597);
+        $this->assertContainsOnlyInstancesOf(Equipment::class, $equipments);
+        foreach ($equipments as $equipment) {
+            $this->assertSame(133597, $equipment->idTeam);
+        }
     }
 }

@@ -21,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \NklKst\TheSportsDb\Serializer\CountrySerializer
+ * @covers \NklKst\TheSportsDb\Serializer\EquipmentSerializer
  * @covers \NklKst\TheSportsDb\Serializer\Event\EventSerializer
  * @covers \NklKst\TheSportsDb\Serializer\Event\HighlightSerializer
  * @covers \NklKst\TheSportsDb\Serializer\Event\LineupSerializer
@@ -51,6 +52,7 @@ class ExtendedSerializerTest extends TestCase
             [ContractSerializer::class],
             [CountrySerializer::class],
             [EntrySerializer::class],
+            [EquipmentSerializer::class],
             [EventSerializer::class],
             [FormerTeamSerializer::class],
             [HighlightSerializer::class],

@@ -3,6 +3,7 @@
 namespace NklKst\TheSportsDb\Client\Endpoint;
 
 use Exception;
+use NklKst\TheSportsDb\Entity\Equipment;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Entity\Event\Result;
@@ -26,6 +27,7 @@ use NklKst\TheSportsDb\Filter\LookupFilter;
 class LookupEndpoint extends AbstractEndpoint
 {
     private const ENDPOINT_CONTRACTS = 'lookupcontracts.php';
+    private const ENDPOINT_EQUIPMENT = 'lookupequipment.php';
     private const ENDPOINT_EVENT = 'lookupevent.php';
     private const ENDPOINT_FORMER_TEAMS = 'lookupformerteams.php';
     private const ENDPOINT_HONOR = 'lookuphonors.php';
@@ -55,6 +57,24 @@ class LookupEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_CONTRACTS);
 
         return $this->serializer->serializeContracts($this->request());
+    }
+
+    /**
+     * Get team equipments.
+     *
+     * @param int $teamID Team filter
+     *
+     * @return Equipment[] Team equipments
+     *
+     * @throws Exception
+     */
+    public function equipments(int $teamID): array
+    {
+        $this
+            ->setFilter((new LookupFilter())->setID($teamID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_EQUIPMENT);
+
+        return $this->serializer->serializeEquipments($this->request());
     }
 
     /**
