@@ -14,6 +14,6 @@ class HonorSerializer extends AbstractSerializer
 
     protected function getValidJsonRootNames(): array
     {
-        return ['honors'];
+        return ['honours', 'honors'];
     }
 }

@@ -196,7 +196,7 @@ class LookupEndpointTest extends TestCase
      */
     public function testHonorsEndpoint(): void
     {
-        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookuphonors.php');
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookuphonours.php');
         $this->endpoint->honors(1);
     }
 

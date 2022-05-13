@@ -30,7 +30,7 @@ class LookupEndpoint extends AbstractEndpoint
     private const ENDPOINT_EQUIPMENT = 'lookupequipment.php';
     private const ENDPOINT_EVENT = 'lookupevent.php';
     private const ENDPOINT_FORMER_TEAMS = 'lookupformerteams.php';
-    private const ENDPOINT_HONOR = 'lookuphonors.php';
+    private const ENDPOINT_HONOR = 'lookuphonours.php';
     private const ENDPOINT_LEAGUE = 'lookupleague.php';
     private const ENDPOINT_LINEUP = 'lookuplineup.php';
     private const ENDPOINT_PLAYER = 'lookupplayer.php';
