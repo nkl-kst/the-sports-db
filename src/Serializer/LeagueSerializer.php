@@ -13,6 +13,6 @@ class LeagueSerializer extends AbstractSerializer
 
     protected function getValidJsonRootNames(): array
     {
-        return ['countrys', 'leagues'];
+        return ['countries', 'countrys', 'leagues'];
     }
 }
