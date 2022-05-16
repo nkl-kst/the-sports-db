@@ -18,6 +18,7 @@ use NklKst\TheSportsDb\Entity\Love;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
 use NklKst\TheSportsDb\Entity\Player\Honor;
+use NklKst\TheSportsDb\Entity\Player\Honour;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
@@ -165,11 +166,23 @@ class Serializer
     }
 
     /**
+     * @deprecated Use serializeHonours() instead
+     *
      * @return Honor[]
      *
      * @throws Exception
      */
     public function serializeHonors(string $content): array
+    {
+        return $this->honorSerializer->serialize($content);
+    }
+
+    /**
+     * @return Honour[]
+     *
+     * @throws Exception
+     */
+    public function serializeHonours(string $content): array
     {
         return $this->honorSerializer->serialize($content);
     }

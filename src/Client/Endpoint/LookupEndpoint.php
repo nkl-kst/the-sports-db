@@ -14,6 +14,7 @@ use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
 use NklKst\TheSportsDb\Entity\Player\Honor;
+use NklKst\TheSportsDb\Entity\Player\Honour;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
@@ -112,6 +113,8 @@ class LookupEndpoint extends AbstractEndpoint
     /**
      * Get player honors.
      *
+     * @deprecated Use honours() instead
+     *
      * @param int $playerID Player filter
      *
      * @return Honor[] Player honors
@@ -125,6 +128,24 @@ class LookupEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_HONOR);
 
         return $this->serializer->serializeHonors($this->request());
+    }
+
+    /**
+     * Get player honours.
+     *
+     * @param int $playerID Player filter
+     *
+     * @return Honour[] Player honours
+     *
+     * @throws Exception
+     */
+    public function honours(int $playerID): array
+    {
+        $this
+            ->setFilter((new LookupFilter())->setID($playerID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_HONOR);
+
+        return $this->serializer->serializeHonours($this->request());
     }
 
     /**
