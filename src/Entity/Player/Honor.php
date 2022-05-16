@@ -2,14 +2,9 @@
 
 namespace NklKst\TheSportsDb\Entity\Player;
 
-class Honor
+/**
+ * @deprecated Use \NklKst\TheSportsDb\Entity\Player\Honour instead
+ */
+class Honor extends Honour
 {
-    public int $id;
-    public int $idPlayer;
-    public int $idTeam;
-    public string $strSport;
-    public string $strPlayer;
-    public string $strTeam;
-    public string $strHonour;
-    public string $strSeason;
 }
