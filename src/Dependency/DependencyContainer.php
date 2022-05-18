@@ -27,6 +27,7 @@ use NklKst\TheSportsDb\Serializer\LoveSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
 use NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer;
 use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
+use NklKst\TheSportsDb\Serializer\Player\HonourSerializer;
 use NklKst\TheSportsDb\Serializer\Player\PlayerSerializer;
 use NklKst\TheSportsDb\Serializer\SeasonSerializer;
 use NklKst\TheSportsDb\Serializer\Serializer;
@@ -56,6 +57,7 @@ class DependencyContainer
         FormerTeamSerializer::class,
         HighlightSerializer::class,
         HonorSerializer::class,
+        HonourSerializer::class,
         LeagueSerializer::class,
         LineupSerializer::class,
         LivescoreSerializer::class,

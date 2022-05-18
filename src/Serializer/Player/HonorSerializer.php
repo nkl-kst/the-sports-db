@@ -3,17 +3,14 @@
 namespace NklKst\TheSportsDb\Serializer\Player;
 
 use NklKst\TheSportsDb\Entity\Player\Honor;
-use NklKst\TheSportsDb\Serializer\AbstractSerializer;
 
-class HonorSerializer extends AbstractSerializer
+/**
+ * @deprecated Use \NklKst\TheSportsDb\Serializer\Player\HonourSerializer instead
+ */
+class HonorSerializer extends HonourSerializer
 {
     protected function getEntityClass(): string
     {
         return Honor::class;
-    }
-
-    protected function getValidJsonRootNames(): array
-    {
-        return ['honours', 'honors'];
     }
 }

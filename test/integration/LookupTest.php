@@ -137,7 +137,9 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player honors by player id (https://www.thesportsdb.com/api/v1/json/2/lookuphonors.php?id=34147178).
+     * Player honors by player id (https://www.thesportsdb.com/api/v1/json/2/lookuphonours.php?id=34147178).
+     *
+     * @deprecated
      *
      * @throws Exception
      */

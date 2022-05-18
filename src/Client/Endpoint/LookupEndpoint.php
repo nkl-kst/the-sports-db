@@ -31,7 +31,7 @@ class LookupEndpoint extends AbstractEndpoint
     private const ENDPOINT_EQUIPMENT = 'lookupequipment.php';
     private const ENDPOINT_EVENT = 'lookupevent.php';
     private const ENDPOINT_FORMER_TEAMS = 'lookupformerteams.php';
-    private const ENDPOINT_HONOR = 'lookuphonours.php';
+    private const ENDPOINT_HONOUR = 'lookuphonours.php';
     private const ENDPOINT_LEAGUE = 'lookupleague.php';
     private const ENDPOINT_LINEUP = 'lookuplineup.php';
     private const ENDPOINT_PLAYER = 'lookupplayer.php';
@@ -125,7 +125,7 @@ class LookupEndpoint extends AbstractEndpoint
     {
         $this
             ->setFilter((new LookupFilter())->setID($playerID))
-            ->requestBuilder->setEndpoint(self::ENDPOINT_HONOR);
+            ->requestBuilder->setEndpoint(self::ENDPOINT_HONOUR);
 
         return $this->serializer->serializeHonors($this->request());
     }
@@ -143,7 +143,7 @@ class LookupEndpoint extends AbstractEndpoint
     {
         $this
             ->setFilter((new LookupFilter())->setID($playerID))
-            ->requestBuilder->setEndpoint(self::ENDPOINT_HONOR);
+            ->requestBuilder->setEndpoint(self::ENDPOINT_HONOUR);
 
         return $this->serializer->serializeHonours($this->request());
     }

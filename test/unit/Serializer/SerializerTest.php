@@ -35,6 +35,7 @@ use NklKst\TheSportsDb\Serializer\Event\TimelineSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
 use NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer;
 use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
+use NklKst\TheSportsDb\Serializer\Player\HonourSerializer;
 use NklKst\TheSportsDb\Serializer\Player\PlayerSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 use PHPUnit\Framework\TestCase;
@@ -58,6 +59,7 @@ class SerializerTest extends TestCase
             new FormerTeamSerializer($mapper),
             new HighlightSerializer($mapper),
             new HonorSerializer($mapper),
+            new HonourSerializer($mapper),
             new LeagueSerializer($mapper),
             new LineupSerializer($mapper),
             new LivescoreSerializer($mapper),

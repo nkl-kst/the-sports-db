@@ -35,6 +35,7 @@ use NklKst\TheSportsDb\Serializer\Event\TimelineSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
 use NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer;
 use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
+use NklKst\TheSportsDb\Serializer\Player\HonourSerializer;
 use NklKst\TheSportsDb\Serializer\Player\PlayerSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 
@@ -48,6 +49,7 @@ class Serializer
     private FormerTeamSerializer $formerTeamSerializer;
     private HighlightSerializer $highlightSerializer;
     private HonorSerializer $honorSerializer;
+    private HonourSerializer $honourSerializer;
     private LeagueSerializer $leagueSerializer;
     private LineupSerializer $lineupSerializer;
     private LivescoreSerializer $livescoreSerializer;
@@ -70,6 +72,7 @@ class Serializer
         FormerTeamSerializer $formerTeamSerializer,
         HighlightSerializer $highlightSerializer,
         HonorSerializer $honorSerializer,
+        HonourSerializer $honourSerializer,
         LeagueSerializer $leagueSerializer,
         LineupSerializer $lineupSerializer,
         LivescoreSerializer $livescoreSerializer,
@@ -90,6 +93,7 @@ class Serializer
         $this->eventSerializer = $eventSerializer;
         $this->formerTeamSerializer = $formerTeamSerializer;
         $this->honorSerializer = $honorSerializer;
+        $this->honourSerializer = $honourSerializer;
         $this->highlightSerializer = $highlightSerializer;
         $this->leagueSerializer = $leagueSerializer;
         $this->lineupSerializer = $lineupSerializer;
@@ -184,7 +188,7 @@ class Serializer
      */
     public function serializeHonours(string $content): array
     {
-        return $this->honorSerializer->serialize($content);
+        return $this->honourSerializer->serialize($content);
     }
 
     /**
