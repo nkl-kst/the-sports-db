@@ -19,6 +19,7 @@ use NklKst\TheSportsDb\Entity\Love;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
 use NklKst\TheSportsDb\Entity\Player\Honor;
+use NklKst\TheSportsDb\Entity\Player\Honour;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
@@ -136,6 +137,15 @@ class SerializerTest extends TestCase
     {
         $honors = $this->serializer->serializeHonors('{ "honors": [] }');
         $this->assertContainsOnlyInstancesOf(Honor::class, $honors);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeHonours(): void
+    {
+        $honours = $this->serializer->serializeHonours('{ "honours": [] }');
+        $this->assertContainsOnlyInstancesOf(Honour::class, $honours);
     }
 
     /**

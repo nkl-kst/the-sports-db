@@ -13,6 +13,7 @@ use NklKst\TheSportsDb\Serializer\Event\TelevisionSerializer;
 use NklKst\TheSportsDb\Serializer\Event\TimelineSerializer;
 use NklKst\TheSportsDb\Serializer\Player\ContractSerializer;
 use NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer;
+use NklKst\TheSportsDb\Serializer\Player\HonorSerializer;
 use NklKst\TheSportsDb\Serializer\Player\HonourSerializer;
 use NklKst\TheSportsDb\Serializer\Player\PlayerSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
@@ -34,6 +35,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \NklKst\TheSportsDb\Serializer\LoveSerializer
  * @covers \NklKst\TheSportsDb\Serializer\Player\ContractSerializer
  * @covers \NklKst\TheSportsDb\Serializer\Player\FormerTeamSerializer
+ * @covers \NklKst\TheSportsDb\Serializer\Player\HonorSerializer
  * @covers \NklKst\TheSportsDb\Serializer\Player\HonourSerializer
  * @covers \NklKst\TheSportsDb\Serializer\Player\PlayerSerializer
  * @covers \NklKst\TheSportsDb\Serializer\SeasonSerializer
@@ -56,6 +58,7 @@ class ExtendedSerializerTest extends TestCase
             [EventSerializer::class],
             [FormerTeamSerializer::class],
             [HighlightSerializer::class],
+            [HonorSerializer::class],
             [HonourSerializer::class],
             [LeagueSerializer::class],
             [LineupSerializer::class],

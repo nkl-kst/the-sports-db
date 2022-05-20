@@ -13,6 +13,7 @@ use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
 use NklKst\TheSportsDb\Entity\Player\Honor;
+use NklKst\TheSportsDb\Entity\Player\Honour;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Table\Entry;
 use NklKst\TheSportsDb\Entity\Table\Standing;
@@ -148,6 +149,18 @@ class LookupTest extends TestCase
         $honors = $this->client->lookup()->honors(34147178);
         $this->assertContainsOnlyInstancesOf(Honor::class, $honors);
         $this->assertSame('Edenilson', $honors[0]->strPlayer);
+    }
+
+    /**
+     * Player honours by player id (https://www.thesportsdb.com/api/v1/json/2/lookuphonours.php?id=34147178).
+     *
+     * @throws Exception
+     */
+    public function testHonours(): void
+    {
+        $honours = $this->client->lookup()->honours(34147178);
+        $this->assertContainsOnlyInstancesOf(Honour::class, $honours);
+        $this->assertSame('Edenilson', $honours[0]->strPlayer);
     }
 
     /**

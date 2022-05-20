@@ -15,6 +15,7 @@ use NklKst\TheSportsDb\Entity\League;
 use NklKst\TheSportsDb\Entity\Player\Contract;
 use NklKst\TheSportsDb\Entity\Player\FormerTeam;
 use NklKst\TheSportsDb\Entity\Player\Honor;
+use NklKst\TheSportsDb\Entity\Player\Honour;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
@@ -201,6 +202,8 @@ class LookupEndpointTest extends TestCase
     }
 
     /**
+     * @deprecated
+     *
      * @throws Exception
      */
     public function testHonorsInstances(): void
@@ -211,6 +214,19 @@ class LookupEndpointTest extends TestCase
 
         $this->assertNotEmpty($honors);
         $this->assertContainsOnlyInstancesOf(Honor::class, $honors);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testHonoursInstances(): void
+    {
+        $this->serializerStub->method('serializeHonours')->willReturn([new Honour()]);
+
+        $honours = $this->endpoint->honours(1);
+
+        $this->assertNotEmpty($honours);
+        $this->assertContainsOnlyInstancesOf(Honour::class, $honours);
     }
 
     /**
