@@ -37,6 +37,9 @@
             "NklKst\\TheSportsDb\\": "test/unit"
         }
     },
+    "config": {
+        "lock": false
+    },
     "scripts": {
         "analyze-code": "phpstan analyze --error-format=github",
         "check-code": "php-cs-fixer fix --dry-run --verbose",

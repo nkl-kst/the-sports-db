@@ -45,7 +45,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer update --prefer-dist --no-progress
 
       - name: Unit tests
         run: composer run-script test-unit
