@@ -40,7 +40,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor
-          key: ${{ runner.os }}-PHP${{ matrix.php-version }} }}
+          key: ${{ runner.os }}-PHP${{ matrix.php-version }}
           restore-keys: |
             ${{ runner.os }}-
 
