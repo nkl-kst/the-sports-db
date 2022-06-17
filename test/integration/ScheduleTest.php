@@ -219,7 +219,7 @@ class ScheduleTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Television::class, $events);
         foreach ($events as $event) {
             $this->assertEquals(new DateTime('2019-09-28'), $event->dateEvent);
-            //$this->assertSame('Cycling', $event->strSport);
+            // $this->assertSame('Cycling', $event->strSport);
             $this->assertSame('United Kingdom', $event->strCountry);
         }
     }

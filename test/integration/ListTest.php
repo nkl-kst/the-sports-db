@@ -173,6 +173,6 @@ class ListTest extends TestCase
     {
         $loves = $this->client->list()->loves('zag');
         $this->assertContainsOnlyInstancesOf(Love::class, $loves);
-        //$this->assertSame('zag', $loves[0]->strPlayer);
+        // $this->assertSame('zag', $loves[0]->strPlayer);
     }
 }
