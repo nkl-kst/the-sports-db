@@ -40,13 +40,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor
-          key: ${{ runner.os }}-PHP${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-PHP${{ matrix.php-version }} }}
           restore-keys: |
-            ${{ runner.os }}-PHP${{ matrix.php-version }}-
             ${{ runner.os }}-
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress
 
       - name: Unit tests
