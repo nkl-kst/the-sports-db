@@ -228,7 +228,7 @@ class LookupTest extends TestCase
 
         $entries = $table->entries;
         $this->assertContainsOnlyInstancesOf(Entry::class, $entries);
-        $this->assertSame('Man City', $entries[0]->strTeam);
+        $this->assertSame('Manchester City', $entries[0]->strTeam);
     }
 
     /**
@@ -244,7 +244,7 @@ class LookupTest extends TestCase
 
         $entries = $table->standings;
         $this->assertContainsOnlyInstancesOf(Standing::class, $entries);
-        $this->assertSame('Man City', $entries[0]->strTeam);
+        $this->assertSame('Manchester City', $entries[0]->strTeam);
     }
 
     /**
