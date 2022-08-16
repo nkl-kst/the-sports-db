@@ -8,6 +8,6 @@ class Sport
     public string $strSport;
     public string $strFormat;
     public ?string $strSportThumb;
-    public string $strSportThumbGreen;
+    public string $strSportIconGreen;
     public string $strSportDescription;
 }
