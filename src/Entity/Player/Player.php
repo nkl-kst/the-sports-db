@@ -20,7 +20,7 @@ class Player
     public ?int $intSoccerXMLTeamID;
     public DateTime $dateBorn;
     public ?string $strNumber;
-    public DateTime $dateSign;
+    public ?DateTime $dateSign;
     public ?string $strSigning;
     public ?string $strWage;
     public ?string $strOutfitter;

@@ -12,13 +12,13 @@ class League
     public ?string $strSport;
     public string $strLeague;
     public ?string $strLeagueAlternate;
-    public string $strDivision;
-    public int $idCup;
-    public string $strCurrentSeason;
+    public ?string $strDivision;
+    public ?int $idCup;
+    public ?string $strCurrentSeason;
     public ?int $intFormedYear;
     public ?DateTime $dateFirstEvent;
-    public string $strGender;
-    public string $strCountry;
+    public ?string $strGender;
+    public ?string $strCountry;
     public ?string $strWebsite;
     public ?string $strFacebook;
     public ?string $strTwitter;
@@ -48,7 +48,7 @@ class League
     public ?string $strLogo;
     public ?string $strPoster;
     public ?string $strTrophy;
-    public string $strNaming;
+    public ?string $strNaming;
     public ?string $strComplete;
-    public string $strLocked;
+    public ?string $strLocked;
 }
