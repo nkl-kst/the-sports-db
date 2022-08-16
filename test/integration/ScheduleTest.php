@@ -40,6 +40,8 @@ class ScheduleTest extends TestCase
 
         $event = $events[0];
         $this->assertTrue('Liverpool' === $event->strHomeTeam || 'Liverpool' === $event->strAwayTeam);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -59,6 +61,8 @@ class ScheduleTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
         $this->assertSame('English Premier League', $events[0]->strLeague);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -78,6 +82,8 @@ class ScheduleTest extends TestCase
 
         $event = $events[0];
         $this->assertTrue('Liverpool' === $event->strHomeTeam || 'Liverpool' === $event->strAwayTeam);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -97,6 +103,8 @@ class ScheduleTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
         $this->assertSame('English Premier League', $events[0]->strLeague);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -114,6 +122,8 @@ class ScheduleTest extends TestCase
         $this->assertSame('English Premier League', $event->strLeague);
         $this->assertSame(38, $event->intRound);
         $this->assertSame('2014-2015', $event->strSeason);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -130,6 +140,8 @@ class ScheduleTest extends TestCase
         foreach ($events as $event) {
             $this->assertEquals(new DateTime('2014-10-10'), $event->dateEvent);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -148,6 +160,8 @@ class ScheduleTest extends TestCase
             $this->assertEquals(new DateTime('2014-10-10'), $event->dateEvent);
             $this->assertSame('Soccer', $event->strSport);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -167,6 +181,8 @@ class ScheduleTest extends TestCase
             $this->assertEquals(new DateTime('2014-10-10'), $event->dateEvent);
             $this->assertSame('Australian A-League', $event->strLeague);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -184,6 +200,8 @@ class ScheduleTest extends TestCase
         foreach ($events as $event) {
             $this->assertEquals(new DateTime('2018-07-07'), $event->dateEvent);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -202,6 +220,8 @@ class ScheduleTest extends TestCase
             $this->assertEquals(new DateTime('2018-07-07'), $event->dateEvent);
             $this->assertSame('Fighting', $event->strSport);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -222,6 +242,8 @@ class ScheduleTest extends TestCase
             // $this->assertSame('Cycling', $event->strSport);
             $this->assertSame('United Kingdom', $event->strCountry);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -238,6 +260,8 @@ class ScheduleTest extends TestCase
         foreach ($events as $event) {
             $this->assertSame('TSN 1', $event->strChannel);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -254,5 +278,7 @@ class ScheduleTest extends TestCase
         $event = $events[0];
         $this->assertSame('English Premier League', $event->strLeague);
         $this->assertSame('2014-2015', $event->strSeason);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 }

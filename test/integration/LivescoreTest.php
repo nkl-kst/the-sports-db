@@ -31,6 +31,7 @@ class LivescoreTest extends TestCase
         $livescores = $this->client->livescore()->now();
 
         $this->assertContainsOnlyInstancesOf(Livescore::class, $livescores);
+        TestUtils::assertThatAllPropertiesAreInitialized($livescores);
     }
 
     /**
@@ -48,6 +49,8 @@ class LivescoreTest extends TestCase
         foreach ($livescores as $livescore) {
             $this->assertSame(4399, $livescore->idLeague);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($livescores);
     }
 
     /**
@@ -64,6 +67,8 @@ class LivescoreTest extends TestCase
         foreach ($livescores as $livescore) {
             $this->assertSame('Soccer', $livescore->strSport);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($livescores);
     }
 
     /**
@@ -78,5 +83,7 @@ class LivescoreTest extends TestCase
 
         $this->assertIsArray($livescores);
         $this->assertEmpty($livescores);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($livescores);
     }
 }

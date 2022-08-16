@@ -4,11 +4,13 @@ namespace NklKst\TheSportsDb\Util;
 
 use Closure;
 use NklKst\TheSportsDb\Client\Client;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvokedCount as InvokedCountMatcher;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionObject;
+use ReflectionProperty;
 
 class TestUtils
 {
@@ -113,6 +115,43 @@ class TestUtils
         $meth->setAccessible(true);
 
         return $meth->getClosure(null);
+    }
+
+    /**
+     * Checks if all properties of the given object or iterable of objects are initialized correctly.
+     *
+     * @param object|iterable<object> $objects Object or list of objects to check
+     *
+     * @throws ReflectionException
+     */
+    public static function assertThatAllPropertiesAreInitialized($objects): void
+    {
+        // Convert variable to iterable if necessary
+        if (!is_iterable($objects)) {
+            $objects = [$objects];
+        }
+
+        // Check all objects
+        foreach ($objects as $object) {
+            $class = get_class($object);
+
+            // Get properties by class name, because get_object_vars() doesn't return uninitialized properties
+            $properties = array_keys(get_class_vars($class));
+            foreach ($properties as $property) {
+                $reflectionProperty = new ReflectionProperty($class, $property);
+
+                // Don't check property if null is allowed
+                if ($reflectionProperty->getType()->allowsNull()) {
+                    continue;
+                }
+
+                // Check if property is initialized on the given object
+                Assert::assertTrue(
+                    $reflectionProperty->isInitialized($object),
+                    sprintf('Property %s on class %s should be initialized.', $property, $class),
+                );
+            }
+        }
     }
 
     /**
