@@ -35,6 +35,8 @@ class ListTest extends TestCase
     {
         $sports = $this->client->list()->sports();
         $this->assertContainsOnlyInstancesOf(Sport::class, $sports);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($sports);
     }
 
     /**
@@ -46,6 +48,8 @@ class ListTest extends TestCase
     {
         $countries = $this->client->list()->countries();
         $this->assertContainsOnlyInstancesOf(Country::class, $countries);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($countries);
     }
 
     /**
@@ -57,6 +61,8 @@ class ListTest extends TestCase
     {
         $leagues = $this->client->list()->leagues();
         $this->assertContainsOnlyInstancesOf(League::class, $leagues);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($leagues);
     }
 
     /**
@@ -68,6 +74,8 @@ class ListTest extends TestCase
     {
         $league = $this->client->list()->leagues('England')[0];
         $this->assertSame('England', $league->strCountry);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($league);
     }
 
     /**
@@ -81,6 +89,8 @@ class ListTest extends TestCase
         $league = $this->client->list()->leagues('England', 'Soccer')[0];
         $this->assertSame('England', $league->strCountry);
         $this->assertSame('Soccer', $league->strSport);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($league);
     }
 
     /**
@@ -92,6 +102,8 @@ class ListTest extends TestCase
     {
         $seasons = $this->client->list()->seasons(4328);
         $this->assertContainsOnlyInstancesOf(Season::class, $seasons);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($seasons);
     }
 
     /**
@@ -105,6 +117,8 @@ class ListTest extends TestCase
         $teams = $this->client->list()->teamsSearch('English Premier League');
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame('English Premier League', $teams[0]->strLeague);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($teams);
     }
 
     /**
@@ -119,6 +133,8 @@ class ListTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame('Soccer', $teams[0]->strSport);
         $this->assertSame('Spain', $teams[0]->strCountry);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($teams);
     }
 
     /**
@@ -133,6 +149,8 @@ class ListTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame(4328, $teams[0]->idLeague);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($teams);
     }
 
     /**
@@ -150,6 +168,8 @@ class ListTest extends TestCase
         foreach ($players as $player) {
             $this->assertSame(133604, $player->idTeam);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($players);
     }
 
     /**
@@ -162,6 +182,8 @@ class ListTest extends TestCase
 
         $this->assertIsArray($players);
         $this->assertEmpty($players);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($players);
     }
 
     /**
@@ -174,5 +196,7 @@ class ListTest extends TestCase
         $loves = $this->client->list()->loves('zag');
         $this->assertContainsOnlyInstancesOf(Love::class, $loves);
         // $this->assertSame('zag', $loves[0]->strPlayer);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($loves);
     }
 }

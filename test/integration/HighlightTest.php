@@ -31,6 +31,7 @@ class HighlightTest extends TestCase
         $highlights = $this->client->highlight()->latest();
 
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
+        TestUtils::assertThatAllPropertiesAreInitialized($highlights);
     }
 
     /**
@@ -48,6 +49,8 @@ class HighlightTest extends TestCase
         foreach ($highlights as $highlight) {
             $this->assertEquals(new DateTime('2019-10-13'), $highlight->dateEvent);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($highlights);
     }
 
     /**
@@ -66,6 +69,8 @@ class HighlightTest extends TestCase
             $this->assertEquals(new DateTime('2019-10-12'), $highlight->dateEvent);
             $this->assertSame('WTA Tour', $highlight->strLeague);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($highlights);
     }
 
     /**
@@ -83,6 +88,8 @@ class HighlightTest extends TestCase
         foreach ($highlights as $highlight) {
             $this->assertSame('MLB', $highlight->strLeague);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($highlights);
     }
 
     /**
@@ -100,6 +107,8 @@ class HighlightTest extends TestCase
         foreach ($highlights as $highlight) {
             $this->assertSame('Soccer', $highlight->strSport);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($highlights);
     }
 
     /**
@@ -118,5 +127,7 @@ class HighlightTest extends TestCase
             $this->assertEquals(new DateTime('2020-02-15'), $highlight->dateEvent);
             $this->assertSame('Soccer', $highlight->strSport);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($highlights);
     }
 }

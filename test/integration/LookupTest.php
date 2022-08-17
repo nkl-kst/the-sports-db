@@ -48,6 +48,8 @@ class LookupTest extends TestCase
 
         $this->assertInstanceOf(League::class, $league);
         $this->assertSame('American Major League Soccer', $league->strLeague);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($league);
     }
 
     /**
@@ -62,6 +64,8 @@ class LookupTest extends TestCase
 
         $this->assertInstanceOf(Team::class, $team);
         $this->assertSame('Arsenal', $team->strTeam);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($team);
     }
 
     /**
@@ -74,6 +78,8 @@ class LookupTest extends TestCase
         $player = $this->client->lookup()->player(34145937);
         $this->assertInstanceOf(Player::class, $player);
         $this->assertSame('Mario Balotelli', $player->strPlayer);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($player);
     }
 
     /**
@@ -88,6 +94,8 @@ class LookupTest extends TestCase
 
         $this->assertInstanceOf(Event::class, $event);
         $this->assertSame('Liverpool vs Swansea', $event->strEvent);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($event);
     }
 
     /**
@@ -102,6 +110,8 @@ class LookupTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Statistic::class, $statistics);
         $this->assertSame('Aston Villa vs Liverpool', $statistics[0]->strEvent);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($statistics);
     }
 
     /**
@@ -118,6 +128,8 @@ class LookupTest extends TestCase
         foreach ($lineup as $player) {
             $this->assertSame('Aston Villa vs Liverpool', $player->strEvent);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($lineup);
     }
 
     /**
@@ -135,6 +147,8 @@ class LookupTest extends TestCase
         foreach ($timeline as $event) {
             $this->assertSame('Sheffield United vs Leeds', $event->strEvent);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($timeline);
     }
 
     /**
@@ -149,6 +163,8 @@ class LookupTest extends TestCase
         $honors = $this->client->lookup()->honors(34147178);
         $this->assertContainsOnlyInstancesOf(Honor::class, $honors);
         $this->assertSame('Edenilson', $honors[0]->strPlayer);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($honors);
     }
 
     /**
@@ -161,6 +177,8 @@ class LookupTest extends TestCase
         $honours = $this->client->lookup()->honours(34147178);
         $this->assertContainsOnlyInstancesOf(Honour::class, $honours);
         $this->assertSame('Edenilson', $honours[0]->strPlayer);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($honours);
     }
 
     /**
@@ -173,6 +191,8 @@ class LookupTest extends TestCase
         $teams = $this->client->lookup()->formerTeams(34147178);
         $this->assertContainsOnlyInstancesOf(FormerTeam::class, $teams);
         $this->assertSame('Edenilson', $teams[0]->strPlayer);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($teams);
     }
 
     /**
@@ -185,6 +205,8 @@ class LookupTest extends TestCase
         $contracts = $this->client->lookup()->contracts(34147178);
         $this->assertContainsOnlyInstancesOf(Contract::class, $contracts);
         $this->assertSame('Edenilson', $contracts[0]->strPlayer);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($contracts);
     }
 
     /**
@@ -197,6 +219,8 @@ class LookupTest extends TestCase
         $results = $this->client->lookup()->results(652890);
         $this->assertContainsOnlyInstancesOf(Result::class, $results);
         $this->assertSame('Anaheim 1', $results[0]->strEvent);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($results);
     }
 
     /**
@@ -213,6 +237,8 @@ class LookupTest extends TestCase
         foreach ($television as $event) {
             $this->assertSame('Marrakesh E-Prix', $event->strEvent);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($television);
     }
 
     /**
@@ -229,6 +255,9 @@ class LookupTest extends TestCase
         $entries = $table->entries;
         $this->assertContainsOnlyInstancesOf(Entry::class, $entries);
         $this->assertSame('Manchester City', $entries[0]->strTeam);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($table);
+        TestUtils::assertThatAllPropertiesAreInitialized($entries);
     }
 
     /**
@@ -245,6 +274,9 @@ class LookupTest extends TestCase
         $entries = $table->standings;
         $this->assertContainsOnlyInstancesOf(Standing::class, $entries);
         $this->assertSame('Manchester City', $entries[0]->strTeam);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($table);
+        TestUtils::assertThatAllPropertiesAreInitialized($entries);
     }
 
     /**
@@ -260,5 +292,7 @@ class LookupTest extends TestCase
         foreach ($equipments as $equipment) {
             $this->assertSame(133597, $equipment->idTeam);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($equipments);
     }
 }

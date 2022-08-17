@@ -34,6 +34,8 @@ class SearchTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame('Arsenal', $teams[0]->strTeam);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($teams);
     }
 
     /**
@@ -48,6 +50,8 @@ class SearchTest extends TestCase
 
         $this->assertIsArray($teams);
         $this->assertEmpty($teams);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($teams);
     }
 
     /**
@@ -62,6 +66,8 @@ class SearchTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
         $this->assertSame('ARS', $teams[0]->strTeamShort);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($teams);
     }
 
     /**
@@ -81,6 +87,8 @@ class SearchTest extends TestCase
         foreach ($players as $player) {
             $this->assertStringContainsString('Arsenal', $player->strTeam);
         }
+
+        TestUtils::assertThatAllPropertiesAreInitialized($players);
     }
 
     /**
@@ -93,6 +101,8 @@ class SearchTest extends TestCase
         $players = $this->client->search()->players('Danny Welbeck');
         $this->assertContainsOnlyInstancesOf(Player::class, $players);
         $this->assertSame('Danny Welbeck', $players[0]->strPlayer);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($players);
     }
 
     /**
@@ -109,6 +119,8 @@ class SearchTest extends TestCase
         $player = $players[0];
         $this->assertSame('Thomas Muller', $player->strPlayer);
         $this->assertSame('Bayern Munich', $player->strTeam);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($players);
     }
 
     /**
@@ -121,6 +133,8 @@ class SearchTest extends TestCase
         $events = $this->client->search()->events('Arsenal_vs_Chelsea');
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
         $this->assertSame('Arsenal vs Chelsea', $events[0]->strEvent);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -137,6 +151,8 @@ class SearchTest extends TestCase
         $event = $events[0];
         $this->assertSame('Arsenal vs Chelsea', $event->strEvent);
         $this->assertSame('2016-2017', $event->strSeason);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($events);
     }
 
     /**
@@ -150,5 +166,7 @@ class SearchTest extends TestCase
         $event = $this->client->search()->eventFile('English_Premier_League_2015-04-26_Arsenal_vs_Chelsea');
         $this->assertInstanceOf(Event::class, $event);
         $this->assertSame('English Premier League 2015-04-26 Arsenal vs Chelsea', $event->strFilename);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($event);
     }
 }
