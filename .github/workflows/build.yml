@@ -55,7 +55,7 @@ jobs:
         run: composer update --prefer-dist --prefer-stable --no-progress
 
       - name: Unit tests
-        run: composer run-script test-unit
+        run: composer test-unit
 
       - name: Integration tests
         if: ${{ matrix.test-integration }}
