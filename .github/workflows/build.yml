@@ -52,7 +52,7 @@ jobs:
         run: echo 'COMPOSER_PREFER_LOWEST=1' >> $GITHUB_ENV
 
       - name: Install dependencies
-        run: composer update --prefer-dist --no-progress
+        run: composer update --prefer-dist --prefer-stable --no-progress
 
       - name: Unit tests
         run: composer run-script test-unit
