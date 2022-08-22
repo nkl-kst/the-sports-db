@@ -14,10 +14,13 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
+          - 7.4.0
           - 7.4
           - 8.0
           - 8.1
         include:
+          - php-version: 7.4.0
+            prefer-lowest: true
           - php-version: 7.4
             check-code: true
             test-integration: true
@@ -44,11 +47,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-
 
+      - name: Prefer lowest dependencies
+        if: ${{ matrix.prefer-lowest }}
+        run: echo 'COMPOSER_PREFER_LOWEST=1' >> $GITHUB_ENV
+
       - name: Install dependencies
-        run: composer update --prefer-dist --no-progress
+        run: composer update --prefer-dist --prefer-stable --no-progress
 
       - name: Unit tests
-        run: composer run-script test-unit
+        run: composer test-unit
 
       - name: Integration tests
         if: ${{ matrix.test-integration }}

@@ -85,17 +85,17 @@ Run tests and code checks.
 
 ```shell
 # Unit tests
-> composer run-script test-unit
+> composer test-unit
 
 # Integration tests (API calls, Patreon key required)
-> PATREON_KEY=<YOUR_PATREON_KEY> composer run-script test-integration
+> PATREON_KEY=<YOUR_PATREON_KEY> composer test-integration
 # On Windows use 'set PATREON_KEY=<YOUR_PATERON_KEY>' before running the tests
 
 # Analyze code (static analysis)
-> composer run-script analyze-code
+> composer analyze-code
 
 # Check code (coding standards)
-> composer run-script check-code
+> composer check-code
 ```
 
 ## License: MIT
