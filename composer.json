@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "ext-mbstring": "*",
-        "phpunit/phpunit": "^9.0.0",
+        "phpunit/phpunit": "^9.4.0",
         "friendsofphp/php-cs-fixer": "^3.3.2",
         "php-coveralls/php-coveralls": "^2.4",
         "phpstan/phpstan": "^1.2.0"
