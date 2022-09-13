@@ -22,5 +22,6 @@ class Timeline
     public string $strTeam;
     public ?string $strComment;
     public DateTime $dateEvent;
+    public ?string $strCountry;
     public string $strSeason;
 }
