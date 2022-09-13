@@ -19,6 +19,8 @@ class Event
     public ?string $strDescriptionEN;
     public ?string $strHomeTeam;
     public ?string $strAwayTeam;
+    public ?int $intScore;
+    public ?int $intScoreVotes;
     public ?int $intHomeScore;
     public ?int $intRound;
     public ?int $intAwayScore;
@@ -44,6 +46,7 @@ class Event
     public ?string $strAwayFormation;
     public ?int $intHomeShots;
     public ?int $intAwayShots;
+    public ?string $strSquare;
     public ?string $strTimestamp;
     public DateTime $dateEvent;
     public ?DateTime $dateEventLocal;
