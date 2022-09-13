@@ -11,16 +11,18 @@ class Player
     public ?int $idTeam2;
     public ?int $idTeamNational;
     public ?int $idSoccerXML;
+    public ?int $idAPIfootball;
     public ?int $idPlayerManager;
     public string $strNationality;
     public string $strPlayer;
+    public ?string $strPlayerAlternate;
     public string $strTeam;
     public ?string $strTeam2;
     public string $strSport;
     public ?int $intSoccerXMLTeamID;
     public DateTime $dateBorn;
     public ?string $strNumber;
-    public ?DateTime $dateSign;
+    public ?DateTime $dateSigned;
     public ?string $strSigning;
     public ?string $strWage;
     public ?string $strOutfitter;
@@ -46,6 +48,7 @@ class Player
     public ?string $strSide;
     public string $strPosition;
     public ?string $strCollege;
+    public ?string $strWebsite;
     public ?string $strFacebook;
     public ?string $strTwitter;
     public ?string $strInstagram;
