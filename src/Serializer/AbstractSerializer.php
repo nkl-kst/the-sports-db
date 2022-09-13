@@ -12,6 +12,12 @@ abstract class AbstractSerializer
     public function __construct(JsonMapper $mapper)
     {
         $this->mapper = $mapper;
+
+        // Strict mapping in tests
+        if (getenv('env') === 'test') {
+            $this->mapper->bExceptionOnMissingData = true;
+            $this->mapper->bExceptionOnUndefinedProperty = true;
+        }
     }
 
     abstract protected function getEntityClass(): string;

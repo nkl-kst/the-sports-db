@@ -12,6 +12,10 @@
          failOnWarning="true"
          verbose="true">
 
+    <php>
+        <env name="env" value="test" />
+    </php>
+
     <testsuites>
 
         <testsuite name="Unit">

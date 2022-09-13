@@ -15,11 +15,13 @@ class Love
     public ?int $idPlayer;
     public ?int $idLeague;
     public ?int $idEvent;
+    public ?string $strSport;
     public ?string $strTeam;
     public ?string $strPlayer;
     public ?string $strLeague;
     public ?string $strEvent;
     public ?string $strEventPoster;
+    public ?string $strEventSquare;
     public ?string $strPlayerThumb;
     public ?string $strTeamBadge;
 }
