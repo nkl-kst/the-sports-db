@@ -60,6 +60,9 @@ class Team
     public ?string $strTeamBadge;
     public ?string $strTeamJersey;
     public ?string $strTeamLogo;
+    public ?string $strKitColour1;
+    public ?string $strKitColour2;
+    public ?string $strKitColour3;
     public ?string $strTeamFanart1;
     public ?string $strTeamFanart2;
     public ?string $strTeamFanart3;
