@@ -15,6 +15,7 @@ class Television
     public string $strLogo;
     public string $strChannel;
     public string $strSeason;
+    public ?int $intDivision;
     public string $strTime;
     public DateTime $dateEvent;
     public ?string $strTimeStamp;
