@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.4] - 2022-09-14
+
+### Added
+- Missing properties for events: `intScore`, `intScoreVotes`, `strSquare`
+- Missing properties for honours: `intChecked`
+- Missing properties for leagues: `intDivision`, `strInstagram`, `strTvRights`
+- Missing properties for lineup: `strCountry`, `strSeason`, `strFormation`
+- Missing properties for loves: `strSport`, `strEventSquare`
+- Missing properties for players: `idAPIfootball`, `strPlayerAlternate`, `dateSigned`, `strWebsite`
+- Missing properties for teams: `strKitColour1`, `strKitColour2`, `strKitColour3`
+- Missing properties for television: `intDivision`
+- Missing properties for timeline: `strCountry`
+
+### Changed
+- Throw strict mapping exceptions in tests
+
 ## [1.3.3] - 2022-08-22
 
 ### Added
