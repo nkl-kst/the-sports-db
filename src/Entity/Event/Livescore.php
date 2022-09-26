@@ -23,6 +23,7 @@ class Livescore
     public ?int $idPlayer;
     public ?int $intEventScore;
     public ?int $intEventScoreTotal;
+    public string $strStatus;
     public string $strProgress;
     public string $strEventTime;
     public DateTime $dateEvent;
