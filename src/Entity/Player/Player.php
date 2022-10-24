@@ -29,6 +29,8 @@ class Player
     public ?string $strKit;
     public ?string $strAgent;
     public ?string $strBirthLocation;
+    public ?string $strEthnicity;
+    public ?string $strStatus;
     public ?string $strDescriptionEN;
     public ?string $strDescriptionDE;
     public ?string $strDescriptionFR;
