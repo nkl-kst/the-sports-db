@@ -38,13 +38,19 @@ jobs:
       - name: Validate configs
         run: composer validate
 
+      # One cache key per day because of missing lock file, stale caches are deleted after 7 days
+      - name: Get current date
+        id: current-date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
           path: vendor
-          key: ${{ runner.os }}-PHP${{ matrix.php-version }}
+          key: ${{ runner.os }}-PHP${{ matrix.php-version }}-${{ steps.current-date.outputs.date }}
           restore-keys: |
+            ${{ runner.os }}-PHP${{ matrix.php-version }}-
             ${{ runner.os }}-
 
       - name: Prefer lowest dependencies
