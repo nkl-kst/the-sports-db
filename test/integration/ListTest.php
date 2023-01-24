@@ -27,13 +27,15 @@ class ListTest extends TestCase
     }
 
     /**
-     * List all sports (https://www.thesportsdb.com/api/v1/json/3/all_sports.php).
+     * List all sports (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/all_sports.php).
      *
      * @throws Exception
      */
     public function testSports(): void
     {
+        TestUtils::setPatreonKey($this->client);
         $sports = $this->client->list()->sports();
+
         $this->assertContainsOnlyInstancesOf(Sport::class, $sports);
 
         TestUtils::assertThatAllPropertiesAreInitialized($sports);
