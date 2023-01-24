@@ -34,6 +34,7 @@ class LookupTest extends TestCase
     public function setUp(): void
     {
         $this->client = ClientFactory::create();
+        TestUtils::setPatreonKey($this->client);
     }
 
     /**
@@ -43,7 +44,6 @@ class LookupTest extends TestCase
      */
     public function testLeague(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $league = $this->client->lookup()->league(4346);
 
         $this->assertInstanceOf(League::class, $league);
@@ -59,7 +59,6 @@ class LookupTest extends TestCase
      */
     public function testTeam(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $team = $this->client->lookup()->team(133604);
 
         $this->assertInstanceOf(Team::class, $team);
@@ -69,7 +68,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player details by id (https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=34145937).
+     * Player details by id (https://www.thesportsdb.com/api/v1/json/3/lookupplayer.php?id=34145937).
      *
      * @throws Exception
      */
@@ -89,7 +88,6 @@ class LookupTest extends TestCase
      */
     public function testEvent(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $event = $this->client->lookup()->event(441613);
 
         $this->assertInstanceOf(Event::class, $event);
@@ -105,7 +103,6 @@ class LookupTest extends TestCase
      */
     public function testStatistics(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $statistics = $this->client->lookup()->statistics(1032723);
 
         $this->assertContainsOnlyInstancesOf(Statistic::class, $statistics);
@@ -121,7 +118,6 @@ class LookupTest extends TestCase
      */
     public function testLineup(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $lineup = $this->client->lookup()->lineup(1032723);
 
         $this->assertContainsOnlyInstancesOf(Lineup::class, $lineup);
@@ -140,7 +136,6 @@ class LookupTest extends TestCase
      */
     public function testTimeline(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $timeline = $this->client->lookup()->timeline(1032718);
 
         $this->assertContainsOnlyInstancesOf(Timeline::class, $timeline);
@@ -152,7 +147,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player honors by player id (https://www.thesportsdb.com/api/v1/json/2/lookuphonours.php?id=34147178).
+     * Player honors by player id (https://www.thesportsdb.com/api/v1/json/3/lookuphonours.php?id=34147178).
      *
      * @deprecated
      *
@@ -168,7 +163,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player honours by player id (https://www.thesportsdb.com/api/v1/json/2/lookuphonours.php?id=34147178).
+     * Player honours by player id (https://www.thesportsdb.com/api/v1/json/3/lookuphonours.php?id=34147178).
      *
      * @throws Exception
      */
@@ -182,12 +177,18 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player former teams by player id (https://www.thesportsdb.com/api/v1/json/2/lookupformerteams.php?id=34147178).
+     * Player former teams by player id (https://www.thesportsdb.com/api/v1/json/3/lookupformerteams.php?id=34147178).
      *
      * @throws Exception
      */
     public function testFormerTeams(): void
     {
+        // TODO: This endpoint currently doesn't work with the Patreon key
+        $this->client->configure()->setKey('3');
+
+        $this->expectNotice();
+        $this->expectNoticeMessageMatches('/You are using the free API key/');
+
         $teams = $this->client->lookup()->formerTeams(34147178);
         $this->assertContainsOnlyInstancesOf(FormerTeam::class, $teams);
         $this->assertSame('Edenilson', $teams[0]->strPlayer);
@@ -196,7 +197,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player Contracts by Player Id (https://www.thesportsdb.com/api/v1/json/2/lookupcontracts.php?id=34147178).
+     * Player Contracts by Player Id (https://www.thesportsdb.com/api/v1/json/3/lookupcontracts.php?id=34147178).
      *
      * @throws Exception
      */
@@ -210,7 +211,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Event results by event id (https://www.thesportsdb.com/api/v1/json/2/eventresults.php?id=652890).
+     * Event results by event id (https://www.thesportsdb.com/api/v1/json/3/eventresults.php?id=652890).
      *
      * @throws Exception
      */
@@ -230,7 +231,6 @@ class LookupTest extends TestCase
      */
     public function testTelevision(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $television = $this->client->lookup()->television(584911);
 
         $this->assertContainsOnlyInstancesOf(Television::class, $television);
@@ -243,7 +243,7 @@ class LookupTest extends TestCase
 
     /**
      * Lookup table by league id and season
-     * (https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4328&s=2018-2019).
+     * (https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2018-2019).
      *
      * @throws Exception
      */
@@ -262,7 +262,7 @@ class LookupTest extends TestCase
 
     /**
      * Lookup table by league id and season (with standing entity)
-     * (https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4328&s=2018-2019).
+     * (https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2018-2019).
      *
      * @throws Exception
      */
@@ -281,7 +281,7 @@ class LookupTest extends TestCase
 
     /**
      * Lookup Equipment by Team ID
-     * (https://www.thesportsdb.com/api/v1/json/2/lookupequipment.php?id=133597).
+     * (https://www.thesportsdb.com/api/v1/json/3/lookupequipment.php?id=133597).
      *
      * @throws Exception
      */

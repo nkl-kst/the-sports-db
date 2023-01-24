@@ -18,6 +18,7 @@ class HighlightTest extends TestCase
     public function setUp(): void
     {
         $this->client = ClientFactory::create();
+        TestUtils::setPatreonKey($this->client);
     }
 
     /**
@@ -27,7 +28,6 @@ class HighlightTest extends TestCase
      */
     public function testLatest(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $highlights = $this->client->highlight()->latest();
 
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
@@ -42,7 +42,6 @@ class HighlightTest extends TestCase
      */
     public function testLatestDay(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $highlights = $this->client->highlight()->latest(new DateTime('2019-10-13'));
 
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
@@ -61,7 +60,6 @@ class HighlightTest extends TestCase
      */
     public function testLatestDayLeague(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $highlights = $this->client->highlight()->latest(new DateTime('2019-10-12'), 'WTA Tour');
 
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
@@ -81,7 +79,6 @@ class HighlightTest extends TestCase
      */
     public function testLatestLeague(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $highlights = $this->client->highlight()->latest(null, 'MLB');
 
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
@@ -100,7 +97,6 @@ class HighlightTest extends TestCase
      */
     public function testLatestSportQuery(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $highlights = $this->client->highlight()->latest(null, null, 'Soccer');
 
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);
@@ -119,7 +115,6 @@ class HighlightTest extends TestCase
      */
     public function testLatestDaySportQuery(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $highlights = $this->client->highlight()->latest(new DateTime('2020-02-15'), null, 'Soccer');
 
         $this->assertContainsOnlyInstancesOf(Highlight::class, $highlights);

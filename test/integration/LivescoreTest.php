@@ -18,6 +18,7 @@ class LivescoreTest extends TestCase
     public function setUp(): void
     {
         $this->client = ClientFactory::create();
+        TestUtils::setPatreonKey($this->client);
     }
 
     /**
@@ -27,7 +28,6 @@ class LivescoreTest extends TestCase
      */
     public function testNow(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $livescores = $this->client->livescore()->now();
 
         $this->assertContainsOnlyInstancesOf(Livescore::class, $livescores);
@@ -42,7 +42,6 @@ class LivescoreTest extends TestCase
      */
     public function testNowLeagueID(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $livescores = $this->client->livescore()->now(null, 4399);
 
         $this->assertContainsOnlyInstancesOf(Livescore::class, $livescores);
@@ -60,7 +59,6 @@ class LivescoreTest extends TestCase
      */
     public function testNowSport(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $livescores = $this->client->livescore()->now('Soccer');
 
         $this->assertContainsOnlyInstancesOf(Livescore::class, $livescores);
@@ -78,7 +76,6 @@ class LivescoreTest extends TestCase
      */
     public function testNowNoMatch(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $livescores = $this->client->livescore()->now('This query will never match');
 
         $this->assertIsArray($livescores);
