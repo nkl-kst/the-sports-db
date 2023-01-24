@@ -62,6 +62,10 @@ class RequestBuilder
             throw new Exception('Endpoint must be defined in RequestBuilder.');
         }
 
+        if ($this->key === self::FREE_API_KEY) {
+            trigger_error('You are using the free API key, it is meant to be used for development purposes only. Don\'t use it in production!');
+        }
+
         return $this->baseUrl.'/'.$this->version.'/'.$this->format.'/'.$this->key.'/'.$this->endpoint.'?'.$this->query;
     }
 

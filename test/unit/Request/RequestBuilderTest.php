@@ -61,6 +61,9 @@ class RequestBuilderTest extends TestCase
         $this->builder->setEndpoint('testEndpoint');
         $method = TestUtils::getHiddenMethod($this->builder, 'buildUri');
 
+        $this->expectNotice();
+        $this->expectNoticeMessageMatches('/You are using the free API key/');
+
         $this->assertSame('https://www.thesportsdb.com/api/v1/json/3/testEndpoint?', $method());
     }
 
@@ -91,7 +94,7 @@ class RequestBuilderTest extends TestCase
 
         $this->expectExceptionObject(
             new Exception('Client error: `GET https://www.thesportsdb.com/api/v1/json/3/dummy` resulted in a `404 Not Found` response'));
-        $this->builder->request();
+        @$this->builder->request();
     }
 
     /**
@@ -114,6 +117,9 @@ class RequestBuilderTest extends TestCase
     {
         $this->builder->setEndpoint('dummy');
         $this->handlerMock->append(new Response(200, [], 'testBody'));
+
+        $this->expectNotice();
+        $this->expectNoticeMessageMatches('/You are using the free API key/');
 
         $this->assertSame('testBody', $this->builder->request());
     }
