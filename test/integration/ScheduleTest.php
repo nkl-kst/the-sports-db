@@ -66,7 +66,7 @@ class ScheduleTest extends TestCase
     }
 
     /**
-     * Last 5 events by team id (https://www.thesportsdb.com/api/v1/json/2/eventslast.php?id=133602).
+     * Last 5 events by team id (https://www.thesportsdb.com/api/v1/json/3/eventslast.php?id=133602).
      *
      * @throws Exception
      */
@@ -109,7 +109,7 @@ class ScheduleTest extends TestCase
 
     /**
      * Events in a specific round by league id/round/season
-     * (https://www.thesportsdb.com/api/v1/json/2/eventsround.php?id=4328&r=38&s=2014-2015).
+     * (https://www.thesportsdb.com/api/v1/json/3/eventsround.php?id=4328&r=38&s=2014-2015).
      *
      * @throws Exception
      */
@@ -266,7 +266,7 @@ class ScheduleTest extends TestCase
 
     /**
      * All events in specific league by season
-     * (https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=4328&s=2014-2015).
+     * (https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4328&s=2014-2015).
      *
      * @throws Exception
      */

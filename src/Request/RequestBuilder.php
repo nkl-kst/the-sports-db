@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class RequestBuilder
 {
-    private const FREE_API_KEY = '2';
+    private const FREE_API_KEY = '3';
 
     private ClientInterface $http;
 

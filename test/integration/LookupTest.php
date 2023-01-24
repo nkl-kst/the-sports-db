@@ -69,7 +69,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player details by id (https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=34145937).
+     * Player details by id (https://www.thesportsdb.com/api/v1/json/3/lookupplayer.php?id=34145937).
      *
      * @throws Exception
      */
@@ -152,7 +152,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player honors by player id (https://www.thesportsdb.com/api/v1/json/2/lookuphonours.php?id=34147178).
+     * Player honors by player id (https://www.thesportsdb.com/api/v1/json/3/lookuphonours.php?id=34147178).
      *
      * @deprecated
      *
@@ -168,7 +168,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player honours by player id (https://www.thesportsdb.com/api/v1/json/2/lookuphonours.php?id=34147178).
+     * Player honours by player id (https://www.thesportsdb.com/api/v1/json/3/lookuphonours.php?id=34147178).
      *
      * @throws Exception
      */
@@ -182,7 +182,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player former teams by player id (https://www.thesportsdb.com/api/v1/json/2/lookupformerteams.php?id=34147178).
+     * Player former teams by player id (https://www.thesportsdb.com/api/v1/json/3/lookupformerteams.php?id=34147178).
      *
      * @throws Exception
      */
@@ -196,7 +196,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Player Contracts by Player Id (https://www.thesportsdb.com/api/v1/json/2/lookupcontracts.php?id=34147178).
+     * Player Contracts by Player Id (https://www.thesportsdb.com/api/v1/json/3/lookupcontracts.php?id=34147178).
      *
      * @throws Exception
      */
@@ -210,7 +210,7 @@ class LookupTest extends TestCase
     }
 
     /**
-     * Event results by event id (https://www.thesportsdb.com/api/v1/json/2/eventresults.php?id=652890).
+     * Event results by event id (https://www.thesportsdb.com/api/v1/json/3/eventresults.php?id=652890).
      *
      * @throws Exception
      */
@@ -243,7 +243,7 @@ class LookupTest extends TestCase
 
     /**
      * Lookup table by league id and season
-     * (https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4328&s=2018-2019).
+     * (https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2018-2019).
      *
      * @throws Exception
      */
@@ -262,7 +262,7 @@ class LookupTest extends TestCase
 
     /**
      * Lookup table by league id and season (with standing entity)
-     * (https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4328&s=2018-2019).
+     * (https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2018-2019).
      *
      * @throws Exception
      */
@@ -281,7 +281,7 @@ class LookupTest extends TestCase
 
     /**
      * Lookup Equipment by Team ID
-     * (https://www.thesportsdb.com/api/v1/json/2/lookupequipment.php?id=133597).
+     * (https://www.thesportsdb.com/api/v1/json/3/lookupequipment.php?id=133597).
      *
      * @throws Exception
      */

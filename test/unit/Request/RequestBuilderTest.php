@@ -61,7 +61,7 @@ class RequestBuilderTest extends TestCase
         $this->builder->setEndpoint('testEndpoint');
         $method = TestUtils::getHiddenMethod($this->builder, 'buildUri');
 
-        $this->assertSame('https://www.thesportsdb.com/api/v1/json/2/testEndpoint?', $method());
+        $this->assertSame('https://www.thesportsdb.com/api/v1/json/3/testEndpoint?', $method());
     }
 
     public function testCheckResponseException(): void
@@ -90,7 +90,7 @@ class RequestBuilderTest extends TestCase
         $this->handlerMock->append(new Response(404));
 
         $this->expectExceptionObject(
-            new Exception('Client error: `GET https://www.thesportsdb.com/api/v1/json/2/dummy` resulted in a `404 Not Found` response'));
+            new Exception('Client error: `GET https://www.thesportsdb.com/api/v1/json/3/dummy` resulted in a `404 Not Found` response'));
         $this->builder->request();
     }
 
