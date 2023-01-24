@@ -24,6 +24,7 @@ class ListTest extends TestCase
     public function setUp(): void
     {
         $this->client = ClientFactory::create();
+        TestUtils::setPatreonKey($this->client);
     }
 
     /**
@@ -33,7 +34,6 @@ class ListTest extends TestCase
      */
     public function testSports(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $sports = $this->client->list()->sports();
 
         $this->assertContainsOnlyInstancesOf(Sport::class, $sports);
@@ -146,7 +146,6 @@ class ListTest extends TestCase
      */
     public function testTeamsInLeagueByID(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $teams = $this->client->list()->teams(4328);
 
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -163,7 +162,6 @@ class ListTest extends TestCase
      */
     public function testPlayers(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $players = $this->client->list()->players(133604);
 
         $this->assertContainsOnlyInstancesOf(Player::class, $players);
@@ -179,7 +177,6 @@ class ListTest extends TestCase
      */
     public function testPlayersNoMatch(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $players = $this->client->list()->players(1);
 
         $this->assertIsArray($players);

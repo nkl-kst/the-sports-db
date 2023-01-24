@@ -20,6 +20,7 @@ class SearchTest extends TestCase
     public function setUp(): void
     {
         $this->client = ClientFactory::create();
+        TestUtils::setPatreonKey($this->client);
     }
 
     /**
@@ -29,7 +30,6 @@ class SearchTest extends TestCase
      */
     public function testTeams(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $teams = $this->client->search()->teams('Arsenal');
 
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -45,7 +45,6 @@ class SearchTest extends TestCase
      */
     public function testTeamsNoMatch(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $teams = $this->client->search()->teams('This query will never match');
 
         $this->assertIsArray($teams);
@@ -61,7 +60,6 @@ class SearchTest extends TestCase
      */
     public function testTeamsShort(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $teams = $this->client->search()->teams('ARS', true);
 
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
@@ -78,8 +76,6 @@ class SearchTest extends TestCase
      */
     public function testPlayersOnlyTeam(): void
     {
-        TestUtils::setPatreonKey($this->client);
-
         $players = $this->client->search()->players(null, 'Arsenal');
         $this->assertContainsOnlyInstancesOf(Player::class, $players);
 

@@ -19,6 +19,7 @@ class ScheduleTest extends TestCase
     public function setUp(): void
     {
         $this->client = ClientFactory::create();
+        TestUtils::setPatreonKey($this->client);
     }
 
     /**
@@ -28,8 +29,6 @@ class ScheduleTest extends TestCase
      */
     public function testTeamNext(): void
     {
-        TestUtils::setPatreonKey($this->client);
-
         $events = $this->client->schedule()->teamNext(133602);
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
 
@@ -51,7 +50,6 @@ class ScheduleTest extends TestCase
      */
     public function testLeagueNext(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->leagueNext(4328);
 
         // There are no events to check at the ending of a season
@@ -93,7 +91,6 @@ class ScheduleTest extends TestCase
      */
     public function testLeagueLast(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->leagueLast(4328);
 
         // There are no events to check at the beginning of a season
@@ -133,7 +130,6 @@ class ScheduleTest extends TestCase
      */
     public function testDay(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->day(new DateTime('2014-10-10'));
 
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
@@ -152,7 +148,6 @@ class ScheduleTest extends TestCase
      */
     public function testDaySport(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->day(new DateTime('2014-10-10'), 'Soccer');
 
         $this->assertContainsOnlyInstancesOf(Event::class, $events);
@@ -172,7 +167,6 @@ class ScheduleTest extends TestCase
      */
     public function testDayLeague(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()
             ->day(new DateTime('2014-10-10'), null, 'Australian_A-League');
 
@@ -193,7 +187,6 @@ class ScheduleTest extends TestCase
      */
     public function testTelevision(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->television(new DateTime('2018-07-07'));
 
         $this->assertContainsOnlyInstancesOf(Television::class, $events);
@@ -212,7 +205,6 @@ class ScheduleTest extends TestCase
      */
     public function testTelevisionSport(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->television(new DateTime('2018-07-07'), 'Fighting');
 
         $this->assertContainsOnlyInstancesOf(Television::class, $events);
@@ -232,7 +224,6 @@ class ScheduleTest extends TestCase
      */
     public function testTelevisionCountry(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()
             ->television(new DateTime('2019-09-28'), 'Cycling', 'United Kingdom');
 
@@ -253,7 +244,6 @@ class ScheduleTest extends TestCase
      */
     public function testTelevisionChannel(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $events = $this->client->schedule()->televisionChannel('TSN_1');
 
         $this->assertContainsOnlyInstancesOf(Television::class, $events);

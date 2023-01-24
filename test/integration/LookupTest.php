@@ -34,6 +34,7 @@ class LookupTest extends TestCase
     public function setUp(): void
     {
         $this->client = ClientFactory::create();
+        TestUtils::setPatreonKey($this->client);
     }
 
     /**
@@ -43,7 +44,6 @@ class LookupTest extends TestCase
      */
     public function testLeague(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $league = $this->client->lookup()->league(4346);
 
         $this->assertInstanceOf(League::class, $league);
@@ -59,7 +59,6 @@ class LookupTest extends TestCase
      */
     public function testTeam(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $team = $this->client->lookup()->team(133604);
 
         $this->assertInstanceOf(Team::class, $team);
@@ -89,7 +88,6 @@ class LookupTest extends TestCase
      */
     public function testEvent(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $event = $this->client->lookup()->event(441613);
 
         $this->assertInstanceOf(Event::class, $event);
@@ -105,7 +103,6 @@ class LookupTest extends TestCase
      */
     public function testStatistics(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $statistics = $this->client->lookup()->statistics(1032723);
 
         $this->assertContainsOnlyInstancesOf(Statistic::class, $statistics);
@@ -121,7 +118,6 @@ class LookupTest extends TestCase
      */
     public function testLineup(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $lineup = $this->client->lookup()->lineup(1032723);
 
         $this->assertContainsOnlyInstancesOf(Lineup::class, $lineup);
@@ -140,7 +136,6 @@ class LookupTest extends TestCase
      */
     public function testTimeline(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $timeline = $this->client->lookup()->timeline(1032718);
 
         $this->assertContainsOnlyInstancesOf(Timeline::class, $timeline);
@@ -188,6 +183,12 @@ class LookupTest extends TestCase
      */
     public function testFormerTeams(): void
     {
+        // TODO: This endpoint currently doesn't work with the Patreon key
+        $this->client->configure()->setKey('3');
+
+        $this->expectNotice();
+        $this->expectNoticeMessageMatches('/You are using the free API key/');
+
         $teams = $this->client->lookup()->formerTeams(34147178);
         $this->assertContainsOnlyInstancesOf(FormerTeam::class, $teams);
         $this->assertSame('Edenilson', $teams[0]->strPlayer);
@@ -230,7 +231,6 @@ class LookupTest extends TestCase
      */
     public function testTelevision(): void
     {
-        TestUtils::setPatreonKey($this->client);
         $television = $this->client->lookup()->television(584911);
 
         $this->assertContainsOnlyInstancesOf(Television::class, $television);
