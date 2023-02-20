@@ -183,9 +183,6 @@ class LookupTest extends TestCase
      */
     public function testFormerTeams(): void
     {
-        // TODO: This endpoint currently doesn't work with the Patreon key
-        $this->client->configure()->setKey('3');
-
         $teams = $this->client->lookup()->formerTeams(34147178);
         $this->assertContainsOnlyInstancesOf(FormerTeam::class, $teams);
         $this->assertSame('Edenilson', $teams[0]->strPlayer);
