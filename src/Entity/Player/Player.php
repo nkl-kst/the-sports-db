@@ -13,6 +13,7 @@ class Player
     public ?int $idSoccerXML;
     public ?int $idAPIfootball;
     public ?int $idPlayerManager;
+    public ?int $idWikidata;
     public string $strNationality;
     public string $strPlayer;
     public ?string $strPlayerAlternate;
