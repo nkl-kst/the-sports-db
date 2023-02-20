@@ -61,8 +61,7 @@ class RequestBuilderTest extends TestCase
         $this->builder->setEndpoint('testEndpoint');
         $method = TestUtils::getHiddenMethod($this->builder, 'buildUri');
 
-        $this->expectNotice();
-        $this->expectNoticeMessageMatches('/You are using the free API key/');
+        // TODO: How to check if PHP Notice has been raised (https://github.com/sebastianbergmann/phpunit/issues/5062#issuecomment-1420379762)?
 
         $this->assertSame('https://www.thesportsdb.com/api/v1/json/3/testEndpoint?', $method());
     }
@@ -118,8 +117,7 @@ class RequestBuilderTest extends TestCase
         $this->builder->setEndpoint('dummy');
         $this->handlerMock->append(new Response(200, [], 'testBody'));
 
-        $this->expectNotice();
-        $this->expectNoticeMessageMatches('/You are using the free API key/');
+        // TODO: How to check if PHP Notice has been raised (https://github.com/sebastianbergmann/phpunit/issues/5062#issuecomment-1420379762)?
 
         $this->assertSame('testBody', $this->builder->request());
     }
