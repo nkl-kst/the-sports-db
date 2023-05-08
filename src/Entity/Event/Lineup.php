@@ -17,6 +17,6 @@ class Lineup
     public int $idPlayer;
     public string $strPlayer;
     public int $idTeam;
-    public int $strTeam;
+    public string $strTeam;
     public ?string $strFormation;
 }
