@@ -8,7 +8,6 @@ class Lineup
     public int $idEvent;
     public ?string $strCountry;
     public ?string $strSeason;
-    public string $strEvent;
     public string $strPosition;
     public ?string $strPositionShort;
     public string $strHome;
@@ -19,4 +18,7 @@ class Lineup
     public int $idTeam;
     public string $strTeam;
     public ?string $strFormation;
+    public ?string $strCutout;
+    public ?string $strThumb;
+    public ?string $strRender;
 }

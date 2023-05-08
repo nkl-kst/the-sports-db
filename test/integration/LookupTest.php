@@ -122,7 +122,7 @@ class LookupTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Lineup::class, $lineup);
         foreach ($lineup as $player) {
-            $this->assertSame('Aston Villa vs Liverpool', $player->strEvent);
+            $this->assertTrue('Aston Villa' === $player->strTeam || 'Liverpool' === $player->strTeam);
         }
 
         TestUtils::assertThatAllPropertiesAreInitialized($lineup);
