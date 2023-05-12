@@ -39,9 +39,10 @@ class TestUtils
         $ref = new ReflectionObject($object);
 
         try {
-            $prop = $ref->hasProperty($property) ?
-                $ref->getProperty($property) :
-                $ref->getParentClass()->getProperty($property);
+            $prop = $ref->hasProperty($property) ? $ref->getProperty($property) : null;
+            if (!$prop && $ref->getParentClass()) {
+                $prop = $ref->getParentClass()->getProperty($property);
+            }
         } catch (ReflectionException $e) {
             return null;
         }
@@ -51,8 +52,8 @@ class TestUtils
     }
 
     /**
-     * @param string $class    Class to get static property from
-     * @param string $property Property to get
+     * @param class-string $class    Class to get static property from
+     * @param string       $property Property to get
      *
      * @return mixed|null
      */
@@ -66,9 +67,9 @@ class TestUtils
     }
 
     /**
-     * @param string $class    Class to set static property
-     * @param string $property Property to change
-     * @param mixed  $value    Value to set
+     * @param class-string $class    Class to set static property
+     * @param string       $property Property to change
+     * @param mixed        $value    Value to set
      */
     public static function setHiddenStaticProperty(string $class, string $property, $value): void
     {
@@ -90,9 +91,10 @@ class TestUtils
         $ref = new ReflectionObject($object);
 
         try {
-            $meth = $ref->hasMethod($method) ?
-                $ref->getMethod($method) :
-                $ref->getParentClass()->getMethod($method);
+            $meth = $ref->hasMethod($method) ? $ref->getMethod($method) : null;
+            if (!$meth && $ref->getParentClass()) {
+                $meth = $ref->getParentClass()->getMethod($method);
+            }
         } catch (ReflectionException $e) {
             return null;
         }
@@ -102,8 +104,8 @@ class TestUtils
     }
 
     /**
-     * @param string $class  Class to get static method from
-     * @param string $method Method to get
+     * @param class-string $class  Class to get static method from
+     * @param string       $method Method to get
      */
     public static function getHiddenStaticMethod(string $class, string $method): ?Closure
     {
@@ -134,6 +136,7 @@ class TestUtils
         // Check all objects
         foreach ($objects as $object) {
             $class = get_class($object);
+            assert(is_string($class));
 
             // Get properties by class name, because get_object_vars() doesn't return uninitialized properties
             $properties = array_keys(get_class_vars($class));
@@ -161,6 +164,6 @@ class TestUtils
      */
     public static function setPatreonKey(Client $client): void
     {
-        $client->configure()->setKey(getenv('PATREON_KEY'));
+        $client->configure()->setKey(strval(getenv('PATREON_KEY')));
     }
 }
