@@ -5,6 +5,9 @@ namespace NklKst\TheSportsDb\Serializer\Player;
 use NklKst\TheSportsDb\Entity\Player\Honour;
 use NklKst\TheSportsDb\Serializer\AbstractSerializer;
 
+/**
+ * @extends AbstractSerializer<Honour>
+ */
 class HonourSerializer extends AbstractSerializer
 {
     protected function getEntityClass(): string

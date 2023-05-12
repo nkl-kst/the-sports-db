@@ -4,6 +4,9 @@ namespace NklKst\TheSportsDb\Serializer;
 
 use NklKst\TheSportsDb\Entity\Love;
 
+/**
+ * @extends AbstractSerializer<Love>
+ */
 class LoveSerializer extends AbstractSerializer
 {
     protected function getEntityClass(): string
