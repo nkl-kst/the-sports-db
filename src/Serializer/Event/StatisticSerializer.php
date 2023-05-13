@@ -5,6 +5,9 @@ namespace NklKst\TheSportsDb\Serializer\Event;
 use NklKst\TheSportsDb\Entity\Event\Statistic;
 use NklKst\TheSportsDb\Serializer\AbstractSerializer;
 
+/**
+ * @extends AbstractSerializer<Statistic>
+ */
 class StatisticSerializer extends AbstractSerializer
 {
     protected function getEntityClass(): string

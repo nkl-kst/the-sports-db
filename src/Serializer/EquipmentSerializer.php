@@ -4,6 +4,9 @@ namespace NklKst\TheSportsDb\Serializer;
 
 use NklKst\TheSportsDb\Entity\Equipment;
 
+/**
+ * @extends AbstractSerializer<Equipment>
+ */
 class EquipmentSerializer extends AbstractSerializer
 {
     protected function getEntityClass(): string

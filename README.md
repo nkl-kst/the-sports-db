@@ -3,7 +3,7 @@
 [![Build](https://github.com/nkl-kst/the-sports-db/workflows/Build/badge.svg)](https://github.com/nkl-kst/the-sports-db/actions)
 [![Packagist Version](https://img.shields.io/packagist/v/nkl-kst/the-sports-db)](https://packagist.org/packages/nkl-kst/the-sports-db)
 [![Coverage Status](https://coveralls.io/repos/github/nkl-kst/the-sports-db/badge.svg?branch=master)](https://coveralls.io/github/nkl-kst/the-sports-db?branch=master)
-[![PHPStan Level](https://img.shields.io/badge/PHPStan-level%206-brightgreen.svg?style=flat)](https://github.com/nkl-kst/the-sports-db/actions)
+[![PHPStan Level](https://img.shields.io/badge/PHPStan-level%207-brightgreen.svg?style=flat)](https://github.com/nkl-kst/the-sports-db/actions)
 [![GitHub](https://img.shields.io/github/license/nkl-kst/the-sports-db)](https://github.com/nkl-kst/the-sports-db/blob/master/LICENSE.md)
 
 An easy-to-use PHP library to get data from https://www.thesportsdb.com.

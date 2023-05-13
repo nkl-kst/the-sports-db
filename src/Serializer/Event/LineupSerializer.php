@@ -5,6 +5,9 @@ namespace NklKst\TheSportsDb\Serializer\Event;
 use NklKst\TheSportsDb\Entity\Event\Lineup;
 use NklKst\TheSportsDb\Serializer\AbstractSerializer;
 
+/**
+ * @extends AbstractSerializer<Lineup>
+ */
 class LineupSerializer extends AbstractSerializer
 {
     protected function getEntityClass(): string

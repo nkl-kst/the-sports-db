@@ -5,6 +5,9 @@ namespace NklKst\TheSportsDb\Serializer\Event;
 use NklKst\TheSportsDb\Entity\Event\Timeline;
 use NklKst\TheSportsDb\Serializer\AbstractSerializer;
 
+/**
+ * @extends AbstractSerializer<Timeline>
+ */
 class TimelineSerializer extends AbstractSerializer
 {
     protected function getEntityClass(): string

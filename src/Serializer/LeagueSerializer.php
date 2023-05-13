@@ -4,6 +4,9 @@ namespace NklKst\TheSportsDb\Serializer;
 
 use NklKst\TheSportsDb\Entity\League;
 
+/**
+ * @extends AbstractSerializer<League>
+ */
 class LeagueSerializer extends AbstractSerializer
 {
     protected function getEntityClass(): string

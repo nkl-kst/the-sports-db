@@ -5,6 +5,9 @@ namespace NklKst\TheSportsDb\Serializer;
 use Exception;
 use JsonMapper;
 
+/**
+ * @template TObject of object
+ */
 abstract class AbstractSerializer
 {
     protected JsonMapper $mapper;
@@ -57,7 +60,7 @@ abstract class AbstractSerializer
     }
 
     /**
-     * @return object[]
+     * @return TObject[]
      *
      * @throws Exception
      */

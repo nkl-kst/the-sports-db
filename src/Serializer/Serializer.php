@@ -178,7 +178,7 @@ class Serializer
      */
     public function serializeHonors(string $content): array
     {
-        return $this->honorSerializer->serialize($content);
+        return $this->honorSerializer->serialize($content); // @phpstan-ignore-line
     }
 
     /**

@@ -61,7 +61,11 @@ abstract class AbstractEndpoint
     }
 
     /**
-     * @param object[] $entities
+     * @template TObject of object
+     *
+     * @param TObject[] $entities
+     *
+     * @return ?TObject
      */
     protected function getSingleEntity(array $entities): ?object
     {
