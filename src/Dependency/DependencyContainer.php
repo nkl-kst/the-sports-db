@@ -11,6 +11,7 @@ use NklKst\TheSportsDb\Client\Endpoint\LivescoreEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\SearchEndpoint;
+use NklKst\TheSportsDb\Exception\ClientInstantiationException;
 use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Serializer\CountrySerializer;
 use NklKst\TheSportsDb\Serializer\EquipmentSerializer;
@@ -72,7 +73,7 @@ class DependencyContainer
         TimelineSerializer::class,
     ];
 
-    private static ?ContainerBuilder $builder = null;
+    private static ContainerBuilder $builder;
 
     private static function load(): void
     {
@@ -127,7 +128,7 @@ class DependencyContainer
         self::$builder->compile();
     }
 
-    public static function getClient(): ?Client
+    public static function getClient(): Client
     {
         // Load dependency container
         self::load();
@@ -139,6 +140,6 @@ class DependencyContainer
         }
 
         // Something went wrong...
-        return null;
+        throw new ClientInstantiationException();
     }
 }
