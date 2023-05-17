@@ -33,7 +33,7 @@ abstract class AbstractSerializer
     /**
      * Get the JSON root property containing data.
      */
-    private function getJsonRootName(?object $json): ?string
+    private function getJsonRootName(object $json): ?string
     {
         foreach ($this->getValidJsonRootNames() as $rootName) {
             if (property_exists($json, $rootName)) {

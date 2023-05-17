@@ -33,19 +33,19 @@ class TestUtils
      * @param string $property Property to get
      *
      * @return mixed|null
+     *
+     * @throws ReflectionException
      */
     public static function getHiddenProperty(object $object, string $property)
     {
         $ref = new ReflectionObject($object);
 
-        try {
-            $prop = $ref->hasProperty($property) ? $ref->getProperty($property) : null;
-            if (!$prop && $ref->getParentClass()) {
-                $prop = $ref->getParentClass()->getProperty($property);
-            }
-        } catch (ReflectionException $e) {
-            return null;
+        $prop = $ref->hasProperty($property) ? $ref->getProperty($property) : null;
+        if (!$prop && $ref->getParentClass()) {
+            $prop = $ref->getParentClass()->getProperty($property);
         }
+        assert(!is_null($prop));
+
         $prop->setAccessible(true);
 
         return $prop->getValue($object);
@@ -55,15 +55,13 @@ class TestUtils
      * @param class-string $class    Class to get static property from
      * @param string       $property Property to get
      *
-     * @return mixed|null
+     * @return mixed Value of hidden static property
+     *
+     * @throws ReflectionException
      */
     public static function getHiddenStaticProperty(string $class, string $property)
     {
-        try {
-            return (new ReflectionClass($class))->getStaticPropertyValue($property);
-        } catch (ReflectionException $e) {
-            return null;
-        }
+        return (new ReflectionClass($class))->getStaticPropertyValue($property);
     }
 
     /**
@@ -83,19 +81,19 @@ class TestUtils
     /**
      * @param object $object Object to get method from
      * @param string $method Method to get
+     *
+     * @throws ReflectionException
      */
-    public static function getHiddenMethod(object $object, string $method): ?Closure
+    public static function getHiddenMethod(object $object, string $method): Closure
     {
         $ref = new ReflectionObject($object);
 
-        try {
-            $meth = $ref->hasMethod($method) ? $ref->getMethod($method) : null;
-            if (!$meth && $ref->getParentClass()) {
-                $meth = $ref->getParentClass()->getMethod($method);
-            }
-        } catch (ReflectionException $e) {
-            return null;
+        $meth = $ref->hasMethod($method) ? $ref->getMethod($method) : null;
+        if (!$meth && $ref->getParentClass()) {
+            $meth = $ref->getParentClass()->getMethod($method);
         }
+        assert(!is_null($meth));
+
         $meth->setAccessible(true);
 
         return $meth->getClosure($object);
@@ -104,14 +102,12 @@ class TestUtils
     /**
      * @param class-string $class  Class to get static method from
      * @param string       $method Method to get
+     *
+     * @throws ReflectionException
      */
-    public static function getHiddenStaticMethod(string $class, string $method): ?Closure
+    public static function getHiddenStaticMethod(string $class, string $method): Closure
     {
-        try {
-            $meth = (new ReflectionClass($class))->getMethod($method);
-        } catch (ReflectionException $e) {
-            return null;
-        }
+        $meth = (new ReflectionClass($class))->getMethod($method);
         $meth->setAccessible(true);
 
         return $meth->getClosure(null);
@@ -142,7 +138,9 @@ class TestUtils
                 $reflectionProperty = new ReflectionProperty($class, $property);
 
                 // Don't check property if null is allowed
-                if ($reflectionProperty->getType()->allowsNull()) {
+                $refPropType = $reflectionProperty->getType();
+                assert(!is_null($refPropType));
+                if ($refPropType->allowsNull()) {
                     continue;
                 }
 

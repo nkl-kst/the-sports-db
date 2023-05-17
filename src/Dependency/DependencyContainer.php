@@ -11,6 +11,7 @@ use NklKst\TheSportsDb\Client\Endpoint\LivescoreEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\LookupEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\ScheduleEndpoint;
 use NklKst\TheSportsDb\Client\Endpoint\SearchEndpoint;
+use NklKst\TheSportsDb\Exception\ClientInstantiationException;
 use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Serializer\CountrySerializer;
 use NklKst\TheSportsDb\Serializer\EquipmentSerializer;
@@ -77,7 +78,7 @@ class DependencyContainer
     private static function load(): void
     {
         // Don't load twice
-        if (!isset(self::$builder)) {
+        if (self::$builder === null) {
             self::create();
             self::autowire();
             self::compile();
@@ -91,6 +92,8 @@ class DependencyContainer
 
     private static function autowire(): void
     {
+        assert(self::$builder !== null);
+
         // Guzzle
         self::$builder->autowire(ClientInterface::class, \GuzzleHttp\Client::class);
 
@@ -124,13 +127,17 @@ class DependencyContainer
 
     private static function compile(): void
     {
+        assert(self::$builder !== null);
+
         self::$builder->compile();
     }
 
-    public static function getClient(): ?Client
+    public static function getClient(): Client
     {
         // Load dependency container
         self::load();
+
+        assert(self::$builder !== null);
 
         // Get client from dependency container
         $client = self::$builder->get(Client::class, ContainerInterface::NULL_ON_INVALID_REFERENCE);
@@ -139,6 +146,6 @@ class DependencyContainer
         }
 
         // Something went wrong...
-        return null;
+        throw new ClientInstantiationException();
     }
 }

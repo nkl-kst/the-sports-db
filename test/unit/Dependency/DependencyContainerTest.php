@@ -4,6 +4,7 @@ namespace NklKst\TheSportsDb\Dependency;
 
 use Closure;
 use NklKst\TheSportsDb\Client\Client;
+use NklKst\TheSportsDb\Exception\ClientInstantiationException;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -79,12 +80,13 @@ class DependencyContainerTest extends TestCase
         $this->assertInstanceOf(Client::class, DependencyContainer::getClient());
     }
 
-    public function testGetClientNull(): void
+    public function testGetClientException(): void
     {
         // Create empty builder
         $create = $this->getMethod('create');
         $create();
 
+        $this->expectException(ClientInstantiationException::class);
         $this->assertNull(DependencyContainer::getClient());
     }
 }
