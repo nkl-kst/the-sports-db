@@ -10,6 +10,7 @@ use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use Symfony\Component\RateLimiter\LimiterInterface;
 
 /**
  * @covers \NklKst\TheSportsDb\Client\Endpoint\AbstractEndpoint
@@ -66,6 +67,20 @@ class AbstractEndpointTest extends TestCase
             ->expects($this->once())
             ->method('setKey')
             ->with('testKey');
+        $request();
+    }
+
+    public function testRequestRateLimiter(): void
+    {
+        $request = TestUtils::getHiddenMethod($this->endpoint, 'request');
+
+        $testRateLimiter = $this->createMock(LimiterInterface::class);
+        $this->endpoint->setConfig((new Config())->setRateLimiter($testRateLimiter));
+
+        $this->requestBuilderMock
+            ->expects($this->once())
+            ->method('setRateLimiter')
+            ->with($testRateLimiter);
         $request();
     }
 
