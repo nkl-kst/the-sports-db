@@ -52,6 +52,11 @@ abstract class AbstractEndpoint
             $this->requestBuilder->setKey($key);
         }
 
+        // Rate limiter configuration
+        if ($rateLimiter = $this->config->getRateLimiter()) {
+            $this->requestBuilder->setRateLimiter($rateLimiter);
+        }
+
         // Filter query
         if (isset($this->filter)) {
             $this->requestBuilder->setQuery($this->filter->getQuery());
