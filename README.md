@@ -13,6 +13,7 @@ An easy-to-use PHP library to get data from https://www.thesportsdb.com.
 - Get data for lists, livescores, lookups, schedules, searches or video highlights
 - Get results in serialized classes
 - Use your own API key
+- Throttle long-running scripts
 - Use PSR-4 autoloading
 - Supports PHP 7.4+
 
@@ -68,6 +69,28 @@ use NklKst\TheSportsDb\Client\ClientFactory;
 $client = ClientFactory::create();
 $client->configure()->setKey('YOUR_API_KEY');
 ```
+
+### Throttle requests
+
+You are advised to do no more than 100 requests per minute to TheSportsDB API (the hard limit is two requests per
+second). If you have long-running scripts to gather many data, please consider to use the built-in rate limiter.
+
+```php
+use NklKst\TheSportsDb\Client\ClientFactory;
+
+// Use the default rate limit of 100 requests per minute
+$client = ClientFactory::create();
+$client->configure()->setRateLimiter();
+
+// Do your requests as usual
+
+// You can unset the rate limiter later
+$client->configure()->unsetRateLimiter();
+```
+
+As this library uses the [Symfony Rate Limiter Component](https://github.com/symfony/rate-limiter), it's possible to use
+a custom rate limit mechanism. Please consult the Symfony
+[documentation](https://symfony.com/doc/current/rate_limiter.html) for more information.
 
 ## Known issues
 

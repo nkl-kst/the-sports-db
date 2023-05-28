@@ -6,12 +6,15 @@ use Exception;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\RateLimiter\LimiterInterface;
 
 class RequestBuilder
 {
     private const FREE_API_KEY = '3';
 
     private ClientInterface $http;
+
+    private ?LimiterInterface $rateLimiter = null;
 
     private string $baseUrl = 'https://www.thesportsdb.com/api';
     private string $version = 'v1';
@@ -23,6 +26,13 @@ class RequestBuilder
     public function __construct(ClientInterface $http)
     {
         $this->http = $http;
+    }
+
+    public function setRateLimiter(LimiterInterface $rateLimiter): self
+    {
+        $this->rateLimiter = $rateLimiter;
+
+        return $this;
     }
 
     public function setVersion(string $version): self
@@ -90,6 +100,16 @@ class RequestBuilder
      */
     public function request(): string
     {
+        // Use rate limiter if set
+        if ($this->rateLimiter) {
+            $limit = $this->rateLimiter->consume();
+            while (!$limit->isAccepted()) {
+                $limit->wait();
+                $limit = $this->rateLimiter->consume();
+            }
+        }
+
+        // Request data
         try {
             return $this->checkResponse($this->http->request('GET', $this->buildUri()))->getBody();
         } catch (GuzzleException $e) {

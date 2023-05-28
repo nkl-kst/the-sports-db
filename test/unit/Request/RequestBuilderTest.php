@@ -9,6 +9,8 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\RateLimiter\LimiterInterface;
+use Symfony\Component\RateLimiter\RateLimit;
 
 /**
  * @covers \NklKst\TheSportsDb\Request\RequestBuilder
@@ -22,6 +24,13 @@ class RequestBuilderTest extends TestCase
     {
         $this->handlerMock = new MockHandler();
         $this->builder = new RequestBuilder(new Client(['handler' => HandlerStack::create($this->handlerMock)]));
+    }
+
+    protected function testSetRateLimiter(): void
+    {
+        $testRateLimiter = $this->createMock(LimiterInterface::class);
+        $this->builder->setRateLimiter($testRateLimiter);
+        $this->assertSame($testRateLimiter, TestUtils::getHiddenProperty($this->builder, 'rateLimiter'));
     }
 
     public function testSetVersion(): void
@@ -81,6 +90,31 @@ class RequestBuilderTest extends TestCase
         $response = new Response(200);
 
         $this->assertSame($response, $method($response));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testRequestRateLimiter(): void
+    {
+        // Rate limit accepted on second try, expecting code to wait
+        $testRateLimit = $this->createMock(RateLimit::class);
+        $testRateLimit->method('isAccepted')->willReturn(false, true);
+        $testRateLimit->expects($this->once())->method('wait');
+
+        // Consume rate limiter returns test rate limit, expecting to consume it twice
+        $testRateLimiter = $this->createMock(LimiterInterface::class);
+        $testRateLimiter->method('consume')->willReturn($testRateLimit);
+        $testRateLimiter->expects($this->exactly(2))->method('consume');
+
+        // Set rate limiter
+        $this->builder
+            ->setEndpoint('dummy')
+            ->setRateLimiter($testRateLimiter)
+        ;
+
+        $this->handlerMock->append(new Response(200));
+        $this->builder->request();
     }
 
     /**
