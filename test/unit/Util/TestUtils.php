@@ -83,8 +83,6 @@ class TestUtils
     /**
      * @param object $object Object to get method from
      * @param string $method Method to get
-     *
-     * @return Closure
      */
     public static function getHiddenMethod(object $object, string $method): ?Closure
     {
