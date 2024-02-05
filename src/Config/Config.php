@@ -59,7 +59,7 @@ class Config
      *
      * @return $this This configuration
      */
-    public function setRateLimiter(LimiterInterface $rateLimiter = null): self
+    public function setRateLimiter(?LimiterInterface $rateLimiter = null): self
     {
         if (!$rateLimiter) {
             // Default rate limit of 100 requests per minute

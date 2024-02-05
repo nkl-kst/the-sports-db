@@ -238,7 +238,7 @@ class LookupEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function table(int $leagueID, string $season = null): ?Table
+    public function table(int $leagueID, ?string $season = null): ?Table
     {
         $filter = (new LookupFilter())->setLeagueID($leagueID);
         if ($season) {

@@ -53,7 +53,7 @@ class ListEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function leagues(string $countryQuery = null, string $sportQuery = null): array
+    public function leagues(?string $countryQuery = null, ?string $sportQuery = null): array
     {
         $endpoint = $countryQuery || $sportQuery ? self::ENDPOINT_SEARCH_LEAGUES : self::ENDPOINT_LEAGUES;
 
@@ -170,7 +170,7 @@ class ListEndpoint extends AbstractEndpoint
      * @throws Exception
      */
     public function teamsSearch(
-        string $leagueQuery = null, string $sportQuery = null, string $countryQuery = null): array
+        ?string $leagueQuery = null, ?string $sportQuery = null, ?string $countryQuery = null): array
     {
         $filter = new ListFilter();
         if ($leagueQuery) {

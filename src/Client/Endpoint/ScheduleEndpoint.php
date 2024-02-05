@@ -35,7 +35,7 @@ class ScheduleEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function day(DateTime $day, string $sportQuery = null, string $leagueQuery = null): array
+    public function day(DateTime $day, ?string $sportQuery = null, ?string $leagueQuery = null): array
     {
         $filter = (new ScheduleFilter())->setDay($day);
         if ($sportQuery) {
@@ -99,7 +99,7 @@ class ScheduleEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function round(int $leagueID, int $round, string $season = null): array
+    public function round(int $leagueID, int $round, ?string $season = null): array
     {
         $filter = (new ScheduleFilter())->setID($leagueID)->setRound($round);
         if ($season) {
@@ -123,7 +123,7 @@ class ScheduleEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function season(int $leagueID, string $season = null): array
+    public function season(int $leagueID, ?string $season = null): array
     {
         $filter = (new ScheduleFilter())->setID($leagueID);
         if ($season) {
@@ -184,7 +184,7 @@ class ScheduleEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function television(DateTime $day, string $sportQuery = null, string $countryQuery = null): array
+    public function television(DateTime $day, ?string $sportQuery = null, ?string $countryQuery = null): array
     {
         $filter = (new ScheduleFilter())->setDay($day);
         if ($sportQuery) {

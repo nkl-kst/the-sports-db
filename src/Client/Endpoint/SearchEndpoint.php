@@ -30,7 +30,7 @@ class SearchEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function events(string $eventQuery, string $season = null): array
+    public function events(string $eventQuery, ?string $season = null): array
     {
         $filter = (new SearchFilter())->setEventQuery($eventQuery);
         if ($season) {
@@ -70,7 +70,7 @@ class SearchEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function players(string $playerQuery = null, string $teamQuery = null): array
+    public function players(?string $playerQuery = null, ?string $teamQuery = null): array
     {
         $filter = new SearchFilter();
 

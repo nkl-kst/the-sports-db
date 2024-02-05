@@ -26,7 +26,7 @@ class LivescoreEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function now(string $sport = null, int $leagueID = null): array
+    public function now(?string $sport = null, ?int $leagueID = null): array
     {
         $filter = new LivescoreFilter();
         if ($leagueID) {

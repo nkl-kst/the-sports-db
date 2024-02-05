@@ -27,7 +27,7 @@ class HighlightEndpoint extends AbstractEndpoint
      *
      * @throws Exception
      */
-    public function latest(DateTime $day = null, string $league = null, string $sportQuery = null): array
+    public function latest(?DateTime $day = null, ?string $league = null, ?string $sportQuery = null): array
     {
         $filter = new HighlightFilter();
         if ($day) {
