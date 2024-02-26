@@ -57,6 +57,7 @@ class Event
     public ?int $idHomeTeam;
     public ?int $idAwayTeam;
     public ?string $strResult;
+    public ?int $idVenue;
     public ?string $strVenue;
     public ?string $strCountry;
     public ?string $strCity;
