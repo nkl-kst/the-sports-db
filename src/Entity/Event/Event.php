@@ -55,7 +55,9 @@ class Event
     public ?string $strTimeLocal;
     public ?string $strTVStation;
     public ?int $idHomeTeam;
+    public ?string $strHomeTeamBadge;
     public ?int $idAwayTeam;
+    public ?string $strAwayTeamBadge;
     public ?string $strResult;
     public ?int $idVenue;
     public ?string $strVenue;
