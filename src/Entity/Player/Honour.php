@@ -13,5 +13,4 @@ class Honour
     public string $strTeam;
     public string $strHonour;
     public string $strSeason;
-    public int $intChecked;
 }
