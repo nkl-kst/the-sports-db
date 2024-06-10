@@ -25,6 +25,8 @@ class Love
     public ?string $strEventPoster;
     public ?string $strEventSquare;
     public ?string $strPlayerThumb;
+    public ?string $strPlayerFanart;
+    public ?string $strPlayerBanner;
     public ?string $strTeamBadge;
     public ?string $strPlayerCutout;
 }
