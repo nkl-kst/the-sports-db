@@ -26,7 +26,8 @@ class ContractBcTest extends TestCase
     {
         self::assertEquals('BC value', $this->contract->strTeamBadge);
 
-        // TODO: Expect deprecation
+        // TODO: How to check if PHP Deprecated has been raised (https://github.com/sebastianbergmann/phpunit/issues/5062#issuecomment-1420379762)?
+
         // TODO: Check docBlock annotation
     }
 }
