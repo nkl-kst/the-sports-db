@@ -28,6 +28,7 @@ class ContractBcTest extends TestCase
 
         // TODO: How to check if PHP Deprecated has been raised (https://github.com/sebastianbergmann/phpunit/issues/5062#issuecomment-1420379762)?
 
-        // TODO: Check docBlock annotation
+        $docComment = (new \ReflectionClass(Contract::class))->getDocComment();
+        self::assertMatchesRegularExpression('/@property .* \$strTeamBadge/', $docComment);
     }
 }
