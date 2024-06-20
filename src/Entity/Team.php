@@ -28,13 +28,15 @@ class Team
     public ?string $strLeague7;
     public ?int $idLeague7;
     public ?string $strDivision;
+    public ?int $idVenue;
     public ?string $strManager;
     public ?string $strStadium;
     public ?string $strKeywords;
     public ?string $strRSS;
     public ?string $strStadiumThumb;
     public ?string $strStadiumDescription;
-    public ?string $strStadiumLocation;
+    public ?string $strStadiumLocation; // TODO: BC
+    public ?string $strLocation;
     public ?int $intStadiumCapacity;
     public ?string $strWebsite;
     public ?string $strFacebook;
@@ -57,17 +59,25 @@ class Team
     public ?string $strDescriptionPL;
     public string $strGender;
     public string $strCountry;
-    public ?string $strTeamBadge;
-    public ?string $strTeamJersey;
-    public ?string $strTeamLogo;
+    public ?string $strTeamBadge; // TODO: BC
+    public ?string $strBadge;
+    public ?string $strTeamJersey; // TODO: BC
+    public ?string $strKit;
+    public ?string $strTeamLogo; // TODO: BC
+    public ?string $strLogo;
     public ?string $strKitColour1;
     public ?string $strKitColour2;
     public ?string $strKitColour3;
-    public ?string $strTeamFanart1;
-    public ?string $strTeamFanart2;
-    public ?string $strTeamFanart3;
-    public ?string $strTeamFanart4;
-    public ?string $strTeamBanner;
+    public ?string $strTeamFanart1; // TODO: BC
+    public ?string $strTeamFanart2; // TODO: BC
+    public ?string $strTeamFanart3; // TODO: BC
+    public ?string $strTeamFanart4; // TODO: BC
+    public ?string $strFanart1;
+    public ?string $strFanart2;
+    public ?string $strFanart3;
+    public ?string $strFanart4;
+    public ?string $strTeamBanner; // TODO: BC
+    public ?string $strBanner;
     public ?string $strYoutube;
     public string $strLocked;
 }
