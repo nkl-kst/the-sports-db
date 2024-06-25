@@ -16,6 +16,10 @@ class BcTestUtils
         // TODO: How to check if PHP Deprecation has been raised (https://github.com/sebastianbergmann/phpunit/issues/5062#issuecomment-1420379762)?
 
         $docComment = (new \ReflectionClass($entity))->getDocComment();
-        TestCase::assertMatchesRegularExpression(sprintf('/@property .* \$%s/', $bcProperty), $docComment);
+        TestCase::assertMatchesRegularExpression(
+            sprintf('/@property .* \$%s/', $bcProperty),
+            $docComment,
+            sprintf('Property annotation for BC property %s missing', $bcProperty),
+        );
     }
 }

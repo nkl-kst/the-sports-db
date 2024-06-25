@@ -2,8 +2,17 @@
 
 namespace NklKst\TheSportsDb\Entity;
 
+/**
+ * @property string $strStadiumLocation
+ */
 class Team
 {
+    use BcFieldsTrait;
+
+    private const BC_FIELDS = [
+        'strStadiumLocation' => 'strLocation',
+    ];
+
     public int $idTeam;
     public ?int $idSoccerXML;
     public ?int $idAPIfootball;
@@ -35,7 +44,6 @@ class Team
     public ?string $strRSS;
     public ?string $strStadiumThumb;
     public ?string $strStadiumDescription;
-    public ?string $strStadiumLocation; // TODO: BC
     public ?string $strLocation;
     public ?int $intStadiumCapacity;
     public ?string $strWebsite;
