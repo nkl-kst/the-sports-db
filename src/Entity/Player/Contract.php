@@ -2,16 +2,16 @@
 
 namespace NklKst\TheSportsDb\Entity\Player;
 
-use NklKst\TheSportsDb\Entity\BcFieldsTrait;
+use NklKst\TheSportsDb\Entity\BcPropertiesTrait;
 
 /**
  * @property string $strTeamBadge
  */
 class Contract
 {
-    use BcFieldsTrait;
+    use BcPropertiesTrait;
 
-    private const BC_FIELDS = [
+    private const BC_PROPERTIES = [
         'strTeamBadge' => 'strBadge',
     ];
 

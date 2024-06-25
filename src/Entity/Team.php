@@ -15,7 +15,7 @@ namespace NklKst\TheSportsDb\Entity;
  */
 class Team
 {
-    private const BC_FIELDS = [
+    private const BC_PROPERTIES = [
         'strStadiumLocation' => 'strLocation',
         'strTeamBadge'       => 'strBadge',
         'strTeamBanner'      => 'strBanner',
@@ -27,7 +27,7 @@ class Team
         'strTeamFanart4'     => 'strFanart4',
     ];
 
-    use BcFieldsTrait;
+    use BcPropertiesTrait;
 
     public int $idTeam;
     public ?int $idSoccerXML;
