@@ -41,6 +41,9 @@ JSON;
         $this->team = $teamSerializer->serialize($teamJson)[0];
     }
 
+    /**
+     * @return array<string[]>
+     */
     public static function provideBcProperties(): array
     {
         return [

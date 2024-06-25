@@ -4,7 +4,10 @@ namespace NklKst\TheSportsDb\Entity;
 
 trait BcPropertiesTrait
 {
-    public function __get($name)
+    /**
+     * @return mixed
+     */
+    public function __get(string $name)
     {
         // Check for BC properties
         if (in_array($name, array_keys(self::BC_PROPERTIES), true)) {
