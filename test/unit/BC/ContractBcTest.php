@@ -19,16 +19,11 @@ class ContractBcTest extends TestCase
     protected function setUp(): void
     {
         $contractSerializer = new ContractSerializer(new \JsonMapper());
-        $this->contract     = $contractSerializer->serialize('{ "contracts": [{ "strBadge": "BC value" }] }')[0];
+        $this->contract     = $contractSerializer->serialize('{ "contracts": [{ "strBadge": "strTeamBadge" }] }')[0];
     }
 
     public function testContractBcFieldAccess(): void
     {
-        self::assertEquals('BC value', $this->contract->strTeamBadge);
-
-        // TODO: How to check if PHP Deprecated has been raised (https://github.com/sebastianbergmann/phpunit/issues/5062#issuecomment-1420379762)?
-
-        $docComment = (new \ReflectionClass(Contract::class))->getDocComment();
-        self::assertMatchesRegularExpression('/@property .* \$strTeamBadge/', $docComment);
+        BcTestUtils::checkBcProperty($this->contract, 'strTeamBadge');
     }
 }
