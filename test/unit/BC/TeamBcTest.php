@@ -19,11 +19,48 @@ class TeamBcTest extends TestCase
     protected function setUp(): void
     {
         $teamSerializer = new TeamSerializer(new \JsonMapper());
-        $this->team     = $teamSerializer->serialize('{ "teams": [{ "strLocation": "strStadiumLocation" }] }')[0];
+
+        $teamJson = <<<'JSON'
+{
+  "teams": [
+    {
+      "strLocation": "strStadiumLocation",
+      "strBadge":    "strTeamBadge",
+      "strBanner":   "strTeamBanner",
+      "strKit":      "strTeamJersey",
+      "strLogo":     "strTeamLogo",
+      "strFanart1":  "strTeamFanart1",
+      "strFanart2":  "strTeamFanart2",
+      "strFanart3":  "strTeamFanart3",
+      "strFanart4":  "strTeamFanart4"
+    }
+  ]
+}
+JSON;
+
+        $this->team = $teamSerializer->serialize($teamJson)[0];
     }
 
-    public function testContractBcFieldAccess(): void
+    public static function provideBcProperties(): array
     {
-        BcTestUtils::checkBcProperty($this->team, 'strStadiumLocation');
+        return [
+            ['strStadiumLocation'],
+            ['strTeamBadge'],
+            ['strTeamBanner'],
+            ['strTeamJersey'],
+            ['strTeamLogo'],
+            ['strTeamFanart1'],
+            ['strTeamFanart2'],
+            ['strTeamFanart3'],
+            ['strTeamFanart4'],
+        ];
+    }
+
+    /**
+     * @dataProvider provideBcProperties
+     */
+    public function testBcProperties(string $bcProperty): void
+    {
+        BcTestUtils::checkBcProperty($this->team, $bcProperty);
     }
 }

@@ -3,15 +3,31 @@
 namespace NklKst\TheSportsDb\Entity;
 
 /**
- * @property string $strStadiumLocation
+ * @property ?string $strStadiumLocation
+ * @property ?string $strTeamBadge
+ * @property ?string $strTeamBanner
+ * @property ?string $strTeamJersey
+ * @property ?string $strTeamLogo
+ * @property ?string $strTeamFanart1
+ * @property ?string $strTeamFanart2
+ * @property ?string $strTeamFanart3
+ * @property ?string $strTeamFanart4
  */
 class Team
 {
-    use BcFieldsTrait;
-
     private const BC_FIELDS = [
         'strStadiumLocation' => 'strLocation',
+        'strTeamBadge'       => 'strBadge',
+        'strTeamBanner'      => 'strBanner',
+        'strTeamJersey'      => 'strKit',
+        'strTeamLogo'        => 'strLogo',
+        'strTeamFanart1'     => 'strFanart1',
+        'strTeamFanart2'     => 'strFanart2',
+        'strTeamFanart3'     => 'strFanart3',
+        'strTeamFanart4'     => 'strFanart4',
     ];
+
+    use BcFieldsTrait;
 
     public int $idTeam;
     public ?int $idSoccerXML;
@@ -67,24 +83,16 @@ class Team
     public ?string $strDescriptionPL;
     public string $strGender;
     public string $strCountry;
-    public ?string $strTeamBadge; // TODO: BC
     public ?string $strBadge;
-    public ?string $strTeamJersey; // TODO: BC
     public ?string $strKit;
-    public ?string $strTeamLogo; // TODO: BC
     public ?string $strLogo;
     public ?string $strKitColour1;
     public ?string $strKitColour2;
     public ?string $strKitColour3;
-    public ?string $strTeamFanart1; // TODO: BC
-    public ?string $strTeamFanart2; // TODO: BC
-    public ?string $strTeamFanart3; // TODO: BC
-    public ?string $strTeamFanart4; // TODO: BC
     public ?string $strFanart1;
     public ?string $strFanart2;
     public ?string $strFanart3;
     public ?string $strFanart4;
-    public ?string $strTeamBanner; // TODO: BC
     public ?string $strBanner;
     public ?string $strYoutube;
     public string $strLocked;
