@@ -2,6 +2,8 @@
 
 namespace NklKst\TheSportsDb\BC;
 
+use Exception;
+use JsonMapper;
 use NklKst\TheSportsDb\Entity\Team;
 use NklKst\TheSportsDb\Serializer\TeamSerializer;
 use PHPUnit\Framework\TestCase;
@@ -14,11 +16,11 @@ class TeamBcTest extends TestCase
     private Team $team;
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected function setUp(): void
     {
-        $teamSerializer = new TeamSerializer(new \JsonMapper());
+        $teamSerializer = new TeamSerializer(new JsonMapper());
 
         $teamJson = <<<'JSON'
 {

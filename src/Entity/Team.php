@@ -15,19 +15,19 @@ namespace NklKst\TheSportsDb\Entity;
  */
 class Team
 {
+    use BcPropertiesTrait;
+
     private const BC_PROPERTIES = [
         'strStadiumLocation' => 'strLocation',
-        'strTeamBadge'       => 'strBadge',
-        'strTeamBanner'      => 'strBanner',
-        'strTeamJersey'      => 'strKit',
-        'strTeamLogo'        => 'strLogo',
-        'strTeamFanart1'     => 'strFanart1',
-        'strTeamFanart2'     => 'strFanart2',
-        'strTeamFanart3'     => 'strFanart3',
-        'strTeamFanart4'     => 'strFanart4',
+        'strTeamBadge' => 'strBadge',
+        'strTeamBanner' => 'strBanner',
+        'strTeamJersey' => 'strKit',
+        'strTeamLogo' => 'strLogo',
+        'strTeamFanart1' => 'strFanart1',
+        'strTeamFanart2' => 'strFanart2',
+        'strTeamFanart3' => 'strFanart3',
+        'strTeamFanart4' => 'strFanart4',
     ];
-
-    use BcPropertiesTrait;
 
     public int $idTeam;
     public ?int $idSoccerXML;
