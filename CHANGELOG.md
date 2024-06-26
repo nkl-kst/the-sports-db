@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.8] - 2024-06-26
+
+### Added
+- Added new properties in `Love` entity
+- Added new property `idVenue` in `Team` entity
+- Added new property `strGroup` in `Event` entity
+- BC properties for `Contract`, `Team` and `FormerTeam` entities
+- Deprecation message on BC property usage
+
+### Removed
+- Removed property `strTvStation` from `Event` entity
+- Removed properties `strStadiumThumb` and `strStadiumDescription` from `Team` entity
+
 ## [1.4.7] - 2024-06-10
 
 ### Added
