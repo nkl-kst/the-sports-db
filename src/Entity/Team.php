@@ -58,8 +58,6 @@ class Team
     public ?string $strStadium;
     public ?string $strKeywords;
     public ?string $strRSS;
-    public ?string $strStadiumThumb;
-    public ?string $strStadiumDescription;
     public ?string $strLocation;
     public ?int $intStadiumCapacity;
     public ?string $strWebsite;
