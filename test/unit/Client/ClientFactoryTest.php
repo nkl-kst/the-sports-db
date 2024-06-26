@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
  */
 class ClientFactoryTest extends TestCase
 {
+    /**
+     * @runInSeparateProcess
+     */
     public function testCreate(): void
     {
         $this->assertInstanceOf(Client::class, ClientFactory::create());
