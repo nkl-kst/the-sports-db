@@ -2,8 +2,33 @@
 
 namespace NklKst\TheSportsDb\Entity;
 
+/**
+ * @property ?string $strStadiumLocation
+ * @property ?string $strTeamBadge
+ * @property ?string $strTeamBanner
+ * @property ?string $strTeamJersey
+ * @property ?string $strTeamLogo
+ * @property ?string $strTeamFanart1
+ * @property ?string $strTeamFanart2
+ * @property ?string $strTeamFanart3
+ * @property ?string $strTeamFanart4
+ */
 class Team
 {
+    use BcPropertiesTrait;
+
+    private const BC_PROPERTIES = [
+        'strStadiumLocation' => 'strLocation',
+        'strTeamBadge' => 'strBadge',
+        'strTeamBanner' => 'strBanner',
+        'strTeamJersey' => 'strKit',
+        'strTeamLogo' => 'strLogo',
+        'strTeamFanart1' => 'strFanart1',
+        'strTeamFanart2' => 'strFanart2',
+        'strTeamFanart3' => 'strFanart3',
+        'strTeamFanart4' => 'strFanart4',
+    ];
+
     public int $idTeam;
     public ?int $idSoccerXML;
     public ?int $idAPIfootball;
@@ -28,13 +53,12 @@ class Team
     public ?string $strLeague7;
     public ?int $idLeague7;
     public ?string $strDivision;
+    public ?int $idVenue;
     public ?string $strManager;
     public ?string $strStadium;
     public ?string $strKeywords;
     public ?string $strRSS;
-    public ?string $strStadiumThumb;
-    public ?string $strStadiumDescription;
-    public ?string $strStadiumLocation;
+    public ?string $strLocation;
     public ?int $intStadiumCapacity;
     public ?string $strWebsite;
     public ?string $strFacebook;
@@ -57,17 +81,17 @@ class Team
     public ?string $strDescriptionPL;
     public string $strGender;
     public string $strCountry;
-    public ?string $strTeamBadge;
-    public ?string $strTeamJersey;
-    public ?string $strTeamLogo;
+    public ?string $strBadge;
+    public ?string $strKit;
+    public ?string $strLogo;
     public ?string $strKitColour1;
     public ?string $strKitColour2;
     public ?string $strKitColour3;
-    public ?string $strTeamFanart1;
-    public ?string $strTeamFanart2;
-    public ?string $strTeamFanart3;
-    public ?string $strTeamFanart4;
-    public ?string $strTeamBanner;
+    public ?string $strFanart1;
+    public ?string $strFanart2;
+    public ?string $strFanart3;
+    public ?string $strFanart4;
+    public ?string $strBanner;
     public ?string $strYoutube;
     public string $strLocked;
 }
