@@ -28,4 +28,9 @@ class SearchFilter extends AbstractFilter
     {
         return $this->addFilter('sname', $teamShortQuery);
     }
+
+    public function setVenueQuery(string $venueQuery): self
+    {
+        return $this->addFilter('t', $venueQuery);
+    }
 }

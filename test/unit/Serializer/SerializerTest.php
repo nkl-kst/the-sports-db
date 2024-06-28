@@ -25,6 +25,7 @@ use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Entity\Venue;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
@@ -73,6 +74,7 @@ class SerializerTest extends TestCase
             new TeamSerializer($mapper),
             new TelevisionSerializer($mapper),
             new TimelineSerializer($mapper),
+            new VenueSerializer($mapper),
         );
     }
 
@@ -263,5 +265,14 @@ class SerializerTest extends TestCase
     {
         $timeline = $this->serializer->serializeTimeline('{ "timeline": [] }');
         $this->assertContainsOnlyInstancesOf(Timeline::class, $timeline);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testSerializeVenues(): void
+    {
+        $venues = $this->serializer->serializeVenues('{ "venues": [] }');
+        $this->assertContainsOnlyInstancesOf(Venue::class, $venues);
     }
 }

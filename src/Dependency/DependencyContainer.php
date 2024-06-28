@@ -35,6 +35,7 @@ use NklKst\TheSportsDb\Serializer\Serializer;
 use NklKst\TheSportsDb\Serializer\SportSerializer;
 use NklKst\TheSportsDb\Serializer\Table\EntrySerializer;
 use NklKst\TheSportsDb\Serializer\TeamSerializer;
+use NklKst\TheSportsDb\Serializer\VenueSerializer;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -71,6 +72,7 @@ class DependencyContainer
         TeamSerializer::class,
         TelevisionSerializer::class,
         TimelineSerializer::class,
+        VenueSerializer::class,
     ];
 
     private static ?ContainerBuilder $builder = null;

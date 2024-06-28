@@ -6,6 +6,7 @@ use Exception;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Entity\Venue;
 use NklKst\TheSportsDb\Filter\SearchFilter;
 
 /**
@@ -19,6 +20,7 @@ class SearchEndpoint extends AbstractEndpoint
     private const ENDPOINT_FILE = 'searchfilename.php';
     private const ENDPOINT_PLAYERS = 'searchplayers.php';
     private const ENDPOINT_TEAMS = 'searchteams.php';
+    private const ENDPOINT_VENUES = 'searchvenues.php';
 
     /**
      * Find events by query, optionally filtered by season.
@@ -113,5 +115,24 @@ class SearchEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_TEAMS);
 
         return $this->serializer->serializeTeams($this->request());
+    }
+
+    /**
+     * Find venues by name.
+     *
+     * @param string $venueQuery Name query
+     *
+     * @return Venue[] Found venues
+     *
+     * @throws Exception
+     */
+    public function venues(string $venueQuery): array
+    {
+        $this
+            ->setFilter((new SearchFilter())->setVenueQuery($venueQuery))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_VENUES)
+        ;
+
+        return $this->serializer->serializeVenues($this->request());
     }
 }

@@ -24,6 +24,7 @@ use NklKst\TheSportsDb\Entity\Season;
 use NklKst\TheSportsDb\Entity\Sport;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Entity\Venue;
 use NklKst\TheSportsDb\Serializer\Event\EventSerializer;
 use NklKst\TheSportsDb\Serializer\Event\HighlightSerializer;
 use NklKst\TheSportsDb\Serializer\Event\LineupSerializer;
@@ -62,6 +63,7 @@ class Serializer
     private TeamSerializer $teamSerializer;
     private TelevisionSerializer $televisionSerializer;
     private TimelineSerializer $timelineSerializer;
+    private VenueSerializer $venueSerializer;
 
     public function __construct(
         ContractSerializer $contractSerializer,
@@ -84,7 +86,8 @@ class Serializer
         StatisticSerializer $statisticSerializer,
         TeamSerializer $teamSerializer,
         TelevisionSerializer $televisionSerializer,
-        TimelineSerializer $timelineSerializer)
+        TimelineSerializer $timelineSerializer,
+        VenueSerializer $venueSerializer)
     {
         $this->contractSerializer = $contractSerializer;
         $this->countrySerializer = $countrySerializer;
@@ -107,6 +110,7 @@ class Serializer
         $this->teamSerializer = $teamSerializer;
         $this->televisionSerializer = $televisionSerializer;
         $this->timelineSerializer = $timelineSerializer;
+        $this->venueSerializer = $venueSerializer;
     }
 
     /**
@@ -323,5 +327,15 @@ class Serializer
     public function serializeTimeline(string $content): array
     {
         return $this->timelineSerializer->serialize($content);
+    }
+
+    /**
+     * @return Venue[]
+     *
+     * @throws Exception
+     */
+    public function serializeVenues(string $content): array
+    {
+        return $this->venueSerializer->serialize($content);
     }
 }
