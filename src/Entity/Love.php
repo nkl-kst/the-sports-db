@@ -41,4 +41,11 @@ class Love
     public ?string $strVenueThumb;
     public ?string $strVenueLogo;
     public ?string $strVenueFanart;
+    public ?string $strLeagueBadge;
+    public ?string $strLeagueLogo;
+    public ?string $strLeagueFanart;
+    public ?string $strLeagueBanner;
+    public ?string $strChannelLogo;
+    public ?string $strChannelBanner;
+    public ?string $strChannelFanart;
 }
