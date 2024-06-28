@@ -5,6 +5,7 @@ use NklKst\TheSportsDb\Client\ClientFactory;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Entity\Venue;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
@@ -164,5 +165,19 @@ class SearchTest extends TestCase
         $this->assertSame('English Premier League 2015-04-26 Arsenal vs Chelsea', $event->strFilename);
 
         TestUtils::assertThatAllPropertiesAreInitialized($event);
+    }
+
+    /**
+     * Search for venues by  name (https://www.thesportsdb.com/api/v1/json/3/searchvenues.php?t=Wembley).
+     *
+     * @throws Exception
+     */
+    public function testVenues(): void
+    {
+        $venues = $this->client->search()->venues('Wembley');
+        $this->assertContainsOnlyInstancesOf(Venue::class, $venues);
+        $this->assertSame('Wembley Arena', $venues[0]->strVenue);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($venues);
     }
 }

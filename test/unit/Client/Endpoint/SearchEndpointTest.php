@@ -7,6 +7,7 @@ use NklKst\TheSportsDb\Config\Config;
 use NklKst\TheSportsDb\Entity\Event\Event;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Entity\Venue;
 use NklKst\TheSportsDb\Filter\SearchFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Serializer\Serializer;
@@ -190,5 +191,39 @@ class SearchEndpointTest extends TestCase
 
         $this->assertNotEmpty($teams);
         $this->assertContainsOnlyInstancesOf(Team::class, $teams);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testVenueEndpoint(): void
+    {
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'searchvenues.php');
+        $this->endpoint->venues('testVenues');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testVenueFilterVenue(): void
+    {
+        $this->endpoint->venues('testVenue');
+
+        $this->assertEquals(
+            (new SearchFilter())->setVenueQuery('testVenue'),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testVenueInstances(): void
+    {
+        $this->serializerStub->method('serializeVenues')->willReturn([new Venue()]);
+
+        $venues = $this->endpoint->venues('testVenue');
+
+        $this->assertNotEmpty($venues);
+        $this->assertContainsOnlyInstancesOf(Venue::class, $venues);
     }
 }

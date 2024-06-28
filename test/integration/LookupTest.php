@@ -19,6 +19,7 @@ use NklKst\TheSportsDb\Entity\Table\Entry;
 use NklKst\TheSportsDb\Entity\Table\Standing;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Entity\Venue;
 use NklKst\TheSportsDb\Util\TestUtils;
 use PHPUnit\Framework\TestCase;
 
@@ -79,6 +80,21 @@ class LookupTest extends TestCase
         $this->assertSame('Mario Balotelli', $player->strPlayer);
 
         TestUtils::assertThatAllPropertiesAreInitialized($player);
+    }
+
+    /**
+     * Venue details by id (https://www.thesportsdb.com/api/v1/json/3/lookupvenue.php?id=16163).
+     *
+     * @throws Exception
+     */
+    public function testVenue(): void
+    {
+        $venue = $this->client->lookup()->venue(16163);
+
+        $this->assertInstanceOf(Venue::class, $venue);
+        $this->assertSame('Wembley Stadium', $venue->strVenue);
+
+        TestUtils::assertThatAllPropertiesAreInitialized($venue);
     }
 
     /**

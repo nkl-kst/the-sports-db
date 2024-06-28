@@ -18,6 +18,7 @@ use NklKst\TheSportsDb\Entity\Player\Honour;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Entity\Venue;
 use NklKst\TheSportsDb\Filter\LookupFilter;
 
 /**
@@ -41,6 +42,7 @@ class LookupEndpoint extends AbstractEndpoint
     private const ENDPOINT_TEAM = 'lookupteam.php';
     private const ENDPOINT_TELEVISION = 'lookuptv.php';
     private const ENDPOINT_TIMELINE = 'lookuptimeline.php';
+    private const ENDPOINT_VENUE = 'lookupvenue.php';
 
     /**
      * Get player contracts.
@@ -299,5 +301,20 @@ class LookupEndpoint extends AbstractEndpoint
             ->requestBuilder->setEndpoint(self::ENDPOINT_TIMELINE);
 
         return $this->serializer->serializeTimeline($this->request());
+    }
+
+    /**
+     * Get venue by ID.
+     *
+     * @throws Exception
+     */
+    public function venue(int $venueID): ?Venue
+    {
+        $this
+            ->setFilter((new LookupFilter())->setID($venueID))
+            ->requestBuilder->setEndpoint(self::ENDPOINT_VENUE)
+        ;
+
+        return $this->getSingleEntity($this->serializer->serializeVenues($this->request()));
     }
 }

@@ -19,6 +19,7 @@ use NklKst\TheSportsDb\Entity\Player\Honour;
 use NklKst\TheSportsDb\Entity\Player\Player;
 use NklKst\TheSportsDb\Entity\Table\Table;
 use NklKst\TheSportsDb\Entity\Team;
+use NklKst\TheSportsDb\Entity\Venue;
 use NklKst\TheSportsDb\Filter\LookupFilter;
 use NklKst\TheSportsDb\Request\RequestBuilder;
 use NklKst\TheSportsDb\Serializer\Serializer;
@@ -538,5 +539,39 @@ class LookupEndpointTest extends TestCase
 
         $this->assertNotEmpty($timeline);
         $this->assertContainsOnlyInstancesOf(Timeline::class, $timeline);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testVenueFilterVenue(): void
+    {
+        $this->endpoint->venue(1);
+
+        $this->assertEquals(
+            (new LookupFilter())->setID(1),
+            TestUtils::getHiddenProperty($this->endpoint, 'filter'))
+        ;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testVenueEndpoint(): void
+    {
+        TestUtils::expectEndpoint($this->requestBuilderMock, 'lookupvenue.php');
+        $this->endpoint->venue(1);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testVenueInstance(): void
+    {
+        $this->serializerStub->method('serializeVenues')->willReturn([new Venue()]);
+
+        $venue = $this->endpoint->venue(1);
+
+        $this->assertInstanceOf(Venue::class, $venue);
     }
 }
