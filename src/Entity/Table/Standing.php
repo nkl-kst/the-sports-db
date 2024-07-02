@@ -3,14 +3,24 @@
 namespace NklKst\TheSportsDb\Entity\Table;
 
 use DateTime;
+use NklKst\TheSportsDb\Entity\BcPropertiesTrait;
 
+/**
+ * @property ?string $strTeamBadge
+ */
 class Standing
 {
+    use BcPropertiesTrait;
+
+    private const BC_PROPERTIES = [
+        'strTeamBadge' => 'strBadge',
+    ];
+
     public int $idStanding;
     public int $intRank;
     public int $idTeam;
     public string $strTeam;
-    public ?string $strTeamBadge;
+    public ?string $strBadge;
     public int $idLeague;
     public string $strLeague;
     public string $strSeason;
