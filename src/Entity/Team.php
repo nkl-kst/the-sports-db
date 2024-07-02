@@ -3,6 +3,7 @@
 namespace NklKst\TheSportsDb\Entity;
 
 /**
+ * @property ?string $strAlternate
  * @property ?string $strStadiumLocation
  * @property ?string $strTeamBadge
  * @property ?string $strTeamBanner
@@ -18,6 +19,7 @@ class Team
     use BcPropertiesTrait;
 
     private const BC_PROPERTIES = [
+        'strAlternate' => 'strTeamAlternate',
         'strStadiumLocation' => 'strLocation',
         'strTeamBadge' => 'strBadge',
         'strTeamBanner' => 'strBanner',
@@ -34,8 +36,8 @@ class Team
     public ?int $idAPIfootball;
     public ?int $intLoved;
     public string $strTeam;
+    public ?string $strTeamAlternate;
     public ?string $strTeamShort;
-    public ?string $strAlternate;
     public ?int $intFormedYear;
     public string $strSport;
     public string $strLeague;

@@ -26,15 +26,16 @@ class TeamBcTest extends TestCase
 {
   "teams": [
     {
-      "strLocation": "strStadiumLocation",
-      "strBadge":    "strTeamBadge",
-      "strBanner":   "strTeamBanner",
-      "strKit":      "strTeamJersey",
-      "strLogo":     "strTeamLogo",
-      "strFanart1":  "strTeamFanart1",
-      "strFanart2":  "strTeamFanart2",
-      "strFanart3":  "strTeamFanart3",
-      "strFanart4":  "strTeamFanart4"
+      "strTeamAlternate": "strAlternate",
+      "strLocation":      "strStadiumLocation",
+      "strBadge":         "strTeamBadge",
+      "strBanner":        "strTeamBanner",
+      "strKit":           "strTeamJersey",
+      "strLogo":          "strTeamLogo",
+      "strFanart1":       "strTeamFanart1",
+      "strFanart2":       "strTeamFanart2",
+      "strFanart3":       "strTeamFanart3",
+      "strFanart4":       "strTeamFanart4"
     }
   ]
 }
@@ -49,6 +50,7 @@ JSON;
     public static function provideBcProperties(): array
     {
         return [
+            ['strAlternate'],
             ['strStadiumLocation'],
             ['strTeamBadge'],
             ['strTeamBanner'],
