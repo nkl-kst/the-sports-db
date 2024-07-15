@@ -30,7 +30,6 @@ class TeamBcTest extends TestCase
       "strLocation":      "strStadiumLocation",
       "strBadge":         "strTeamBadge",
       "strBanner":        "strTeamBanner",
-      "strKit":           "strTeamJersey",
       "strLogo":          "strTeamLogo",
       "strColour1":       "strKitColour1",
       "strColour2":       "strKitColour2",
@@ -38,7 +37,8 @@ class TeamBcTest extends TestCase
       "strFanart1":       "strTeamFanart1",
       "strFanart2":       "strTeamFanart2",
       "strFanart3":       "strTeamFanart3",
-      "strFanart4":       "strTeamFanart4"
+      "strFanart4":       "strTeamFanart4",
+      "strEquipment":     "strKit"
     }
   ]
 }
@@ -57,7 +57,7 @@ JSON;
             ['strStadiumLocation'],
             ['strTeamBadge'],
             ['strTeamBanner'],
-            ['strTeamJersey'],
+            ['strTeamJersey', 'strKit'],
             ['strTeamLogo'],
             ['strKitColour1'],
             ['strKitColour2'],
@@ -66,14 +66,15 @@ JSON;
             ['strTeamFanart2'],
             ['strTeamFanart3'],
             ['strTeamFanart4'],
+            ['strKit'],
         ];
     }
 
     /**
      * @dataProvider provideBcProperties
      */
-    public function testBcProperties(string $bcProperty): void
+    public function testBcProperties(string $bcProperty, ?string $checkValue = null): void
     {
-        BcTestUtils::checkBcProperty($this->team, $bcProperty);
+        BcTestUtils::checkBcProperty($this->team, $bcProperty, $checkValue);
     }
 }

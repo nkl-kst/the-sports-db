@@ -10,9 +10,9 @@ use ReflectionClass;
  */
 class BcTestUtils
 {
-    public static function checkBcProperty(object $entity, string $bcProperty): void
+    public static function checkBcProperty(object $entity, string $bcProperty, ?string $checkValue = null): void
     {
-        TestCase::assertEquals($bcProperty, $entity->{$bcProperty});
+        TestCase::assertEquals($checkValue ?? $bcProperty, $entity->{$bcProperty});
 
         // TODO: How to check if PHP Deprecation has been raised (https://github.com/sebastianbergmann/phpunit/issues/5062#issuecomment-1420379762)?
 
