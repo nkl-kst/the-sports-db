@@ -9,6 +9,9 @@ namespace NklKst\TheSportsDb\Entity;
  * @property ?string $strTeamBanner
  * @property ?string $strTeamJersey
  * @property ?string $strTeamLogo
+ * @property ?string $strKitColour1
+ * @property ?string $strKitColour2
+ * @property ?string $strKitColour3
  * @property ?string $strTeamFanart1
  * @property ?string $strTeamFanart2
  * @property ?string $strTeamFanart3
@@ -25,6 +28,9 @@ class Team
         'strTeamBanner' => 'strBanner',
         'strTeamJersey' => 'strKit',
         'strTeamLogo' => 'strLogo',
+        'strKitColour1' => 'strColour1',
+        'strKitColour2' => 'strColour2',
+        'strKitColour3' => 'strColour3',
         'strTeamFanart1' => 'strFanart1',
         'strTeamFanart2' => 'strFanart2',
         'strTeamFanart3' => 'strFanart3',
@@ -86,9 +92,9 @@ class Team
     public ?string $strBadge;
     public ?string $strKit;
     public ?string $strLogo;
-    public ?string $strKitColour1;
-    public ?string $strKitColour2;
-    public ?string $strKitColour3;
+    public ?string $strColour1;
+    public ?string $strColour2;
+    public ?string $strColour3;
     public ?string $strFanart1;
     public ?string $strFanart2;
     public ?string $strFanart3;
