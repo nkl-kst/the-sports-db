@@ -11,6 +11,7 @@ class Venue
     public ?string $strVenueAlternate;
     public ?string $strSport;
     public ?string $strDescriptionEN;
+    public ?string $strArchitect;
     public ?int $intCapacity;
     public ?string $strCost;
     public ?string $strCountry;
