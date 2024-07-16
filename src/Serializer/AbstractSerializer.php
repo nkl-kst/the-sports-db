@@ -67,10 +67,16 @@ abstract class AbstractSerializer
     public function serialize(string $content): array
     {
         $json = json_decode($content);
+        if (!is_object($json)) {
+            $json = null;
+        }
 
         if ($message = $this->validate($json)) {
             throw new Exception($message);
         }
+
+        // Tested in self::validate()
+        assert($json !== null);
 
         $innerJson = $json->{$this->getJsonRootName($json)};
 
@@ -79,6 +85,7 @@ abstract class AbstractSerializer
             return [];
         }
 
+        /** @var TObject[] */
         return $this->mapper->mapArray($innerJson, [], $this->getEntityClass());
     }
 }

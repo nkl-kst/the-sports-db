@@ -10,6 +10,7 @@ return $config->setRules([
         'import_constants' => true,
         'import_functions' => true,
     ],
+    'phpdoc_to_comment' => ['ignored_tags' => ['var']],
     'yoda_style' => false,
 ])
     ->setFinder($finder);

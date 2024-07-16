@@ -25,7 +25,10 @@ class DependencyContainerTest extends TestCase
      */
     private function getBuilder(): ContainerBuilder
     {
-        return TestUtils::getHiddenStaticProperty(DependencyContainer::class, 'builder');
+        $containerBuilder = TestUtils::getHiddenStaticProperty(DependencyContainer::class, 'builder');
+        assert($containerBuilder instanceof ContainerBuilder);
+
+        return $containerBuilder;
     }
 
     private function getMethod(string $method): Closure
