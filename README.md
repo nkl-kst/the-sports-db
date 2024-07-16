@@ -2,9 +2,9 @@
 
 [![Build](https://github.com/nkl-kst/the-sports-db/workflows/Build/badge.svg)](https://github.com/nkl-kst/the-sports-db/actions)
 [![Packagist Version](https://img.shields.io/packagist/v/nkl-kst/the-sports-db)](https://packagist.org/packages/nkl-kst/the-sports-db)
-[![Coverage Status](https://coveralls.io/repos/github/nkl-kst/the-sports-db/badge.svg?branch=master)](https://coveralls.io/github/nkl-kst/the-sports-db?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/nkl-kst/the-sports-db/badge.svg?branch=main)](https://coveralls.io/github/nkl-kst/the-sports-db?branch=main)
 [![PHPStan Level](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg?style=flat)](https://github.com/nkl-kst/the-sports-db/actions)
-[![GitHub](https://img.shields.io/github/license/nkl-kst/the-sports-db)](https://github.com/nkl-kst/the-sports-db/blob/master/LICENSE.md)
+[![GitHub](https://img.shields.io/github/license/nkl-kst/the-sports-db)](https://github.com/nkl-kst/the-sports-db/blob/main/LICENSE.md)
 
 An easy-to-use PHP library to get data from https://www.thesportsdb.com.
 
@@ -55,7 +55,7 @@ $events = $client->schedule()->teamNext(133602);
 echo $events[0]->strEvent;
 ```
 
-See [integration tests](https://github.com/nkl-kst/the-sports-db/tree/master/test/integration) for examples of all 
+See [integration tests](https://github.com/nkl-kst/the-sports-db/tree/main/test/integration) for examples of all 
 [documented API calls](https://www.thesportsdb.com/api.php).
 
 ### Use your API key
