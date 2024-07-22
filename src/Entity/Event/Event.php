@@ -50,6 +50,7 @@ class Event
     public ?string $strTimestamp;
     public DateTime $dateEvent;
     public ?DateTime $dateEventLocal;
+    public ?DateTime $dateEventEnd;
     public ?string $strDate;
     public ?string $strTime;
     public ?string $strTimeLocal;
