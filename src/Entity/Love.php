@@ -38,6 +38,7 @@ class Love
     public ?string $strTeamKit;
     public ?string $strTeamFanart;
     public ?string $strTeamBanner;
+    public ?string $strTeamEquipment;
     public ?string $strVenueThumb;
     public ?string $strVenueLogo;
     public ?string $strVenueFanart;
@@ -45,6 +46,8 @@ class Love
     public ?string $strLeagueLogo;
     public ?string $strLeagueFanart;
     public ?string $strLeagueBanner;
+    public ?string $strLeaguePoster;
+    public ?string $strLeagueTrophy;
     public ?string $strChannelLogo;
     public ?string $strChannelBanner;
     public ?string $strChannelFanart;
