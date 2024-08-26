@@ -15,6 +15,7 @@ class Event
     public string $strSport;
     public int $idLeague;
     public string $strLeague;
+    public ?string $strLeagueBadge;
     public string $strSeason;
     public ?string $strDescriptionEN;
     public ?string $strHomeTeam;
