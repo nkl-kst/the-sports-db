@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.7] - 2024-12-10
+
+### Added
+- Added property "idESPN" to "Team" entity
+
 ## [1.5.6] - 2024-09-23
 
 ### Added
@@ -26,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added strArchitect to Venue entity
-- Added BC property strColour1-3 (strKitColour1-3) to Team entity 
+- Added BC property strColour1-3 (strKitColour1-3) to Team entity
 - Added BC property strEquipment (strKit) to Team entity
 
 ## [1.5.2] - 2024-07-08
@@ -63,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added properties `strPlayerFanart` & `strPlayerBanner` to `Love` entity
-- Added missing property `flag_url_32` to `Country` entity 
+- Added missing property `flag_url_32` to `Country` entity
 
 ## [1.4.6] - 2024-05-26
 
@@ -104,7 +109,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.9] - 2023-05-08
 
 ### Fixed
-- Added missing properties `strCutout`, `strThumb` and `strRender`, removed `strEvent` in `Lineup` 
+- Added missing properties `strCutout`, `strThumb` and `strRender`, removed `strEvent` in `Lineup`
 - Changed property type of `strTeam` from `int` to `string` in `Lineup`
 
 ## [1.3.8] - 2023-02-20
@@ -281,7 +286,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Most "Patreon only" features
-  
+
 ### Changed
 - Bumped libs
 
