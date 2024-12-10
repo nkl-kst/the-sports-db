@@ -40,6 +40,7 @@ class Team
     ];
 
     public int $idTeam;
+    public ?int $idESPN;
     public ?int $idSoccerXML;
     public ?int $idAPIfootball;
     public ?int $intLoved;
