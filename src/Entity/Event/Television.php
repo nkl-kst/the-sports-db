@@ -16,6 +16,7 @@ class Television
     public ?string $strEventSquare;
     public int $idChannel;
     public string $strCountry;
+    public ?string $strEventCountry;
     public string $strLogo;
     public string $strChannel;
     public string $strSeason;
