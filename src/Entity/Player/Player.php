@@ -14,6 +14,8 @@ class Player
     public ?int $idAPIfootball;
     public ?int $idPlayerManager;
     public ?int $idWikidata;
+    public ?int $idTransferMkt;
+    public ?int $idESPN;
     public string $strNationality;
     public string $strPlayer;
     public ?string $strPlayerAlternate;
@@ -22,6 +24,7 @@ class Player
     public string $strSport;
     public ?int $intSoccerXMLTeamID;
     public DateTime $dateBorn;
+    public ?DateTime $dateDied;
     public ?string $strNumber;
     public ?DateTime $dateSigned;
     public ?string $strSigning;
