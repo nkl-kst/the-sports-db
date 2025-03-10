@@ -63,6 +63,7 @@ class Player
     public ?string $strWeight;
     public int $intLoved;
     public ?string $strThumb;
+    public ?string $strPoster;
     public ?string $strCutout;
     public ?string $strRender;
     public ?string $strBanner;
