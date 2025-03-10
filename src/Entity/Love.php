@@ -34,6 +34,7 @@ class Love
     public ?string $strPlayerRender;
     public ?string $strPlayerFanart;
     public ?string $strPlayerBanner;
+    public ?string $strPlayerPoster;
     public ?string $strTeamBadge;
     public ?string $strTeamLogo;
     public ?string $strTeamKit;
