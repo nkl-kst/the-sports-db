@@ -73,4 +73,5 @@ class Player
     public ?string $strFanart4;
     public ?string $strCreativeCommons;
     public ?string $strLocked;
+    public ?float $relevance; // For search endpoints
 }
