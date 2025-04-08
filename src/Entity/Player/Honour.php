@@ -8,6 +8,7 @@ class Honour
     public int $idPlayer;
     public int $idTeam;
     public ?int $idLeague;
+    public int $idHonour;
     public string $strSport;
     public string $strPlayer;
     public string $strTeam;
