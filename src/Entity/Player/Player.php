@@ -61,7 +61,7 @@ class Player
     public ?string $strYoutube;
     public ?string $strHeight;
     public ?string $strWeight;
-    public int $intLoved;
+    public ?int $intLoved;
     public ?string $strThumb;
     public ?string $strPoster;
     public ?string $strCutout;
@@ -71,6 +71,6 @@ class Player
     public ?string $strFanart2;
     public ?string $strFanart3;
     public ?string $strFanart4;
-    public string $strCreativeCommons;
-    public string $strLocked;
+    public ?string $strCreativeCommons;
+    public ?string $strLocked;
 }
