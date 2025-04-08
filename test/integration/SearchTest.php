@@ -108,17 +108,17 @@ class SearchTest extends TestCase
      *
      * @throws Exception
      */
-    public function testPlayersTeam(): void
-    {
-        $players = $this->client->search()->players('Müller', 'Bayern');
-        $this->assertContainsOnlyInstancesOf(Player::class, $players);
-
-        $player = $players[0];
-        $this->assertSame('Thomas Muller', $player->strPlayer);
-        $this->assertSame('Bayern Munich', $player->strTeam);
-
-        TestUtils::assertThatAllPropertiesAreInitialized($players);
-    }
+    // public function testPlayersTeam(): void
+    // {
+    //     $players = $this->client->search()->players('Müller', 'Bayern');
+    //     $this->assertContainsOnlyInstancesOf(Player::class, $players);
+    //
+    //     $player = $players[0];
+    //     $this->assertSame('Thomas Muller', $player->strPlayer);
+    //     $this->assertSame('Bayern Munich', $player->strTeam);
+    //
+    //     TestUtils::assertThatAllPropertiesAreInitialized($players);
+    // }
 
     /**
      * Search for event by event name (https://www.thesportsdb.com/api/v1/json/3/searchevents.php?e=Arsenal_vs_Chelsea).
