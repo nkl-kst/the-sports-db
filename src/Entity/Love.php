@@ -17,6 +17,8 @@ class Love
     public ?int $idEvent;
     public ?int $idVenue;
     public ?int $idChannel;
+    public ?int $idHonour;
+    public ?int $idMilestone;
     public ?string $strTeam;
     public ?string $strPlayer;
     public ?string $strLeague;
