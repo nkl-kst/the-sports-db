@@ -12,6 +12,9 @@ class Honour
     public string $strSport;
     public string $strPlayer;
     public string $strTeam;
+    public string $strTeamBadge;
     public string $strHonour;
+    public string $strHonourLogo;
+    public string $strHonourTrophy;
     public string $strSeason;
 }
