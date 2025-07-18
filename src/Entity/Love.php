@@ -19,12 +19,14 @@ class Love
     public ?int $idChannel;
     public ?int $idHonour;
     public ?int $idMilestone;
+    public ?int $idCollection;
     public ?string $strTeam;
     public ?string $strPlayer;
     public ?string $strLeague;
     public ?string $strEvent;
     public ?string $strVenue;
     public ?string $strSport;
+    public ?string $strCollection;
     public ?string $strEventThumb;
     public ?string $strEventPoster;
     public ?string $strEventSquare;

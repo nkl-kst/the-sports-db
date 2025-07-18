@@ -30,5 +30,6 @@ class Venue
     public ?string $strInstagram;
     public ?string $strTwitter;
     public ?string $strYoutube;
+    public string $strCreativeCommons;
     public string $strLocked;
 }
