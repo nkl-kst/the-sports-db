@@ -18,6 +18,7 @@ class Timeline
     public ?int $idAssist;
     public ?string $strAssist;
     public int $intTime;
+    public ?string $strPeriod;
     public int $idTeam;
     public string $strTeam;
     public ?string $strComment;
