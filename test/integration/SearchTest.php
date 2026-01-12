@@ -176,7 +176,7 @@ class SearchTest extends TestCase
     {
         $venues = $this->client->search()->venues('Wembley');
         $this->assertContainsOnlyInstancesOf(Venue::class, $venues);
-        $this->assertSame('Wembley Arena', $venues[0]->strVenue);
+        $this->assertSame('Wembley Centre of Excellence', $venues[0]->strVenue);
 
         TestUtils::assertThatAllPropertiesAreInitialized($venues);
     }
