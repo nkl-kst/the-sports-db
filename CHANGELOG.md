@@ -5,17 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.15] - 2026-01-12
+
+### Added
+- Added missing property "strPeriod" to "Timeline" entity
+
 ## [1.5.14] - 2025-11-17
 
+### Added
 - Added missing property "strLastName" to "Player" entity
 
 ## [1.5.13] - 2025-07-18
 
+### Added
 - Added properties "idCollection" and "strCollection" to "Love" entity
 - Added property "strCreativeCommons" to "Venue" entity
 
 ## [1.5.12] - 2025-05-05
 
+### Added
 - Added properties "strTeamBadge", "strHonourLogo" and "strHonourTrophy" to "Honour" entity
 
 ## [1.5.11] - 2025-04-08
