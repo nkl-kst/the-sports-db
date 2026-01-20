@@ -65,6 +65,7 @@ class Player
     public ?string $strThumb;
     public ?string $strPoster;
     public ?string $strCutout;
+    public ?string $strCartoon;
     public ?string $strRender;
     public ?string $strBanner;
     public ?string $strFanart1;

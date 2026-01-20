@@ -35,6 +35,7 @@ class Love
     public ?string $strEventMap;
     public ?string $strPlayerThumb;
     public ?string $strPlayerCutout;
+    public ?string $strPlayerCartoon;
     public ?string $strPlayerRender;
     public ?string $strPlayerFanart;
     public ?string $strPlayerBanner;
