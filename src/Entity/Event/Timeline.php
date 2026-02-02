@@ -15,6 +15,7 @@ class Timeline
     public ?int $idAPIfootball;
     public int $idPlayer;
     public string $strPlayer;
+    public ?string $strCutout;
     public ?int $idAssist;
     public ?string $strAssist;
     public int $intTime;
