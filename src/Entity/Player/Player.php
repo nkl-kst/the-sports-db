@@ -33,6 +33,7 @@ class Player
     public ?string $strKit;
     public ?string $strAgent;
     public ?string $strBirthLocation;
+    public ?string $strDeathLocation;
     public ?string $strEthnicity;
     public ?string $strStatus;
     public ?string $strDescriptionEN;
