@@ -7,6 +7,7 @@ class Venue
     public int $idVenue;
     public ?int $idDupe;
     public string $strVenue;
+    public ?string $intLoved;
     public ?string $strVenueSponsor;
     public ?string $strVenueAlternate;
     public ?string $strSport;
