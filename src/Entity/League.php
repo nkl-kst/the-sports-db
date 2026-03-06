@@ -9,6 +9,7 @@ class League
     public int $idLeague;
     public ?int $idSoccerXML;
     public ?int $idAPIfootball;
+    public ?int $idAPIfootballv3;
     public ?string $strSport;
     public string $strLeague;
     public ?string $strLeagueAlternate;
