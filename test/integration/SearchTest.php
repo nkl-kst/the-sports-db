@@ -73,19 +73,14 @@ class SearchTest extends TestCase
      * Search for all players from team
      * (https://www.thesportsdb.com/api/v1/json/{PATREON_KEY}/searchplayers.php?t=Arsenal).
      *
+     * @deprecated
+     *
      * @throws Exception
      */
     public function testPlayersOnlyTeam(): void
     {
         $players = $this->client->search()->players(null, 'Arsenal');
-        $this->assertContainsOnlyInstancesOf(Player::class, $players);
-
-        $this->assertGreaterThan(1, sizeof($players));
-        foreach ($players as $player) {
-            $this->assertStringContainsString('Arsenal', $player->strTeam);
-        }
-
-        TestUtils::assertThatAllPropertiesAreInitialized($players);
+        $this->assertEmpty($players);
     }
 
     /**

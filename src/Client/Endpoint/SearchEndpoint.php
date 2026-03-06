@@ -81,7 +81,9 @@ class SearchEndpoint extends AbstractEndpoint
         }
 
         if ($teamQuery) {
-            $filter->setTeamQuery($teamQuery);
+            trigger_error('Search players by team query is not supported anymore', E_USER_DEPRECATED);
+
+            return [];
         }
 
         $this

@@ -123,15 +123,14 @@ class SearchEndpointTest extends TestCase
     }
 
     /**
+     * @deprecated
+     *
      * @throws Exception
      */
     public function testPlayerFilterTeam(): void
     {
-        $this->endpoint->players(null, 'testTeam');
-
-        $this->assertEquals(
-            (new SearchFilter())->setTeamQuery('testTeam'),
-            TestUtils::getHiddenProperty($this->endpoint, 'filter'));
+        $players = $this->endpoint->players(null, 'testTeam');
+        $this->assertEmpty($players);
     }
 
     /**
